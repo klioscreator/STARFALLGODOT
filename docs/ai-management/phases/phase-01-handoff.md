@@ -10,15 +10,15 @@
 - Repository: https://github.com/klioscreator/STARFALLGODOT
 - Lead branch: `phase-01-design-ready`
 - Research branch: `phase-01-research-claude1`
-- Base commit: `d1d67e75a992cda943c8363d2bce3f4cb2d10af4`
+- Current accepted main: `3e4643361c8cae0c021dc300838782fb3a359fe6`; lead branch sync merge: `c9e09f3c9ad27a67c8cb4697c056e49e1174de8a`
 - Latest substantive Phase 01 commit: None
 - Pull Request: None
 
 ## Work completed
 
-- The accepted main baseline is confirmed.
-- Clean isolated branches were created for Claude 1 research and Claude 2 design leadership.
-- Coordination documents define each AI's scope and the Phase 01 readiness gate.
+- The accepted main baseline is confirmed and task coordination documents are merged.
+- Clean isolated branches were created for Claude 1 research and Claude 2 design leadership; both contain the current accepted coordination baseline.
+- Coordination documents define each AI's scope and the Phase 01 readiness gate and are available on main.
 - No substantive research or design output has been committed.
 
 ## Work not completed
@@ -44,18 +44,17 @@
 
 ## Exact continuation point
 
-1. Merge the coordination PR so the task briefs and access procedure are visible from main.
-2. Ask Claude 1 to read its brief and perform only its write-access check on `phase-01-research-claude1`.
-3. Ask Claude 2 to read its brief, audit the repository, and perform only its write-access check on `phase-01-design-ready`.
-4. Verify both commits on GitHub. If either receives 403, stop that agent's write attempts and resolve access before substantive work.
-5. Once both access checks and takeover confirmations pass, release task 1.1 to Claude 1. Claude 2 waits for coordinator acceptance of that report before completing 1.2–1.4.
+1. Ask Claude 1 to read its brief and perform only its write-access check on `phase-01-research-claude1`.
+2. Ask Claude 2 to read its brief, audit the repository, and perform only its write-access check on `phase-01-design-ready`.
+3. Verify both commits on GitHub. If either receives 403, stop that agent's write attempts and resolve access before substantive work.
+4. Once both access checks and takeover confirmations pass, release task 1.1 to Claude 1. Claude 2 waits for coordinator acceptance of that report before completing 1.2–1.4.
 
 ## Safety checks
 
 - [x] Confirm repository and accepted main baseline.
-- [x] Create isolated branches from the same main commit.
+- [x] Create isolated branches and synchronize them with the accepted coordination baseline.
 - [x] Separate Claude 1 and Claude 2 write scopes.
-- [ ] Merge task briefs and readiness gate into main.
+- [x] Merge task briefs and readiness gate into main.
 - [ ] Verify Claude 1 write access.
 - [ ] Verify Claude 2 write access.
 - [ ] Confirm no concurrent writer on either branch.
