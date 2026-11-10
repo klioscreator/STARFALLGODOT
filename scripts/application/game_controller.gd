@@ -282,9 +282,12 @@ func _on_move_button_up() -> void:
 		player.external_move_input = Vector2.ZERO
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not combat_active or not (event is InputEventKey):
+	if not (event is InputEventKey) or not event.pressed or event.echo:
 		return
-	if not event.pressed or event.echo:
+	if event.keycode == KEY_V:
+		_toggle_camera()
+		return
+	if not combat_active:
 		return
 	match event.keycode:
 		KEY_W:
@@ -295,8 +298,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			_tactical_step(Vector2.LEFT)
 		KEY_D:
 			_tactical_step(Vector2.RIGHT)
-		KEY_V:
-			_toggle_camera()
 
 func _toggle_camera() -> void:
 	camera_rig.toggle_camera_mode()
