@@ -2,10 +2,13 @@ extends SceneTree
 
 const CombatantState = preload("res://scripts/domain/combatant_state.gd")
 const TurnManager = preload("res://scripts/domain/turn_manager.gd")
+const ActionValidator = preload("res://scripts/domain/action_validator.gd")
+const ActionResolver = preload("res://scripts/domain/action_resolver.gd")
 
 func _initialize() -> void:
 	_test_combatant_state()
 	_test_turn_manager()
+	_test_action_pipeline()
 	print("STARFALLGODOT Phase 03 domain tests: PASS")
 	quit(0)
 
@@ -36,3 +39,23 @@ func _test_turn_manager() -> void:
 	assert(turns.advance(["player", "enemy_b"]) == "player")
 	assert(turns.round_number == 2)
 	assert(turns.points_for("player") == 2)
+
+func _test_action_pipeline() -> void:
+	var validator = ActionValidator.new()
+	var resolver = ActionResolver.new()
+	var target = CombatantState.new("target", "Target", 50, "enemy")
+	var wrong_actor = validator.validate_actor_action("enemy", "player", true, 2, 1)
+	assert(not wrong_actor["accepted"])
+	var no_points = validator.validate_actor_action("player", "player", true, 0, 1)
+	assert(not no_points["accepted"])
+	var valid_actor = validator.validate_actor_action("player", "player", true, 2, 1)
+	assert(valid_actor["accepted"])
+	assert(not validator.validate_range(7.0, 5.0)["accepted"])
+	assert(validator.validate_range(4.0, 5.0)["accepted"])
+	var hit = resolver.apply_damage(target, 30)
+	assert(hit["accepted"] and hit["damage"] == 30)
+	assert(target.health == 20)
+	var defeat = resolver.apply_damage(target, 40)
+	assert(defeat["accepted"] and defeat["target_defeated"])
+	var invalid = resolver.apply_damage(target, 10)
+	assert(not invalid["accepted"] and invalid["reason"] == "target_not_alive")
