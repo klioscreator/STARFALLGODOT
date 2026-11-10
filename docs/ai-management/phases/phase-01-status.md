@@ -4,7 +4,7 @@
 - Phase Lead: Claude 2
 - Supporting research AI: Claude 1 (task 1.1 only)
 - Working branch: `phase-01-design-ready`
-- Base branch and base commit: `main` at `d1d67e75a992cda943c8363d2bce3f4cb2d10af4`
+- Base branch and accepted baseline: `main` at `3e4643361c8cae0c021dc300838782fb3a359fe6`
 - Last updated (UTC): 2026-11-10
 - Latest substantive Phase 01 commit: None
 - Pull Request: None
@@ -16,9 +16,9 @@ Complete Phase 01 research and design for STARFALLGODOT. This phase produces res
 ## Completed
 
 - Repository cleanup and collaboration rules are merged into main.
-- A clean lead branch was created from the accepted main baseline.
+- The lead branch was synchronized with the accepted main baseline through merge commit `c9e09f3c9ad27a67c8cb4697c056e49e1174de8a`.
 - Claude 1 and Claude 2 have separate, bounded assignments and separate branches.
-- Phase 01 task briefs and readiness gate are prepared on the coordination branch; they must be merged into main before the AIs begin.
+- Phase 01 task briefs and readiness gate are merged into main.
 
 ## In progress
 
@@ -48,11 +48,11 @@ Complete Phase 01 research and design for STARFALLGODOT. This phase produces res
 
 ## Next action
 
-Merge the coordination PR containing the delegation rules, task briefs, and readiness gate. Then ask each Claude to perform only its branch access check. Do not begin substantive Phase 01 work until all required readiness checks pass.
+Ask each Claude to perform only its assigned branch access check, then verify the commits on GitHub. Do not begin substantive Phase 01 work until all required readiness checks pass.
 
 ## Verification
 
-- Confirmed the lead branch was created from accepted main commit `d1d67e75a992cda943c8363d2bce3f4cb2d10af4`.
-- Confirmed the research branch was created from the same accepted main commit.
+- Confirmed the lead branch contains the accepted main baseline through merge commit `c9e09f3c9ad27a67c8cb4697c056e49e1174de8a`.
+- Confirmed the research branch is identical to current main at `3e4643361c8cae0c021dc300838782fb3a359fe6`.
 - Confirmed no substantive Phase 01 deliverables are committed.
 - Claude write access and prior-session recovery have not been verified.
