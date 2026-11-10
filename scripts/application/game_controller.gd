@@ -199,11 +199,12 @@ func _build_interface() -> void:
 	var root := Control.new()
 	root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	canvas.add_child(root)
-	compact_ui = get_viewport_rect().size.x < 700.0
+	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
+	compact_ui = viewport_size.x < 700.0
 
 	var info_panel := PanelContainer.new()
 	info_panel.position = Vector2(12.0, 12.0)
-	info_panel.custom_minimum_size = Vector2(minf(330.0, get_viewport_rect().size.x - 24.0), 180.0)
+	info_panel.custom_minimum_size = Vector2(minf(330.0, viewport_size.x - 24.0), 180.0)
 	root.add_child(info_panel)
 	var info_box := VBoxContainer.new()
 	info_panel.add_child(info_box)
@@ -480,7 +481,7 @@ func _end_player_turn() -> void:
 func _advance_turn() -> void:
 	if not combat_active or _check_combat_end():
 		return
-	var next_actor := turn_manager.advance(_alive_actor_ids())
+	var next_actor: String = turn_manager.advance(_alive_actor_ids())
 	if next_actor == PLAYER_ID:
 		combat_log = "Round %d. Your turn." % turn_manager.round_number
 	elif next_actor != "" and not enemy_turn_running:
@@ -492,7 +493,7 @@ func _run_enemy_turn() -> void:
 		return
 	enemy_turn_running = true
 	while combat_active and turn_manager.current_actor() != PLAYER_ID:
-		var actor_id := turn_manager.current_actor()
+		var actor_id: String = turn_manager.current_actor()
 		if actor_id.is_empty():
 			break
 		await get_tree().create_timer(0.45).timeout
