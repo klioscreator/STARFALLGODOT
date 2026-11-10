@@ -1,60 +1,53 @@
-# Phase 01 readiness gate
+# Phase 01 readiness and execution status
 
 ## Current state
 
-Phase 01 is assigned to AIT1404 and AITtor. Coordination and access verification have started; substantive research/design work remains blocked until the identity and branch-write checks pass.
+Phase 01 is IN_PROGRESS. Both assigned GitHub identities and branch-specific write checks are verified. AIT0405 has completed the repository/branch/PR audit and recorded it in `docs/phase-01/management/current-audit-2026-11-10.md`.
 
-## Repository baseline
+The two specialist workstreams are independent:
+- AIT1404: reference-game analysis on `phase-01-research-claude1`.
+- AITtor: concept, gameplay systems, GDD and MVP on `phase-01-design-ready`.
 
-- Current accepted main baseline at assignment: `146aa588d66a7d5a2998e8cbcbda10359eb32620`
-- AITtor lead branch: `phase-01-design-ready`
-- AIT1404 research branch: `phase-01-research-claude1`
-- The legacy branch `phase-01-design` is not assigned and must not be used.
-- No game implementation is in scope for Phase 01.
+The access-check commits prove identity/write access only; they are not substantive deliverables.
 
-## Start conditions
+## Verified branch heads at audit time
 
-| Check | Required evidence | State |
-|---|---|---|
-| Repository and baseline | Main commit and both task branches verified on GitHub | PASS |
-| Task separation | AIT1404 and AITtor have separate branches and non-overlapping write scopes | PASS |
-| AIT1404 identity | Authenticated GitHub login is `quockhanh-eng` | PENDING — must be confirmed in AIT1404 session |
-| AIT1404 read access | AIT1404 confirms it can read the assigned branch and project documents | PENDING |
-| AIT1404 write access | A successful branch-specific commit by AIT1404 is visible on `phase-01-research-claude1` | PENDING |
-| AITtor identity | Authenticated GitHub login is `HistoryandGeegraphyEducation` | PENDING — must be confirmed in AITtor session |
-| AITtor read access | AITtor confirms it can read the assigned branch and project documents | PENDING |
-| AITtor write access | A successful branch-specific commit by AITtor is visible on `phase-01-design-ready` | PENDING |
-| Takeover audit | AITtor reports recoverable prior work, current branch head, and blockers | PENDING |
-| No concurrent writer | Each AI confirms no other session is writing to its assigned branch | PENDING |
-| Scope understood | Both AIs acknowledge Phase 01 is research/design only; no game code | PENDING |
+| Branch | Owner | Head SHA | Evidence |
+|---|---|---|---|
+| `main` | Accepted baseline | `a484c13bfa530e4f16c747d160e5673604a6f5a1` | PR #23 merged |
+| `phase-01-research-claude1` | AIT1404 | `038c2d28e930fd75a3529579f1d1019c71e916fa` | Access-check commit by `quockhanh-eng` |
+| `phase-01-design-ready` | AITtor | `8fdf925b8d436903646010d893898d245d789943` | Access-check commit by `HistoryandGeegraphyEducation` |
+| `phase-01-management-ait0405` | AIT0405 | `d0039af3253b2adb1f36825adbca4ca366d8612d` | Management framework PR #23 |
 
-## Access-check procedure
+Branch heads must be refreshed before any subsequent write or review.
 
-Each AI must work only on its assigned branch.
+## Readiness checks
 
-1. Read `README.md`, `PROJECT_OVERVIEW.md`, `ASSIGNMENTS.md`, this readiness file, and its task brief.
-2. Confirm the authenticated GitHub login matches the account specified in the assignment.
-3. Confirm the assigned branch name and its current head SHA.
-4. Create one small access-check Markdown file under `docs/ai-management/access-checks/` on that branch. The file must identify the AI label, authenticated GitHub login, branch, UTC date, and commit SHA after the commit is visible. It must contain no credentials.
-5. Verify the commit by fetching it from GitHub. A successful read does not prove write access.
-6. If the write returns 403 or another permission error, stop. Do not retry with alternate credentials or tools. Report the exact error and provide the intended file content in the chat.
+| Check | State |
+|---|---|
+| Repository and accepted main baseline inspected | PASS |
+| AIT1404 GitHub identity | PASS |
+| AIT1404 branch-specific write access | PASS |
+| AITtor GitHub identity | PASS |
+| AITtor branch-specific write access | PASS |
+| Separate assigned work branches | PASS |
+| Phase 01 scope restriction documented | PASS |
+| AIT0405 repository/branch/PR audit | PASS |
+| No concurrent writer on either specialist branch | CONFIRMATION REQUIRED FROM EACH AIT SESSION |
+| Substantive research and design deliverables | IN PROGRESS / NOT YET VERIFIED |
 
-The access-check commit is evidence only. It does not mean substantive Phase 01 work has started.
+## Execution plan
 
-## Task sequence after the gate passes
+1. AIT1404 completes the evidence-based analysis of Soul Knight, Magic Survival and City of Dragon: Epic Battle. The third title has been independently identified through the official game site and Google Play listing as `City of Dragon: Epic Battle`, published by Moonlight Game Studio JSC. The report must still document the exact source identity and any title/localization variants.
+2. AITtor independently completes the concept, gameplay loop/core systems, GDD and MVP scope. It must incorporate research findings when useful, but may proceed with clearly marked assumptions and unresolved questions rather than waiting for AIT1404.
+3. AIT0405 reviews both workstreams for evidence quality, internal consistency, scope, feasibility and traceability. Conflicts are recorded and resolved before integration.
+4. Each specialist opens a PR to `main`; AIT0405 reviews and merges only compliant work within the delegated Phase 01 scope.
+5. AIT0405 updates the deliverable register, phase status and handoff record. Phase 01 remains IN_PROGRESS until every required deliverable is accepted and merged.
 
-1. AIT1404 completes task 1.1: source-based analysis of the three reference games on its own branch.
-2. AIT0405 reviews the analysis for source quality, factual accuracy, completeness, and relevance. Unsupported claims are returned for correction.
-3. AITtor completes the takeover audit and then uses the accepted 1.1 findings to complete tasks 1.2–1.4 on the lead branch.
-4. AIT0405 reviews the complete Phase 01 design package and opens/updates the review PR.
-5. Phase 01 is not complete until all acceptance criteria in the approved task brief are met and the changes are merged or explicitly accepted under the recorded delegation.
+## Scope boundary
+
+Phase 01 is research and design only. No Godot scripts, scenes, assets, project settings, executable prototype or implementation work may be changed. Phase 02–07 remain unassigned.
 
 ## Stop conditions
 
-- Either AI cannot confirm its GitHub identity, assigned branch, or current head SHA.
-- Either AI receives a write-permission error.
-- A different AI is already writing to the same branch.
-- The work requires a material decision not covered by the approved scope.
-- A reference game cannot be identified reliably.
-
-Do not mark the phase `IN_PROGRESS` until the required identity/access and takeover checks pass.
+Stop the affected workstream if its branch head changes unexpectedly, another AI is concurrently writing to that branch, the exact identity of a reference game cannot be established, or a required product decision exceeds the approved scope. Record the exact issue and SHA; do not overwrite work.
