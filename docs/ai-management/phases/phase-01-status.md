@@ -16,7 +16,7 @@ Complete Phase 01 research and design for STARFALLGODOT. This phase produces res
 ## Completed
 
 - Repository cleanup and collaboration rules are merged into main.
-- The lead branch was synchronized with the accepted main baseline through final sync merge commit `a1c5f180e0be8a23c2f244dc59b2e04c9ac16795`.
+- The lead branch was synchronized with the latest accepted main baseline. Confirm its current head SHA before beginning work.
 - Claude 1 and Claude 2 have separate, bounded assignments and separate branches.
 - Phase 01 task briefs and readiness gate are merged into main.
 
