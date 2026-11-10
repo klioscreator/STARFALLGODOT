@@ -3,27 +3,24 @@
 ## Assignment
 
 - Repository: https://github.com/klioscreator/STARFALLGODOT
-- GitHub account required: `quockhanh-eng`
+- GitHub account: `quockhanh-eng`
 - Assigned branch: `phase-01-research-claude1`
 - Task: Phase 01.1 only
-- Status: BLOCKED — verify the connected account and branch write access first
+- Status: RELEASED FOR EXECUTION — identity and branch write access verified
 - Output: `docs/phase-01/research/reference-game-analysis.md`
+- Tracking issue: https://github.com/klioscreator/STARFALLGODOT/issues/15
 
 ## Objective
 
-Produce a factual, source-based comparative analysis of:
+Produce a factual, source-based comparative analysis of Soul Knight, Magic Survival, and City of Dragon: Epic Battle.
 
-1. Soul Knight
-2. Magic Survival
-3. City of Dragon: Epic Battle
-
-Verify the exact identity of each game before analyzing it. If the third title is ambiguous, discontinued, renamed, region-specific, or unavailable, record the ambiguity and supporting evidence instead of guessing.
+The third title has been identified as City of Dragon: Epic Battle through its official game website and Google Play listing. Verify the exact product identity, developer/publisher, platform and observed version/date from primary sources before attributing individual mechanics.
 
 ## Required analysis
 
 For each game, document only features that can be verified:
 
-- Developer/publisher and platform; identify the version or date observed.
+- Developer/publisher and platform; identify version, region and date observed where available.
 - Core player role, game mode, session structure, and moment-to-moment gameplay loop.
 - Player movement, attack, defense, skills, and control scheme.
 - Character/build progression during a run and between runs.
@@ -58,11 +55,20 @@ Compare the three games in a matrix. Identify design patterns that may be releva
 
 ## Boundaries
 
-- Do not edit `main`, `ASSIGNMENTS.md`, the lead branch, or any other phase branch.
+- Work only on `phase-01-research-claude1`.
+- Do not edit `main`, `ASSIGNMENTS.md`, AITtor's branch, or any other phase branch.
 - Do not write code or modify game assets.
-- Do not define the final STARFALLGODOT concept or GDD; those belong to AITtor after AIT0405 reviews and accepts task 1.1.
+- Do not define the final STARFALLGODOT concept or GDD; those belong to AITtor.
 - Do not claim task completion until the complete report is committed and its SHA is verified on GitHub.
 - If write access fails, stop immediately and provide the exact error and full proposed report in the AIT1404 conversation. Do not retry with another credential or tool.
+
+## Execution protocol
+
+1. Inspect the current branch head and confirm no other AI session is writing to this branch.
+2. Report any work already completed in the current session but not yet pushed. Do not recreate existing work.
+3. Continue the task independently; AITtor's work is not a dependency.
+4. Commit the complete report, verify the SHA on GitHub, and open a PR to `main`.
+5. Update Issue #15 with status, exact file path, SHA, PR URL, limitations and remaining work.
 
 ## Completion criteria
 
