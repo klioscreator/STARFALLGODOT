@@ -4,6 +4,7 @@
 **Phase lead:** AIT0405  
 **Branch:** phase-03-prototype-ait0405  
 **Issue:** #46  
+**Pull Request:** [#47](https://github.com/klioscreator/STARFALLGODOT/pull/47)  
 **Automated validation run:** [GitHub Actions #42837839759](https://github.com/klioscreator/STARFALLGODOT/actions/runs/42837839759)
 
 ## Deliverables
