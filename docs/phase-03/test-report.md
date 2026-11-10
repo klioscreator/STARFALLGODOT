@@ -1,7 +1,7 @@
 # Phase 03 — Automated Test Report
 
-**Run:** [Godot Prototype Checks #42837265937](https://github.com/klioscreator/STARFALLGODOT/actions/runs/42837265937)  
-**Commit tested:** `ec3135a99f7ac7b78bd2856010f8c811207b1e54`  
+**Run:** [Godot Prototype Checks #42837839759](https://github.com/klioscreator/STARFALLGODOT/actions/runs/42837839759)  
+**Commit tested:** `29380d3d1703b11b690b21ba23fd4af973e76690`  
 **Result:** SUCCESS  
 **Engine:** Godot 4.7.2 stable, standard build
 
@@ -10,8 +10,10 @@
 | Install Godot 4.7.2 | PASS | GitHub Actions step completed |
 | Engine version verification | PASS | GitHub Actions step completed |
 | Project import and script parsing | PASS | `godot --headless --editor --path . --quit` completed |
-| Combatant state tests | PASS | Included in `tests/run_tests.gd` |
-| Turn manager tests | PASS | Included in `tests/run_tests.gd` |
+| Combatant state tests | PASS | `tests/run_tests.gd` |
+| Turn scheduler tests | PASS | `tests/run_tests.gd` |
+| Action validation tests | PASS | `tests/run_tests.gd` |
+| Damage resolution tests | PASS | `tests/run_tests.gd` |
 | Main scene launch | PASS | `godot --headless --path . --quit-after 5` completed |
 
 ## Test coverage
@@ -19,6 +21,8 @@
 Combatant tests cover initial health, damage clamping, healing, defeated state and reset.
 
 Turn-manager tests cover actor ownership, rejection of a non-active actor's action, action-point consumption, turn advancement, skipping an actor removed from the living list and round reset.
+
+Action-pipeline tests cover rejection of non-active actors, insufficient action points, out-of-range targets, valid range, damage application, defeat and rejection of actions against defeated targets.
 
 The main-scene smoke test confirms that Godot can load and run the main scene for five headless frames. It is not a substitute for interactive playtesting.
 
