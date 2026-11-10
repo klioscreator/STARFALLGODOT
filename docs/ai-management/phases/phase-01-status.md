@@ -1,58 +1,61 @@
 # Phase 01 status — Research and Design
 
-- Overall status: IN_PROGRESS (AIT0405 management/audit and task-brief correction completed; specialist deliverables not yet verified)
-- Phase Lead: AITtor (`HistoryandGeegraphyEducation`)
-- Research AI: AIT1404 (`quockhanh-eng`, task 1.1)
-- Coordinator and reviewer: AIT0405 (`klioscreator`)
+- Overall status: IN_PROGRESS
+- Phase Lead: AITtor (`HistoryandGeegraphyEducation`) — specialist assignment remains open
+- Research AI: AIT1404 (`quockhanh-eng`) — specialist assignment remains open
+- Coordinator and fallback author: AIT0405 (`klioscreator`)
 - Lead branch: `phase-01-design-ready`
 - Research branch: `phase-01-research-claude1`
-- Management branch: `phase-01-management-ait0405`
-- Main after PR #26: `2ec3fa4063e3f1257923ba47352ee1d5577719ca`
-- AITtor branch head at latest audit: `8fdf925b8d436903646010d893898d245d789943`
-- AIT1404 branch head at latest audit: `038c2d28e930fd75a3529579f1d1019c71e916fa`
-- Last substantive specialist deliverable: Not yet verified in GitHub
+- Coordinator fallback branch: `phase-01-ait0405-completion`
+- Main at latest audit: `d2255368c1db27ed87ce1bbe29edac34781c5b74`
+- Specialist branch heads: AITtor `8fdf925b8d436903646010d893898d245d789943`; AIT1404 `038c2d28e930fd75a3529579f1d1019c71e916fa`
+- Last coordinator fallback commit recorded at takeover: `98d6819bddc1ce704bc3d981b769e550a8886040` (subsequent status commits may advance the branch)
 - Last updated (UTC): 2026-11-10
 
-## Completed
+## Completed management work
 
-- Collaboration rules, task briefs and management/validation framework are merged into `main`.
-- AIT1404 identity and branch write access are verified.
-- AITtor identity and branch write access are verified.
-- AIT0405 inspected repository branches, Phase 01 PR history, repository tree, specialist issues and branch heads.
-- AIT0405 recorded the repository audit and corrected stale readiness/status/handoff records.
-- PR #26 corrected contradictory specialist task briefs: AIT1404 is released for Task 1.1; AITtor may progress independently without waiting for AIT1404.
-- The legacy `phase-01-design` branch was inspected; no substantive specialist research/design deliverables were found there.
+- Collaboration rules, management/validation framework and task briefs are merged into main.
+- AIT1404 and AITtor identities and branch-specific write access are verified.
+- AIT0405 completed the initial repository, branch, PR and issue audit.
+- PR #26/#28 corrected specialist task instructions; AIT1404 and AITtor are independent workstreams.
+- AIT0405 created a separate fallback branch after no specialist progress response or substantive files were found in the latest GitHub audit.
+- Issues #15 and #16 were updated with the fallback status and requests to recover any session-only work.
 
-## Specialist workstreams — released; output pending verification
+## Coordinator fallback documents drafted
 
-- AIT1404: Task 1.1 reference-game analysis on `phase-01-research-claude1`.
-- AITtor: takeover audit and Tasks 1.2–1.4 on `phase-01-design-ready`.
-- The assignments are independent; neither AI must wait for the other's draft.
-- Both specialists must confirm no other session is concurrently writing to their assigned branch.
-- At the latest GitHub audit, neither specialist branch had advanced beyond its access-check commit.
+- Research: `docs/phase-01/research/reference-game-analysis.md`
+- Concept proposal: `docs/phase-01/game-concept.md`
+- Gameplay systems proposal: `docs/phase-01/gameplay-loop-and-systems.md`
+- GDD proposal: `docs/phase-01/game-design-document.md`
+- MVP proposal: `docs/phase-01/mvp-scope.md`
+- Takeover audit: `docs/phase-01/management/ait0405-takeover-2026-11-10.md`
+
+## Specialist workstreams
+
+- AIT1404 branch remains at its access-check commit; no report found in its branch tree at the audit time.
+- AITtor branch remains at its access-check commit; no takeover audit or design documents found in its branch tree at the audit time.
+- No response was present to the coordinator's latest requests in Issues #15 and #16.
+- This does not establish whether either session has unpushed work or is currently active.
+- Specialist branches have not been modified by AIT0405's fallback work.
 
 ## Not yet accepted
 
-- 1.1 Reference-game analysis.
-- AITtor takeover audit.
-- 1.2 Game concept and direction.
-- 1.3 Gameplay loop and core systems.
-- 1.4 GDD and MVP scope.
+- Research report: coordinator draft; technical review and acceptance pending.
+- Concept, gameplay systems, GDD and MVP: provisional proposals; Project Owner decisions pending.
+- Final integration into main.
+- Phase 01 completion sign-off.
 
 ## Scope and decisions
 
-- Phase 01 is limited to research and design. No Godot code, scenes, assets, settings or executable prototype may be changed.
-- Access-check commits do not count as substantive deliverables.
+- Phase 01 is research and design only. No Godot code, scenes, assets, settings or executable prototype may be changed.
+- Product-defining choices not present in the repository are labelled proposals/open decisions.
 - Phase 02–07 remain unassigned.
-- Product decisions not explicitly approved by the Project Owner must be marked as proposals or open questions.
+- The fallback branch is isolated and does not supersede specialist work without reconciliation.
 
 ## Next actions
 
-1. AIT1404 reports existing session-only work (if any), confirms branch exclusivity, and commits/PRs the complete report.
-2. AITtor reports the takeover audit, existing session-only work (if any), confirms branch exclusivity, and continues the design package independently.
-3. AIT0405 reviews actual files and diffs, records acceptance or requested changes, and integrates accepted PRs.
-4. Update this status with the final main SHA only after the specialist work has been accepted and merged.
-
-## Verification note
-
-All SHAs above are point-in-time values. Refresh branch heads before reviewing, committing or merging.
+1. Validate the fallback research report against the cited official sources.
+2. Inspect any AIT1404/AITtor work if it is later pushed or supplied.
+3. Obtain Project Owner decisions for the open GDD items and revise the proposal documents.
+4. Open PR for the consolidated accepted package.
+5. Merge only after acceptance; then update this file with the final main SHA and close Phase 01.
