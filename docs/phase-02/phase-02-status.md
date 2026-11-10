@@ -1,9 +1,8 @@
 # Phase 02 — Architecture Status
 
-**Status:** IN_PROGRESS  
+**Status:** FINAL_REVIEW  
 **Phase lead / coordinator:** AIT0405  
-**Branch:** phase-02-architecture-ait0405  
-**Base:** latest accepted main at phase start  
+**Finalization branch:** phase-02-finalization-ait0405  
 **Scope:** Architecture documentation and design decisions; no implementation
 
 ## Accepted inputs
@@ -11,39 +10,54 @@
 - Phase 01 GDD and MVP scope.
 - Approved 3D humanoid, switchable first-/third-person camera, tactical turn-based combat, solo/group direction.
 - Separate supplementary server project boundary.
-- Project Owner decision: target platforms are **desktop PC and mobile**.
+- Project Owner decision: target platforms are desktop PC and mobile.
+- PR #39 architecture baseline merged.
+- PR #40 Phase 02 authorization/assignment record merged.
+- PR #41 desktop/mobile target decision merged.
 
-## Workstreams
+## Workstreams and evidence
 
-| Workstream | Owner | Deliverable | State |
+| Workstream | Owner / authorship | Deliverable | State |
 |---|---|---|---|
-| 2.1 System architecture and state ownership | AIT0405 | architecture-overview.md | DRAFT |
-| 2.2 Gameplay system contracts | AIT0405 | gameplay-system-contracts.md | DRAFT |
-| 2.3 Technical decision register | AIT0405 | technical-decisions.md | UPDATED |
-| 2.4 Architecture test strategy | AIT0405 | test-and-validation-plan.md | DRAFT |
-| 2.5 Godot technical feasibility | AIT1404 | Issue #37; research/godot-technical-feasibility.md | ASSIGNED |
-| 2.6 Tactical gameplay architecture review | AITtor | Issue #38; research/aittor-gameplay-architecture-review.md | ASSIGNED |
-| 2.7 Integration and consistency review | AIT0405 | Phase 02 PR and handoff | NOT STARTED |
+| System architecture and state ownership | AIT0405 | architecture-overview.md | REVIEWED |
+| Gameplay system contracts | AIT0405 | gameplay-system-contracts.md | REVIEWED |
+| Technical decision register | AIT0405 | technical-decisions.md | UPDATED |
+| Architecture test strategy | AIT0405 | test-and-validation-plan.md | REVIEWED |
+| Godot technical feasibility | AIT1404 assigned; AIT0405 fallback author | research/godot-technical-feasibility.md | FALLBACK_COMPLETE |
+| Tactical gameplay architecture review | AITtor assigned; AIT0405 fallback author | research/aittor-gameplay-architecture-review.md | FALLBACK_COMPLETE |
+| Integration and consistency review | AIT0405 | final review and handoff | COMPLETE |
 
-## Current findings
+## Specialist contribution audit
 
-- Main contains project-management/design documentation only; no Godot project, scenes, scripts, assets or project settings.
-- Lead branch phase-02-architecture-ait0405 was created from current main.
-- Separate support branches and GitHub issues were created for AIT1404 and AITtor.
-- Target platform is now approved as desktop PC and mobile.
-- Renderer, Godot version, minimum device profiles, numerical combat rules, group size and hosting model remain unresolved.
+At finalization audit, support branch phase-02-support-ait1404-engine-feasibility and phase-02-support-aittor-gameplay-architecture still pointed to the Phase 01 baseline commit. Issues #37 and #38 remained open, and neither required Phase 02 deliverable was present on those branches. No specialist-authored commit or PR was available for review.
 
-## Risks and blockers
+To complete the authorized phase without misattributing work, AIT0405 produced the two fallback reviews listed above. These documents are explicitly attributed to AIT0405, not AIT1404 or AITtor. The support issues are to be closed as superseded by Phase Lead fallback, not as specialist work completed.
 
-- Godot version and minimum hardware/performance targets remain open pending feasibility review and Project Owner approval.
-- Input scope (including controller support), initiative, action economy and spatial movement model require review and/or Project Owner approval.
-- Supporting both PC and mobile requires platform-specific input/UI and performance validation; it does not by itself approve cross-play or cloud save.
-- No game implementation is in scope for this phase.
+## Technical findings
+
+- Godot 4 is a viable candidate for continued evaluation; exact version and renderer are not selected.
+- Mobile and Compatibility renderers require comparative testing on agreed devices.
+- PC and mobile require a shared domain/gameplay layer with separate input, UI and performance profiles.
+- Player and enemy commands must share validation and resolution.
+- Turn scheduling, combat resolution and mission lifecycle have separate ownership.
+- Solo MVP must remain playable offline and independent of the future server.
+- No engine, numerical combat, minimum hardware, server hosting, group size or cross-platform service decision was invented.
+
+## Remaining OPEN decisions
+
+Godot version/renderer; minimum hardware and measured performance targets; controller support; initiative/tie-break; action economy and numerical costs; movement model and spatial rules; enemy intent visibility; group size and turn coordination; companion scope; mission/extraction/failure rules; active-mission saving; server hosting/authority; cross-play and cloud save.
+
+These are recorded as future decision gates, not uncompleted documentation tasks for Phase 02. The next implementation phase must not silently assume answers.
+
+## Scope verification
+
+No Godot scripts, scenes, assets, project settings, executable prototype or server code were changed. Phase 02 remains documentation/architecture only.
 
 ## Acceptance gate
 
-Phase 02 remains IN_PROGRESS until support reviews are received or explicitly taken over, architecture documents are reconciled, remaining blocking decisions are recorded, and the final PR is reviewed and accepted. Draft documents alone do not complete the phase.
+Phase 02 is ready for final PR review. Completion is recorded only after the final documentation PR is merged to main and the main-branch commit is verified. Phase 03–07 remain NOT_STARTED and require separate Project Owner authorization.
 
-## Latest verified commit
+## Finalization record
 
-Refresh this field after the latest branch commit has been verified on GitHub.
+- Finalization branch: phase-02-finalization-ait0405
+- Final commit SHA: to be recorded after final PR merge and main verification.
