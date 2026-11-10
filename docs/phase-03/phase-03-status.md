@@ -1,44 +1,59 @@
 # Phase 03 — Prototype Status
 
-**Status:** IN_PROGRESS  
+**Status:** PENDING_REVIEW  
 **Phase lead:** AIT0405  
 **Branch:** phase-03-prototype-ait0405  
 **Base branch:** main  
 **Base commit:** fda33199a23fe3d9a98bb5aa3ea741091ba43c4c  
+**Issue:** #46  
 **Last updated:** 2026-11-10
 
 ## Objective
 
 Build a prototype connecting 3D exploration, humanoid control, dual camera, PC/touch input and a solo offline tactical encounter.
 
-## Implemented in branch
+## Implemented
 
-- Godot project configuration and main scene.
-- Procedural 3D arena and humanoid/enemy placeholders.
-- Player movement and dual camera rig.
-- Touch-oriented directional/action UI.
-- Local combatant state and turn manager.
-- Prototype encounter actions, enemy turns, victory/defeat and restart.
-- Headless domain test script.
-- Run instructions and prototype-only parameter register.
+- Godot 4 project configuration and main scene.
+- Procedural 3D test arena, collision floor and cover obstacles.
+- Humanoid placeholder with CharacterBody3D movement.
+- First-/third-person camera rig, camera obstruction handling and player-mesh hiding in first-person.
+- Keyboard movement and mouse-look controls.
+- Touch-oriented directional pad, touch camera drag and action buttons.
+- Compact HUD layout for narrower screens.
+- Combatant runtime state and centralized turn manager.
+- One offline encounter with target selection, tactical reposition, weapon attack, skill action, enemy turns, victory/defeat and restart.
+- Headless domain tests.
+- Automated Godot import, domain-test and scene-launch workflow.
+- Run instructions, prototype-only parameter register, test report and handoff.
 
-## In progress
+## Automated verification
 
-- Source review and repository validation.
-- Godot parser/runtime verification.
-- Final acceptance checklist and handoff.
+GitHub Actions run **42837265937** completed with SUCCESS on commit `ec3135a99f7ac7b78bd2856010f8c811207b1e54`.
 
-## Not verified
+Successful steps:
+- Install Godot 4.7.2 standard build.
+- Verify engine version.
+- Import and parse the project headlessly.
+- Run `tests/run_tests.gd`.
+- Launch the main scene headlessly for five frames.
 
-- Godot editor import and runtime launch: no Godot executable installed; network download unavailable.
-- Android APK export: Android SDK/export templates unavailable.
-- Actual desktop/mobile performance: no physical target devices attached.
-- Visual quality, input latency and camera occlusion on hardware.
+Detailed evidence: docs/phase-03/test-report.md.
+
+## Remaining owner-side validation
+
+Automated headless checks do not replace interactive hardware tests. The following still require a desktop/mobile device and the Project Owner's review:
+- Play the scene interactively on desktop; inspect movement, camera obstruction, target selection and encounter transitions.
+- Test touch controls and screen layout on an actual mobile device.
+- Verify Android/iOS export only after the intended mobile OS and export toolchain are confirmed.
+- Measure frame time, memory, thermal behavior and input latency on agreed target hardware.
+
+These are not reported as passed. No Godot executable, Android SDK or physical target device was available in the implementation environment.
 
 ## Scope guard
 
-No online server, multiplayer transport, production assets, campaign, progression or final combat balance is included. Prototype AP/damage/turn/movement parameters do not close any Project Owner decision.
+No online server, multiplayer transport, production assets, campaign, progression/save system or final combat balance is included. Prototype AP/damage/turn/movement parameters are test fixtures only and do not close any Project Owner decision.
 
-## Next action
+## Review state
 
-Run the headless domain tests and open the project in Godot 4.7.2 on a supported desktop. Then test touch controls and Android export on an agreed device.
+Implementation and automated checks are ready for Project Owner review. Phase 03 remains PENDING_REVIEW, not COMPLETED, until interactive owner-device validation and the repository's PR merge/acceptance requirement are satisfied.
