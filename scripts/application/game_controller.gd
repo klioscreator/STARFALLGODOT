@@ -34,6 +34,7 @@ var end_turn_button: Button
 var target_button: Button
 var restart_button: Button
 var camera_button: Button
+var compact_ui: bool = false
 
 func _ready() -> void:
 	_build_environment()
@@ -191,10 +192,11 @@ func _build_interface() -> void:
 	var root := Control.new()
 	root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	canvas.add_child(root)
+	compact_ui = get_viewport_rect().size.x < 700.0
 
 	var info_panel := PanelContainer.new()
-	info_panel.position = Vector2(16.0, 16.0)
-	info_panel.custom_minimum_size = Vector2(330.0, 180.0)
+	info_panel.position = Vector2(12.0, 12.0)
+	info_panel.custom_minimum_size = Vector2(minf(330.0, get_viewport_rect().size.x - 24.0), 180.0)
 	root.add_child(info_panel)
 	var info_box := VBoxContainer.new()
 	info_panel.add_child(info_box)
@@ -218,10 +220,10 @@ func _build_interface() -> void:
 	action_panel.anchor_top = 1.0
 	action_panel.anchor_right = 1.0
 	action_panel.anchor_bottom = 1.0
-	action_panel.offset_left = -286.0
-	action_panel.offset_top = -238.0
-	action_panel.offset_right = -16.0
-	action_panel.offset_bottom = -16.0
+	action_panel.offset_left = -190.0 if compact_ui else -286.0
+	action_panel.offset_top = -286.0 if compact_ui else -238.0
+	action_panel.offset_right = -12.0
+	action_panel.offset_bottom = -12.0
 	root.add_child(action_panel)
 	var action_box := VBoxContainer.new()
 	action_panel.add_child(action_box)
@@ -237,21 +239,21 @@ func _build_interface() -> void:
 	var dpad_panel := PanelContainer.new()
 	dpad_panel.anchor_top = 1.0
 	dpad_panel.anchor_bottom = 1.0
-	dpad_panel.offset_left = 16.0
-	dpad_panel.offset_top = -166.0
-	dpad_panel.offset_right = 212.0
-	dpad_panel.offset_bottom = -16.0
+	dpad_panel.offset_left = 12.0
+	dpad_panel.offset_top = -138.0 if compact_ui else -166.0
+	dpad_panel.offset_right = 152.0 if compact_ui else 212.0
+	dpad_panel.offset_bottom = -12.0
 	root.add_child(dpad_panel)
 	var grid := GridContainer.new()
 	grid.columns = 3
 	dpad_panel.add_child(grid)
 
 	var spacer_a := Control.new()
-	spacer_a.custom_minimum_size = Vector2(48.0, 42.0)
+	spacer_a.custom_minimum_size = Vector2(36.0, 36.0) if compact_ui else Vector2(48.0, 42.0)
 	grid.add_child(spacer_a)
 	_bind_move_button(_make_button("▲", grid), Vector2.UP)
 	var spacer_b := Control.new()
-	spacer_b.custom_minimum_size = Vector2(48.0, 42.0)
+	spacer_b.custom_minimum_size = Vector2(36.0, 36.0) if compact_ui else Vector2(48.0, 42.0)
 	grid.add_child(spacer_b)
 	_bind_move_button(_make_button("◀", grid), Vector2.LEFT)
 	_bind_move_button(_make_button("▼", grid), Vector2.DOWN)
@@ -260,14 +262,14 @@ func _build_interface() -> void:
 func _make_button(button_text: String, parent: Node, callback: Callable = Callable()) -> Button:
 	var button := Button.new()
 	button.text = button_text
-	button.custom_minimum_size = Vector2(118.0, 42.0)
+	button.custom_minimum_size = Vector2(102.0, 38.0) if compact_ui else Vector2(118.0, 42.0)
 	parent.add_child(button)
 	if callback.is_valid():
 		button.pressed.connect(callback)
 	return button
 
 func _bind_move_button(button: Button, direction: Vector2) -> void:
-	button.custom_minimum_size = Vector2(48.0, 42.0)
+	button.custom_minimum_size = Vector2(36.0, 36.0) if compact_ui else Vector2(48.0, 42.0)
 	button.button_down.connect(_on_move_button_down.bind(direction))
 	button.button_up.connect(_on_move_button_up)
 
