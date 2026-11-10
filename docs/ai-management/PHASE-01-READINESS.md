@@ -6,10 +6,10 @@ Phase 01 has not started. This document defines the checks that must pass before
 
 ## Repository baseline
 
-- Accepted main commit: `d1d67e75a992cda943c8363d2bce3f4cb2d10af4`
-- Claude 2 lead branch: `phase-01-design-ready`
-- Claude 1 research branch: `phase-01-research-claude1`
-- Both work branches were created from the accepted main commit.
+- Current accepted main commit: `3e4643361c8cae0c021dc300838782fb3a359fe6`
+- Claude 2 lead branch: `phase-01-design-ready` (synchronized through `c9e09f3c9ad27a67c8cb4697c056e49e1174de8a`)
+- Claude 1 research branch: `phase-01-research-claude1` (identical to current main)
+- Both work branches contain the accepted coordination baseline.
 - No game implementation is in scope for Phase 01.
 
 ## Start conditions
@@ -19,9 +19,9 @@ Phase 01 has not started. This document defines the checks that must pass before
 | Repository and baseline | Main commit and both task branches verified on GitHub | PASS |
 | Task separation | Claude 1 and Claude 2 have separate branches and non-overlapping write scopes | PASS |
 | Claude 1 read access | Claude 1 confirms it can read the assigned branch and project documents | NOT VERIFIED |
-| Claude 1 write access | A successful commit by Claude 1 is visible on `phase-01-research-claude1` | BLOCKED — prior Claude MCP write attempt returned HTTP 403 |
+| Claude 1 write access | A successful commit by Claude 1 is visible on `phase-01-research-claude1` | NOT VERIFIED — the earlier HTTP 403 is not reliably attributable to a specific Claude session |
 | Claude 2 read access | Claude 2 confirms it can read the assigned branch and project documents | NOT VERIFIED |
-| Claude 2 write access | A successful commit by Claude 2 is visible on `phase-01-design-ready` | NOT VERIFIED — prior Claude MCP write attempt returned HTTP 403 |
+| Claude 2 write access | A successful commit by Claude 2 is visible on `phase-01-design-ready` | NOT VERIFIED — the earlier HTTP 403 is not reliably attributable to a specific Claude session |
 | Prior-session handoff | Claude 2 confirms whether any recoverable Claude 1 Phase 01 notes exist outside GitHub; otherwise records none found | NOT VERIFIED |
 | No concurrent writer | Each Claude confirms no other session is writing to its assigned branch | NOT VERIFIED |
 | Scope understood | Both AIs acknowledge Phase 01 is research/design only; no game code | NOT VERIFIED |
@@ -33,7 +33,7 @@ Each Claude must work only on its own branch.
 1. Read `README.md`, `PROJECT_OVERVIEW.md`, `ASSIGNMENTS.md`, this readiness file, and the relevant task brief.
 2. Confirm the assigned branch name and its current head SHA.
 3. Create one small access-check Markdown file under `docs/ai-management/access-checks/` on that branch. The file must identify the AI label, branch, UTC date, and commit SHA after the commit is visible.
-4. Verify the commit by fetching it from GitHub. A successful read does not prove write access.
+4. Verify the commit by fetching it from GitHub. A successful read does not prove write access. The exact test file is evidence of access only and must not contain credentials.
 5. If the write returns 403 or another permission error, stop. Do not retry with alternate credentials or tools. Report the exact error and provide the intended file content in the chat.
 
 The access-check commit is evidence only. It does not mean substantive Phase 01 work has started.
