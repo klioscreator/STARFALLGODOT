@@ -1,46 +1,54 @@
 # Phase 02 — Architecture Handoff
 
-**Status:** IN_PROGRESS  
+**Status:** FINAL_REVIEW  
 **Phase lead:** AIT0405  
-**Lead branch:** phase-02-architecture-ait0405
+**Finalization branch:** phase-02-finalization-ait0405
 
-## Scope
+## Scope delivered
 
-Architecture documentation only. Do not create or modify Godot scripts, scenes, assets, project settings, executable prototypes or server implementation during this phase.
+Architecture documentation, gameplay contracts, technical decision register, test strategy and two fallback research reviews. No Godot implementation, scenes, assets, project settings, executable prototype or server code was created or modified.
 
-## Lead deliverables
+## Accepted baseline
+
+- Phase 01 GDD and MVP.
+- PR #39 architecture baseline merged.
+- PR #40 Phase 02 authorization and assignments merged.
+- PR #41 owner decision to target desktop PC and mobile merged.
+
+## Deliverables
 
 - docs/phase-02/architecture-overview.md
 - docs/phase-02/gameplay-system-contracts.md
 - docs/phase-02/technical-decisions.md
 - docs/phase-02/test-and-validation-plan.md
+- docs/phase-02/research/godot-technical-feasibility.md
+- docs/phase-02/research/aittor-gameplay-architecture-review.md
 
-## Parallel assignments
+The two research reviews were authored by AIT0405 as fallback work. AIT1404 and AITtor did not provide verifiable Phase 02 commits or PRs at finalization audit. Their authorship is not claimed.
 
-- AIT1404 / quockhanh-eng: Issue #37, Godot technical feasibility; branch phase-02-support-ait1404-engine-feasibility.
-- AITtor / HistoryandGeegraphyEducation: Issue #38, tactical gameplay architecture review; branch phase-02-support-aittor-gameplay-architecture.
+## Architecture decisions and boundaries
 
-Each task is isolated. Neither support AI may edit the lead branch or another support branch. Each must submit a PR and report a verified commit SHA.
+- One shared gameplay/domain layer for PC and mobile.
+- Platform-specific input, UI, rendering quality and export profiles.
+- A single owner for mission state, encounter state, turn scheduling and combatant runtime state.
+- One command validation/resolution pipeline shared by player and enemy actions.
+- Camera switching remains presentation-only.
+- Solo MVP is local/offline; online group play belongs to a separate future server project.
+- Immutable content definitions are separate from mutable runtime state.
+- Mission and encounter state machines remain separate.
 
-## Immediate next actions
+## Open decisions handed forward
 
-1. Receive and review both support deliverables.
-2. Resolve target-platform decision with the Project Owner.
-3. Reconcile architecture and gameplay proposals; keep unresolved decisions OPEN.
-4. Update status and decision register.
-5. Open Phase 02 PR to main for review and acceptance.
+Godot version and renderer; minimum hardware/performance targets; controller support; initiative and tie-break; action economy; tactical movement/spatial rules; enemy intent visibility; group size and turn coordination; companion scope; mission/extraction/failure; active-mission save; server hosting/authority; cross-play and cloud save.
 
-## Project Owner decisions still required
+These decisions must be resolved before the implementation tasks that depend on them. They are not approved by implication.
 
-- Target platform: desktop PC, mobile, or both.
-- Minimum hardware and performance target.
-- Final Godot version after feasibility review.
-- Initiative, turn/action economy and movement model.
-- Group size and group-turn coordination.
-- Mission objective, extraction and failure conditions.
-- Save scope and persistent progression boundary.
-- Server hosting/authority model for the separate future project.
+## Specialist branch audit
 
-## Commit record
+The two support branches remained at the Phase 01 baseline and contained no Phase 02 deliverables. Issues #37 and #38 are closed as superseded by Phase Lead fallback. No specialist work is attributed without a verifiable commit/PR.
 
-Initial lead documentation commits are visible on GitHub. Refresh the branch SHA after the final PR preparation commit.
+## Handoff to Phase 03
+
+Phase 02 does not authorize Phase 03. Before prototype implementation, the Project Owner should approve the remaining decisions that directly constrain the first playable slice: Godot version, renderer/device floor, action economy, spatial movement model, mission success/failure, and the save scope required by the MVP. Other open decisions can remain deferred if the prototype explicitly isolates them.
+
+Phase 03–07 remain NOT_STARTED until separately authorized.
