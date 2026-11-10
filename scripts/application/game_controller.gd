@@ -4,6 +4,8 @@ const CombatantState = preload("res://scripts/domain/combatant_state.gd")
 const TurnManager = preload("res://scripts/domain/turn_manager.gd")
 const PlayerController = preload("res://scripts/presentation/player_controller.gd")
 const CameraRig = preload("res://scripts/presentation/camera_rig.gd")
+const ActionValidator = preload("res://scripts/domain/action_validator.gd")
+const ActionResolver = preload("res://scripts/domain/action_resolver.gd")
 
 const PLAYER_ID := "player"
 const ENEMY_IDS: Array[String] = ["enemy_scout", "enemy_guard"]
@@ -17,6 +19,8 @@ var camera_rig: CameraRig
 var player_state
 var enemies: Dictionary = {}
 var turn_manager
+var action_validator
+var action_resolver
 var combat_active: bool = false
 var enemy_turn_running: bool = false
 var selected_target_id: String = "enemy_scout"
@@ -37,6 +41,8 @@ var camera_button: Button
 var compact_ui: bool = false
 
 func _ready() -> void:
+	action_validator = ActionValidator.new()
+	action_resolver = ActionResolver.new()
 	_build_environment()
 	_build_player()
 	_build_enemies()
@@ -361,49 +367,79 @@ func _select_next_target() -> void:
 	_update_hud()
 
 func _player_attack() -> void:
-	if not _player_can_act():
-		return
 	var target := _selected_enemy_data()
 	if target.is_empty():
 		_finish_combat(true)
 		return
 	var target_node: CharacterBody3D = target["node"]
 	var target_state = target["state"]
-	if player.global_position.distance_to(target_node.global_position) > 4.4:
+	var actor_check: Dictionary = action_validator.validate_actor_action(
+		PLAYER_ID, turn_manager.current_actor(), player_state.is_alive,
+		turn_manager.points_for(PLAYER_ID), 1
+	)
+	if not actor_check["accepted"]:
+		combat_log = "Action rejected: " + str(actor_check["reason"])
+		_update_hud()
+		return
+	var range_check: Dictionary = action_validator.validate_range(
+		player.global_position.distance_to(target_node.global_position), 4.4
+	)
+	if not range_check["accepted"]:
 		combat_log = "Target is out of weapon range. Move closer."
 		_update_hud()
 		return
 	if not turn_manager.consume(PLAYER_ID, 1):
 		return
-	var damage: int = target_state.apply_damage(PLAYER_ATTACK_DAMAGE)
+	var result: Dictionary = action_resolver.apply_damage(target_state, PLAYER_ATTACK_DAMAGE)
+	if not result["accepted"]:
+		combat_log = "Action rejected: " + str(result["reason"])
+		_update_hud()
+		return
 	_update_enemy_visibility(selected_target_id)
-	combat_log = "Weapon attack dealt %d damage to %s." % [damage, target_state.display_name]
+	combat_log = "Weapon attack dealt %d damage to %s." % [int(result["damage"]), target_state.display_name]
 	_after_player_action()
 
 func _player_skill() -> void:
-	if not _player_can_act():
-		return
 	var target := _selected_enemy_data()
 	if target.is_empty():
 		_finish_combat(true)
 		return
 	var target_node: CharacterBody3D = target["node"]
 	var target_state = target["state"]
-	if player.global_position.distance_to(target_node.global_position) > 6.0:
+	var actor_check: Dictionary = action_validator.validate_actor_action(
+		PLAYER_ID, turn_manager.current_actor(), player_state.is_alive,
+		turn_manager.points_for(PLAYER_ID), 2
+	)
+	if not actor_check["accepted"]:
+		combat_log = "Action rejected: " + str(actor_check["reason"])
+		_update_hud()
+		return
+	var range_check: Dictionary = action_validator.validate_range(
+		player.global_position.distance_to(target_node.global_position), 6.0
+	)
+	if not range_check["accepted"]:
 		combat_log = "Target is out of skill range."
 		_update_hud()
 		return
 	if not turn_manager.consume(PLAYER_ID, 2):
-		combat_log = "Not enough action points. End the turn or use a weapon action."
+		return
+	var result: Dictionary = action_resolver.apply_damage(target_state, PLAYER_SKILL_DAMAGE)
+	if not result["accepted"]:
+		combat_log = "Action rejected: " + str(result["reason"])
 		_update_hud()
 		return
-	var damage: int = target_state.apply_damage(PLAYER_SKILL_DAMAGE)
 	_update_enemy_visibility(selected_target_id)
-	combat_log = "Prototype skill dealt %d damage to %s." % [damage, target_state.display_name]
+	combat_log = "Prototype skill dealt %d damage to %s." % [int(result["damage"]), target_state.display_name]
 	_after_player_action()
 
 func _tactical_step(direction_2d: Vector2) -> void:
-	if not _player_can_act():
+	var actor_check: Dictionary = action_validator.validate_actor_action(
+		PLAYER_ID, turn_manager.current_actor(), player_state.is_alive,
+		turn_manager.points_for(PLAYER_ID), 1
+	)
+	if not actor_check["accepted"]:
+		combat_log = "Action rejected: " + str(actor_check["reason"])
+		_update_hud()
 		return
 	var direction := camera_rig.get_flat_right() * direction_2d.x
 	direction += camera_rig.get_flat_forward() * -direction_2d.y
@@ -411,18 +447,16 @@ func _tactical_step(direction_2d: Vector2) -> void:
 	direction = direction.normalized()
 	if direction.length_squared() < 0.001:
 		return
-	if not turn_manager.consume(PLAYER_ID, 1):
-		combat_log = "Not enough action points to move."
+	var motion := direction * TACTICAL_STEP
+	if player.test_move(player.global_transform, motion):
+		combat_log = "Movement blocked; no action point consumed."
 		_update_hud()
 		return
-	var motion := direction * TACTICAL_STEP
-	if not player.test_move(player.global_transform, motion):
-		player.global_position += motion
-		player.rotation.y = atan2(-direction.x, -direction.z)
-		combat_log = "Tactical reposition completed."
-	else:
-		turn_manager.action_points[PLAYER_ID] = turn_manager.points_for(PLAYER_ID) + 1
-		combat_log = "Movement blocked; no action point consumed."
+	if not turn_manager.consume(PLAYER_ID, 1):
+		return
+	player.global_position += motion
+	player.rotation.y = atan2(-direction.x, -direction.z)
+	combat_log = "Tactical reposition completed."
 	_update_hud()
 	if turn_manager.points_for(PLAYER_ID) <= 0:
 		_advance_turn()
@@ -470,10 +504,19 @@ func _run_enemy_turn() -> void:
 		if not enemy_state.is_alive:
 			_advance_turn()
 			continue
+		var actor_check: Dictionary = action_validator.validate_actor_action(
+			actor_id, turn_manager.current_actor(), enemy_state.is_alive,
+			turn_manager.points_for(actor_id), 1
+		)
+		if not actor_check["accepted"]:
+			_advance_turn()
+			continue
 		var distance := enemy_node.global_position.distance_to(player.global_position)
 		if distance <= 3.6:
-			var damage: int = player_state.apply_damage(ENEMY_ATTACK_DAMAGE)
-			combat_log = "%s attacked for %d damage." % [enemy_state.display_name, damage]
+			var range_check: Dictionary = action_validator.validate_range(distance, 3.6)
+			if range_check["accepted"]:
+				var result: Dictionary = action_resolver.apply_damage(player_state, ENEMY_ATTACK_DAMAGE)
+				combat_log = "%s attacked for %d damage." % [enemy_state.display_name, int(result["damage"])]
 		else:
 			var direction := player.global_position - enemy_node.global_position
 			direction.y = 0.0
