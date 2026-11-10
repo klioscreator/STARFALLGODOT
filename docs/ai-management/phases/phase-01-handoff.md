@@ -27,7 +27,7 @@ The earlier top-down real-time shooter proposal is superseded.
 - `docs/phase-01/mvp-scope.md`
 - `docs/phase-01/management/ait0405-takeover-2026-11-10.md`
 
-The management readiness, assignment, status and handoff records are updated in PR #34.
+The management readiness, assignment, status and handoff records are updated in PR #35.
 
 ## Work attribution
 
