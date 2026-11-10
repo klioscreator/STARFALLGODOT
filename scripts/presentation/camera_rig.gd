@@ -4,6 +4,7 @@ extends Node3D
 @export var touch_sensitivity: float = 0.004
 var spring_arm: SpringArm3D
 var camera: Camera3D
+var first_person_body_visual: GeometryInstance3D
 var first_person: bool = false
 var _pitch: float = -0.12
 var _mouse_look_enabled: bool = false
@@ -28,6 +29,8 @@ func set_camera_mode(use_first_person: bool) -> void:
 	else:
 		spring_arm.spring_length = 4.2
 		camera.position = Vector3.ZERO
+	if first_person_body_visual != null:
+		first_person_body_visual.visible = not first_person
 func toggle_camera_mode() -> void:
 	set_camera_mode(not first_person)
 func get_flat_forward() -> Vector3:

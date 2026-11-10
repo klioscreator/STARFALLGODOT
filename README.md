@@ -182,7 +182,7 @@ A replacement AI inspects the assigned branch, latest commit, status, handoff an
 
 ## Current delegation
 
-The Project Owner has authorised AIT0405 to coordinate and lead Phase 02 Architecture, create bounded independent support assignments for AIT1404 and AITtor, maintain task/status records, review deliverables and prepare the Phase 02 PR. This authorisation does not grant merge authority. The Project Owner retains authority over core product decisions, target platform, material scope changes and PR merge approval. Phase 02 is documentation/architecture work only; no game implementation or server code is authorised in this phase.
+The Project Owner authorised AIT0405 to coordinate and lead Phase 02 Architecture (completed) and Phase 03 Prototype (active), maintain task/status records, review deliverables and prepare phase PRs. Phase 03 scope is the solo offline prototype for desktop PC and mobile touch input. This authorisation does not grant merge authority. The Project Owner retains authority over core product decisions, material scope changes and PR merge approval. Phase 04–07 remain NOT_STARTED and require separate authorization.
 
 ## Security and access
 
