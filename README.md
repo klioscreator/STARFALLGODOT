@@ -193,7 +193,7 @@ A replacement AI must first inspect the assigned branch, latest commit, status, 
 
 ## Current delegation
 
-The Project Owner has delegated operational coordination to ChatGPT as AI Coordinator for repository preparation and Phase 01 execution: assigning Claude 1 and Claude 2 to bounded tasks, maintaining task records, reviewing their deliverables, and merging compliant PRs within the approved Phase 01 scope. The Project Owner retains authority over changes to the game's core direction, material scope changes, and decisions outside this delegation. This delegation must not be interpreted as permission to change unrelated phases or implement game code during Phase 01.
+The Project Owner has delegated operational coordination to ChatGPT as AI Coordinator for repository preparation and Phase 01 execution: assigning AIT1404 and AITtor to bounded tasks, maintaining task records, reviewing their deliverables, and merging compliant PRs within the approved Phase 01 scope. The Project Owner retains authority over changes to the game's core direction, material scope changes, and decisions outside this delegation. This delegation must not be interpreted as permission to change unrelated phases or implement game code during Phase 01.
 
 ## Security and access
 
