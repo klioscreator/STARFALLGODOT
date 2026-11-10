@@ -27,7 +27,7 @@ The earlier top-down real-time shooter proposal is superseded.
 - `docs/phase-01/mvp-scope.md`
 - `docs/phase-01/management/ait0405-takeover-2026-11-10.md`
 
-The management readiness, assignment, status and handoff records are updated in PR #35.
+The management readiness, assignment, status and handoff records were updated in PR #35. Final main SHA: `7eac652443a77300a7c722ec1c23856d45f10e63`.
 
 ## Work attribution
 
