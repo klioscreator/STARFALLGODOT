@@ -69,7 +69,7 @@ Project Owner approves scope and may delegate execution/merge authority → AI C
 ## Repository rules
 
 - `main` is the accepted project baseline. Do not commit directly to it.
-- Each active phase has one assigned AI, one working branch, and one task owner.
+- Each active phase has one lead AI, one lead branch, and one accountable task owner. Supporting AIs may work only on explicitly assigned subtasks using separate branches.
 - A phase branch must be based on the latest accepted `main` unless the coordinator specifies another base.
 - Do not let two AI agents write to the same phase branch at the same time.
 - All changes are submitted through a Pull Request. The Project Owner merges, or the AI Coordinator merges only under an explicit recorded delegation.
@@ -88,7 +88,8 @@ Project Owner approves scope and may delegate execution/merge authority → AI C
 
 ## Branch naming
 
-- `phase-01-design`
+- `phase-01-design-ready` (Phase 01 lead)
+- `phase-01-research-claude1` (Phase 01 research subtask)
 - `phase-02-architecture`
 - `phase-03-prototype`
 - `phase-04-combat`
@@ -126,8 +127,8 @@ Record the commit SHA only after it is visible on GitHub. If no commit was creat
 | `BLOCKED` | Work cannot continue because of a missing input, decision, or permission. |
 | `BLOCKED_LIMIT` | The assigned AI reached a usage limit; a handoff is required. |
 | `NEEDS_TAKEOVER` | A replacement AI is needed. |
-| `PENDING_REVIEW` | A PR is open and awaiting AI Coordinator review and Project Owner approval. |
-| `COMPLETED` | The completion criteria are met and the Project Owner has merged or explicitly accepted the PR. |
+| `PENDING_REVIEW` | A PR is open and awaiting AI Coordinator review and approval by the Project Owner or delegated Coordinator. |
+| `COMPLETED` | The completion criteria are met and the PR has been merged by the Project Owner or delegated Coordinator, or explicitly accepted by the Project Owner. |
 
 A phase is not `COMPLETED` merely because documents were written or commits were made.
 

@@ -9,7 +9,7 @@ This table records who is responsible for each phase. Rules for assignment, hand
 
 | Phase | Name | Branch | Assigned AI | Status | Dependencies | Pull Request | Last Commit SHA | Notes |
 |---|---|---|---|---|---|---|---|---|
-| 01 | Design | `phase-01-design-ready` | Claude 2 (Phase Lead) | BLOCKED | Task 1.1 research review | N/A | `d1d67e75a992cda943c8363d2bce3f4cb2d10af4` | Prepared clean branch from accepted main; takeover audit required before work begins. |
+| 01 | Design | `phase-01-design-ready` | Claude 2 (Phase Lead) | BLOCKED | Task 1.1 research review | N/A | N/A — no substantive Phase 01 work | Lead branch is synchronized; awaiting Claude access checks and takeover confirmation. |
 | 02 | Architecture | `phase-02-architecture` | UNASSIGNED | NOT_STARTED | TBD – Pending Project Owner approval | N/A | N/A | |
 | 03 | Prototype | `phase-03-prototype` | UNASSIGNED | NOT_STARTED | TBD – Pending Project Owner approval | N/A | N/A | |
 | 04 | Combat | `phase-04-combat` | UNASSIGNED | NOT_STARTED | TBD – Pending Project Owner approval | N/A | N/A | |
