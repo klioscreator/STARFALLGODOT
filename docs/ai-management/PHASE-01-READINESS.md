@@ -7,9 +7,9 @@ Phase 01 has not started. This document defines the checks that must pass before
 ## Repository baseline
 
 - Coordination baseline checkpoint: `2bc62923f6f265ecab314fe412389d18905e0e90`
-- Claude 2 lead branch: `phase-01-design-ready` (synchronized through `58679fdff3bc6ad97c20c4f67cfc8c141d33887e`)
+- Claude 2 lead branch: `phase-01-design-ready` (contains the coordination checkpoint; see the branch status and handoff files for its current head)
 - Claude 1 research branch: `phase-01-research-claude1` (identical to the coordination baseline checkpoint)
-- Both work branches were synchronized to this coordination baseline before this readiness note was updated.
+- Both work branches were synchronized to this coordination baseline. The legacy branch `phase-01-design` is not assigned and must not be used.
 - No game implementation is in scope for Phase 01.
 
 ## Start conditions
