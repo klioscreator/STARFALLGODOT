@@ -7,6 +7,7 @@
 **Initial base commit:** fda33199a23fe3d9a98bb5aa3ea741091ba43c4c  
 **Main synchronization:** db6603b22fef7f09c32e7a4b8091d0e27a202df7  
 **Issue:** #46  
+**Pull Request:** #47 (open)  
 **Last updated:** 2026-11-10
 
 ## Objective
