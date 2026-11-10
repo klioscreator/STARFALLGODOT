@@ -6,8 +6,8 @@ Phase 01 has not started. This document defines the checks that must pass before
 
 ## Repository baseline
 
-- Current accepted main commit: `3e4643361c8cae0c021dc300838782fb3a359fe6`
-- Claude 2 lead branch: `phase-01-design-ready` (synchronized through `c9e09f3c9ad27a67c8cb4697c056e49e1174de8a`)
+- Current accepted main commit: `e84ec51d922b3198f1f4fd161fbe0d9bc04f3601`
+- Claude 2 lead branch: `phase-01-design-ready` (synchronized through `45f289367be722d422a50752573475bea282cf88`)
 - Claude 1 research branch: `phase-01-research-claude1` (identical to current main)
 - Both work branches contain the accepted coordination baseline.
 - No game implementation is in scope for Phase 01.
