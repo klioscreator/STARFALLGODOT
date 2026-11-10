@@ -165,15 +165,16 @@ A limited group-play technical slice may follow after the core turn rules and cl
 
 ## 17. Design acceptance criteria
 
-The design package is ready for architecture when:
+The Phase 01 concept/design package is complete when:
 - The 3D humanoid and switchable first-/third-person direction is documented.
-- Turn lifecycle and action economy are specified.
-- Solo mission loop and failure/success conditions are defined.
-- Weapon/skill data and build progression are specified at system level.
-- Group mode rules and server responsibilities are separated.
-- Target platform and input model are decided.
-- MVP scope and exclusions are approved.
-- Open assumptions and dependencies are recorded.
+- The high-level turn lifecycle and action categories are defined; numerical action costs and initiative formula are explicitly handed to Phase 02 design.
+- The solo mission loop and success/failure state categories are defined.
+- Weapon/skill roles and build progression are specified at system level.
+- Solo and group modes are distinguished, and the supplementary server boundary is documented.
+- MVP scope and exclusions are approved by the Project Owner.
+- Remaining assumptions, risks and Phase 02 prerequisites are recorded.
+
+Phase 01 completion does not mean that every implementation-level parameter is fixed. Phase 02 must resolve the target platform/input model, exact initiative and action economy, group size/turn coordination, mission rules, resource values and server authority model before implementation begins.
 
 ## 18. Open decision register
 
