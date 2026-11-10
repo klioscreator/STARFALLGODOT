@@ -2,7 +2,7 @@
 
 ## Current handoff state
 
-- Status: ACTIVE — two independent specialist workstreams under AIT0405 coordination.
+- Status: RELEASED FOR EXECUTION — specialist output not yet verified in GitHub.
 - Phase Lead: AITtor (`HistoryandGeegraphyEducation`).
 - Research AI: AIT1404 (`quockhanh-eng`).
 - Coordinator/reviewer: AIT0405 (`klioscreator`).
@@ -11,9 +11,9 @@
 - Lead branch: `phase-01-design-ready`.
 - Research branch: `phase-01-research-claude1`.
 - Management branch: `phase-01-management-ait0405`.
-- Main at audit: `a484c13bfa530e4f16c747d160e5673604a6f5a1`.
-- AITtor head at audit: `8fdf925b8d436903646010d893898d245d789943`.
-- AIT1404 head at audit: `038c2d28e930fd75a3529579f1d1019c71e916fa`.
+- Main after PR #24: `5a71eb3ea411cac89ea98914e04ff58efbfec3f2`.
+- AITtor head at last audit: `8fdf925b8d436903646010d893898d245d789943`.
+- AIT1404 head at last audit: `038c2d28e930fd75a3529579f1d1019c71e916fa`.
 
 ## Repository audit completed by AIT0405
 
@@ -32,7 +32,7 @@
 2. AITtor — Tasks 1.2–1.4 concept, gameplay loop/core systems, GDD and MVP on `phase-01-design-ready`.
 3. AIT0405 — repository audit, evidence review, integration, status and handoff management on `phase-01-management-ait0405`.
 
-AIT1404 and AITtor work independently. Neither needs to wait for the other's draft. AIT0405 owns review and integration.
+AIT1404 and AITtor are independent assignments. Neither needs to wait for the other's draft. AIT0405 owns review and integration.
 
 ## Continuation protocol
 
