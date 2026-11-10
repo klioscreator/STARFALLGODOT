@@ -1,5 +1,6 @@
 # STARFALLGODOT — AI Collaboration
 
+Project overview: [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)  
 Related documents: [ASSIGNMENTS.md](ASSIGNMENTS.md) · [HANDOFF_TEMPLATE.md](HANDOFF_TEMPLATE.md) · [PHASE_STATUS_TEMPLATE.md](PHASE_STATUS_TEMPLATE.md)
 
 ## Roles and responsibilities
@@ -165,7 +166,7 @@ A phase may be marked `COMPLETED` only when all of the following hold:
 - A verified commit SHA exists on GitHub.
 - The status file is up to date.
 - Defects and open issues have been checked and recorded.
-- A PR is open for the Project Owner's review, and the Project Owner has merged or accepted it.
+- The PR has been merged by the Project Owner, or the Project Owner has explicitly accepted the work.
 - Nothing outside the assigned scope was changed.
 
 ## Required handoff
