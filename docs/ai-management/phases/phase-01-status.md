@@ -4,7 +4,7 @@
 - Phase Lead: Claude 2
 - Supporting research AI: Claude 1 (task 1.1 only)
 - Working branch: `phase-01-design-ready`
-- Base branch and accepted baseline: `main` at `3e4643361c8cae0c021dc300838782fb3a359fe6`
+- Base branch and accepted baseline: `main` at `e84ec51d922b3198f1f4fd161fbe0d9bc04f3601`
 - Last updated (UTC): 2026-11-10
 - Latest substantive Phase 01 commit: None
 - Pull Request: None
@@ -16,7 +16,7 @@ Complete Phase 01 research and design for STARFALLGODOT. This phase produces res
 ## Completed
 
 - Repository cleanup and collaboration rules are merged into main.
-- The lead branch was synchronized with the accepted main baseline through merge commit `c9e09f3c9ad27a67c8cb4697c056e49e1174de8a`.
+- The lead branch was synchronized with the accepted main baseline through sync merge commit `45f289367be722d422a50752573475bea282cf88`.
 - Claude 1 and Claude 2 have separate, bounded assignments and separate branches.
 - Phase 01 task briefs and readiness gate are merged into main.
 
@@ -53,6 +53,6 @@ Ask each Claude to perform only its assigned branch access check, then verify th
 ## Verification
 
 - Confirmed the lead branch contains the accepted main baseline through merge commit `c9e09f3c9ad27a67c8cb4697c056e49e1174de8a`.
-- Confirmed the research branch is identical to current main at `3e4643361c8cae0c021dc300838782fb3a359fe6`.
+- Confirmed the research branch is identical to current main at `e84ec51d922b3198f1f4fd161fbe0d9bc04f3601`.
 - Confirmed no substantive Phase 01 deliverables are committed.
 - Claude write access and prior-session recovery have not been verified.
