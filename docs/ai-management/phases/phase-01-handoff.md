@@ -10,7 +10,7 @@
 - Repository: https://github.com/klioscreator/STARFALLGODOT
 - Lead branch: `phase-01-design-ready`
 - Research branch: `phase-01-research-claude1`
-- Current accepted main: `e84ec51d922b3198f1f4fd161fbe0d9bc04f3601`; lead branch sync merge: `45f289367be722d422a50752573475bea282cf88`
+- Current accepted main: `2bc62923f6f265ecab314fe412389d18905e0e90`; lead branch sync merge: `58679fdff3bc6ad97c20c4f67cfc8c141d33887e`
 - Latest substantive Phase 01 commit: None
 - Pull Request: None
 
