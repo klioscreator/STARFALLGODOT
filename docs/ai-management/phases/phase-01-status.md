@@ -1,54 +1,69 @@
 # Phase 01 status — Research and Design
 
-- Overall status: IN_PROGRESS
+- Overall status: IN_PROGRESS — final design validation and sign-off pending
 - Phase Lead assignment: AITtor (`HistoryandGeegraphyEducation`)
 - Research assignment: AIT1404 (`quockhanh-eng`)
 - Coordinator and fallback author: AIT0405 (`klioscreator`)
 - Lead branch: `phase-01-design-ready`
 - Research branch: `phase-01-research-claude1`
 - Coordinator fallback branch: `phase-01-ait0405-completion`
-- Main after PR #30: `0e6c220074212c108c0a397e93de2bb6c0037d0d`
-- Specialist branch heads at latest audit: AITtor `8fdf925b8d436903646010d893898d245d789943`; AIT1404 `038c2d28e930fd75a3529579f1d1019c71e916fa`
+- Current design revision branch: `coordination/phase01-owner-direction-update`
+- Main at last verified checkpoint: `9e5efc2b0dadb92b04967e3dda5c7b69ded10119`
 - Last accepted research report: `docs/phase-01/research/reference-game-analysis.md` (AIT0405 fallback, PR #29)
-- Design package: present on main; provisional, pending Project Owner decisions
-- Last updated (UTC): 2026-11-10
+- Updated design documents: concept, gameplay systems, GDD and MVP revised to Project Owner direction; PR review pending
+- Last updated: 2026-11-10
+
+## Project Owner-approved direction
+
+- Science-fiction survival-action.
+- Tactical turn-based combat.
+- 3D humanoid player character.
+- Switchable first-person and third-person camera; no top-down view.
+- Solo and tactical group play.
+- Weapons and skills form the primary build-development system.
+- Separate supplementary server project for online group play.
+
+This supersedes the earlier top-down, continuous real-time shooter proposal.
 
 ## Completed
 
-- Collaboration rules, management/validation framework and task briefs are merged into main.
-- AIT1404 and AITtor identities and branch-specific write access are verified.
-- AIT0405 completed the initial repository, branch, PR and issue audit.
-- PR #26/#28 corrected specialist task instructions; AIT1404 and AITtor are independent workstreams.
-- PR #29 merged the research report, concept proposal, gameplay systems proposal, GDD proposal, MVP proposal and takeover audit.
-- The research report was checked against the cited official store/developer sources and accepted as the reference baseline.
-- PR #30 merged updated assignment, readiness, status and handoff records.
-- Issues #15 and #16 were updated to prevent duplicate work and request any session-only artifacts.
+- Collaboration rules, management/validation framework and task briefs merged into main.
+- AIT1404 and AITtor identities and branch-specific write access verified.
+- AIT0405 completed repository, branch, PR and issue audit.
+- PR #29 merged the reference-game report, concept, gameplay systems, GDD, MVP and takeover audit.
+- Research report reviewed against cited official store/developer sources and accepted as the reference baseline.
+- PR #30 and #31 merged assignment, readiness, status and handoff corrections.
+- Project Owner's high-level product direction received and recorded.
+- AIT0405 revised the four design documents on a separate branch to match that direction.
+
+## Remaining design decisions
+
+- Target platform, input and performance targets.
+- Turn order, initiative, action economy and enemy resolution.
+- Group size, party composition and group turn coordination.
+- Mission objective, extraction and failure conditions.
+- Inventory, resource and persistent progression rules.
+- Server hosting, authority, security and reconnect policy.
+- Art direction, rating and accessibility.
 
 ## Specialist workstreams
 
-- AIT1404's assigned branch remains at its access-check commit; no specialist report was found in its branch tree at the latest audit.
-- AITtor's assigned branch remains at its access-check commit; no specialist takeover audit or design files were found in its branch tree at the latest audit.
-- Neither specialist supplied a new response in its issue at the latest audit.
-- This does not establish whether either session has unpushed work or is currently active.
-- Specialist branches have not been modified by AIT0405's fallback work.
+- AIT1404's assigned branch remains at its last audited access-check commit; no separate specialist report was found at latest audit. The fallback research report is accepted and Issue #15 is closed.
+- AITtor's assigned branch remains at its last audited access-check commit; no separate specialist design files were found at latest audit. Issue #16 remains open for reconciliation/review.
+- GitHub cannot establish whether either session has unpushed work or is active.
+- Specialist branches have not been modified by the coordinator.
 
-## Remaining acceptance gates
+## Scope
 
-- Project Owner decision on the proposed game direction and architecture-shaping choices.
-- Reconcile any specialist session-only work if it is later supplied.
-- Revise concept, gameplay, GDD and MVP to reflect approved decisions.
-- Final Phase 01 sign-off.
-
-## Scope and decisions
-
-- Phase 01 is research and design only. No Godot code, scenes, assets, settings or executable prototype may be changed.
-- The concept/GDD/MVP are explicitly marked as proposals; they are not a substitute for Project Owner approval.
+- Phase 01 is research and design only.
+- No Godot code, scenes, assets, project settings or executable prototype have been changed.
 - Phase 02–07 remain unassigned.
-- The fallback branch did not overwrite specialist work.
+- The supplementary server project is a future separate workstream, not an implementation task within Phase 01.
 
 ## Next actions
 
-1. Obtain Project Owner approval or revision of the provisional concept and core decisions.
-2. Incorporate any specialist corrections or session-only artifacts without duplicating work.
-3. Revise and verify the design package.
-4. Update this status with the final main SHA and mark Phase 01 complete only after sign-off.
+1. Review and merge the owner-aligned design revision.
+2. Ask AITtor for a focused review or session-only work reconciliation, not a duplicate rewrite.
+3. Perform consistency review across concept, gameplay systems, GDD and MVP.
+4. Record open technical decisions for Phase 02.
+5. Update the final main SHA and close Phase 01 only after the design package passes acceptance.

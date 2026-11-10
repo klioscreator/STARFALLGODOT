@@ -1,82 +1,138 @@
 # STARFALLGODOT — Game concept and direction
 
-**Document status:** Coordinator draft / proposal for Project Owner review  
+**Document status:** Project Owner direction accepted; detailed systems remain subject to design validation  
+**Version:** 0.2  
 **Phase:** 01 — Research and Design  
-**Prepared:** 2026-11-10  
-**Decision authority:** Project Owner
+**Updated:** 2026-11-10
 
-## 1. Evidence boundary
+## 1. Approved direction
 
-The current repository's `PROJECT_OVERVIEW.md` defines a seven-phase production workflow but does not record an approved genre, player fantasy, platform, camera, art direction, or core mechanic. The reference-game study covers Soul Knight, Magic Survival and City of Dragon: Epic Battle. Those references do not, by themselves, authorize copying their systems or determine STARFALLGODOT's direction.
+The Project Owner has specified the following product direction:
 
-Accordingly, this document proposes a coherent working direction to make the design package reviewable. Every product-defining choice below remains a **PROPOSAL** until the Project Owner accepts it.
+- **Genre:** science-fiction survival action.
+- **Combat model:** tactical turn-based combat.
+- **Presentation:** 3D, non-top-down.
+- **Camera:** first-person and third-person perspectives, with switching between them.
+- **Player character:** humanoid combatant.
+- **Play modes:** solo play and tactical group play.
+- **Character/build progression:** weapons, skills and upgrades shape the player's combat build.
+- **Online expansion:** a separate supplementary server project is planned to enable hosted/group play. The core game and server project are separate workstreams.
 
-## 2. Working concept proposal
+These decisions supersede the previous top-down survival-shooter proposal. Top-down camera, continuous real-time shooting and a solo-only product are no longer the target direction.
 
-**PROPOSAL — Genre:** science-fiction top-down action roguelite with survival-shooter combat.
+The target platform, group size, server technology, exact turn-order rules, mission structure and numerical balance remain open for later design.
 
-**PROPOSAL — Player fantasy:** the player is a lone operative/pilot deployed into hostile starfall zones, facing escalating enemy groups and assembling an improvised combat build from weapons, modules and abilities.
+## 2. Product concept
 
-**PROPOSAL — Core experience:** move through an arena, read enemy threats, aim and attack, evade danger, collect run resources, select upgrades and adapt the build to the next threat.
+STARFALLGODOT is a 3D science-fiction survival-action game in which a humanoid player character enters hostile environments, survives encounters and develops a specialised combat build from weapons, skills and upgrades. Encounters are resolved through tactical turn-based combat. Players must assess threats, select actions and coordinate their resources rather than relying on continuous real-time firing.
 
-**PROPOSAL — Distinguishing design focus:** build construction should emerge from interactions among a small set of weapon behaviours, passive modules and active abilities. Each choice should change a tactical decision or combat outcome. The first release should prefer a small number of distinct, understandable combinations over a large catalogue.
+The game is designed to support a solo experience. Tactical group play is also part of the intended product direction and is expected to be enabled through a separate server-side expansion project. The solo game must remain a coherent experience and must not require a live server merely to start or complete its core mode.
 
-**PROPOSAL — Initial mode:** single-player, offline-capable run mode. Multiplayer is excluded from the first MVP unless the Project Owner explicitly chooses otherwise.
+## 3. Player experience
 
-## 3. Design pillars proposed for evaluation
+The player should:
+1. Explore or navigate a hostile science-fiction environment from a first-person or third-person perspective.
+2. Read the situation before committing to a combat action.
+3. Choose tactical actions during their turn, using available movement, weapons, skills and resources.
+4. Survive encounters through positioning, threat prioritisation, defensive choices and team coordination where applicable.
+5. Earn weapons, skills and upgrades that shape a distinct build.
+6. Adapt that build to stronger threats and later encounters.
+7. Complete objectives, extract or be defeated according to the selected mission rules.
+8. Review the outcome and continue progression.
 
-1. **Readable combat.** Player, enemy, projectile, damage and warning effects must remain visually distinguishable during dense encounters.
-2. **Meaningful build choices.** Upgrades should change attack pattern, defence, mobility, area control or resource handling; avoid choices that only add invisible numbers.
-3. **Short feedback loop.** Every encounter should provide immediate feedback through hit response, enemy state, rewards and upgrade decisions.
-4. **Bounded content production.** The first playable scope should use a small enemy set, a small weapon/module set and one environment before expanding.
-5. **Replay through combinations.** Replay value should come first from different upgrade paths and enemy compositions, not from a large quantity of maps or characters.
+Exploration pacing and whether encounters are initiated seamlessly or through explicit combat transitions remain to be specified.
 
-These pillars are proposals, not verified project-owner decisions.
+## 4. Design pillars
 
-## 4. Reference-game transfer
+1. **Tactical decision-making.** Each combat turn should create meaningful choices involving threat, positioning, action economy and resource use.
+2. **Readable 3D presentation.** First-person and third-person views must communicate the same tactical state without hiding important threats or interaction cues.
+3. **Survival through preparation and adaptation.** Equipment, skills, consumables and build choices should affect the player's ability to handle later encounters.
+4. **Distinct builds.** Weapons and skills should provide different tactical functions rather than only cosmetic variation or unnoticeable stat increases.
+5. **Solo and coordinated group play.** Core combat rules should support a solo player and provide a foundation for coordinated group encounters.
+6. **Separated online infrastructure.** Server hosting and online session services belong to a separately scoped supplementary project, with a defined interface to the core game.
 
-- **Soul Knight:** reference for immediate top-down action, simple combat verbs, hero/weapon differentiation and readable encounter spaces. Do not inherit its large weapon catalogue or multiplayer scope by default.
-- **Magic Survival:** reference for survival pressure and build choices around abilities, artifacts and synergies. Validate upgrade pacing and choice quality before adopting any specific level-up structure.
-- **City of Dragon: Epic Battle:** reference for persistent collection and elemental/team identity. Its roster, breeding and habitat economy are not proposed for the MVP; they create a separate long-term content and balance burden.
+## 5. Camera and player representation
 
-## 5. Proposed player journey
+The approved presentation direction is 3D with first-person and third-person camera options. Camera switching is a player-facing feature, not a change to the underlying combat rules.
 
-1. Enter the game and understand the basic combat controls.
-2. Select or receive a starting loadout.
-3. Enter a hostile combat zone.
-4. Defeat enemies and collect run rewards.
-5. Choose an upgrade that changes the current build.
-6. Respond to stronger enemy combinations and elite/boss encounters.
-7. Complete the objective or be defeated.
-8. Review the run and receive a bounded persistent reward.
-9. Unlock a new tactical option and begin another run.
+The player character is humanoid. Character animation, weapon handling, hitboxes, interaction distance and camera collision must be designed consistently across both perspectives. The exact camera offset, field of view, switching input and whether both perspectives are available in every activity remain design details.
 
-The exact mission objective, run duration, persistent reward and unlock economy remain open decisions.
+## 6. Combat direction
 
-## 6. Scope exclusions proposed for the first release
+Combat is turn-based and tactical. The game must not be designed as a conventional continuous-fire top-down survival shooter.
 
-- Online co-op, PvP, clans, matchmaking and server-side progression.
-- Hundreds of weapons, characters or creatures.
-- Breeding, habitat construction and a large collection-management layer.
-- Procedural campaign generation beyond what is needed for the first test arena.
-- Monetization, ads, paid currency, gacha or live-service event infrastructure.
-- Narrative campaign, voice acting and cinematic sequences.
-- Any implementation during Phase 01.
+The detailed turn model is still open. It must define:
+- What constitutes a turn and a round.
+- Whether player and enemy actions resolve sequentially or in phases.
+- How movement, weapon use, skills, defence and item use consume actions.
+- How initiative, enemy intent and status effects are resolved.
+- How group members coordinate and how disconnected/defeated players are handled in group sessions.
 
-## 7. Project Owner decisions required
+These rules must be consistent in solo and group modes. Any difference between modes must be explicit and testable.
 
-| Decision | Current state | Why it matters |
-|---|---|---|
-| Accept or reject top-down sci-fi survival roguelite | OPEN | Determines the whole design and architecture |
-| Player identity: human operative, starship, creature, or other | OPEN | Changes controls, animation, hitbox and combat verbs |
-| Target platform(s) | OPEN | Determines input, UI, performance and distribution |
-| 2D, 2.5D or 3D presentation | OPEN | Determines art pipeline and Godot architecture |
-| Primary input scheme | OPEN | Determines movement, aiming and controller support |
-| Single-player only or future multiplayer | OPEN | Changes simulation, networking and scope |
-| Run objective and success condition | OPEN | Determines encounter and reward pacing |
-| Persistent progression model | OPEN | Determines economy and save data |
-| Visual direction and rating | OPEN | Determines production style and content boundaries |
+## 7. Build and progression direction
 
-## 8. Acceptance condition
+Weapons and skills are the primary stated build components. The design should allow players to specialise in different tactical roles, such as damage, control, defence, support or mobility, without fixing the final role list prematurely.
 
-This concept becomes the approved project direction only after the Project Owner explicitly accepts or edits the open decisions. Until then, downstream documents must retain the PROPOSAL / OPEN labels and must not be treated as authorization to implement.
+Progression should distinguish:
+- **Encounter/run progression:** temporary choices and resources used during the current mission or expedition.
+- **Persistent progression:** equipment, skills or unlocks retained between missions.
+
+The exact inventory, rarity, crafting, upgrade currency and unlock economy remain open. Avoid introducing multiple currencies or randomised paid rewards without a clear design requirement.
+
+## 8. Game modes and server expansion
+
+### Core game
+- Solo mode is a required mode.
+- Tactical group play is part of the intended game direction.
+- The game rules should not assume that a server is required for local solo play.
+
+### Supplementary server project
+A separate project is planned to provide server hosting/session infrastructure for group play. It is not part of the core game's first implementation scope by default.
+
+Before implementation, the server project must define:
+- Session creation, joining, leaving and reconnecting.
+- Authority over turn order, action validation and encounter state.
+- Player identity and save/progression ownership.
+- Synchronisation and handling of latency or interrupted connections.
+- Security boundaries and prevention of invalid client-submitted actions.
+- Version compatibility between game client and server.
+
+The number of players per group, hosting model and deployment environment remain open.
+
+## 9. Reference-game transfer
+
+- **Soul Knight:** use only as a reference for readable weapon identities, enemy patterns, encounter rewards and build variety. Its top-down camera and real-time action model are not the target camera/combat model for STARFALLGODOT.
+- **Magic Survival:** use as a reference for survival pressure, upgrade choices and skill interactions. Its continuous real-time survival combat is not to be copied as the turn system.
+- **City of Dragon: Epic Battle:** use selectively as a reference for persistent progression and collection identity. Creature breeding and habitat systems are not approved features.
+
+## 10. Initial scope boundaries
+
+The first playable scope should validate the 3D humanoid character, camera switching, one complete tactical turn cycle, a small enemy roster, a compact weapon/skill build pool and a complete solo mission loop.
+
+The following are not assumed to be part of the first MVP:
+- Public matchmaking, dedicated server fleet or large-scale persistent worlds.
+- Clans, ranked PvP, global leaderboards or live-service events.
+- Large weapon/skill catalogues or extensive procedural campaigns.
+- Monetisation, paid currency, loot boxes or gacha.
+- Large-scale crafting/economy systems.
+- A full narrative cinematic campaign.
+
+## 11. Open design decisions
+
+| Decision | State |
+|---|---|
+| Target platform(s) and minimum hardware | OPEN |
+| Group size and party composition | OPEN |
+| Exact turn/round and action-point model | OPEN |
+| Initiative and enemy-intent presentation | OPEN |
+| Exploration-to-combat transition | OPEN |
+| Mission objective and expected session duration | OPEN |
+| Inventory, equipment slots and consumables | OPEN |
+| Persistent progression and save ownership | OPEN |
+| Server hosting/deployment model | OPEN — separate project |
+| Art direction, rating and accessibility requirements | OPEN |
+
+## 12. Acceptance condition
+
+The Project Owner's direction is accepted as the Phase 01 product baseline. The GDD and MVP must now be internally aligned with this direction. Detailed turn rules, group size, platform and server deployment remain explicit design decisions for the next design/architecture gate; they must not be silently invented or treated as approved.
