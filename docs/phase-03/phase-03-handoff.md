@@ -5,7 +5,7 @@
 **Branch:** phase-03-prototype-ait0405  
 **Issue:** #46  
 **Pull Request:** [#47](https://github.com/klioscreator/STARFALLGODOT/pull/47)  
-**Automated validation run:** [GitHub Actions #42837839759](https://github.com/klioscreator/STARFALLGODOT/actions/runs/42837839759)
+**Automated validation run:** [GitHub Actions #42838024897](https://github.com/klioscreator/STARFALLGODOT/actions/runs/42838024897)
 
 ## Deliverables
 
@@ -35,7 +35,7 @@
 
 ## Automated validation
 
-GitHub Actions run 42837839759 completed successfully:
+GitHub Actions run 42838024897 completed successfully:
 - Godot 4.7.2 installed and version verified.
 - Project import and script parsing passed.
 - Combatant-state, turn-manager and action-pipeline tests passed.
