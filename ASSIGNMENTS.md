@@ -6,7 +6,7 @@ The Project Owner authorised Phase 02. AIT0405 served as Phase 02 lead and coord
 |---|---|---|---|---|---|---|---|
 | 01 | Research and Design | phase-01-design-ready | AITtor specialist lead / AIT0405 coordinator and fallback author | COMPLETE | Project Owner direction accepted | PR #29–#31, #33 and #35 merged | Fallback deliverables attributed to AIT0405. |
 | 02 | Architecture | phase-02-architecture-ait0405; phase-02-finalization-ait0405 | AIT0405 lead; AIT1404 and AITtor bounded support assignments | COMPLETE | Phase 01 complete; PC and mobile target approved | PR #39, #40, #41 and #42 merged | Specialist support issues #37/#38 superseded by clearly attributed AIT0405 fallback reviews. |
-| 03 | Prototype | phase-03-prototype-ait0405 | AIT0405 (lead) | IN_PROGRESS | Phase 02 complete; Project Owner authorized Phase 03 on 2026-11-10 | Issue #46; PR pending | Procedural 3D prototype; values remain provisional; owner merge authority retained |
+| 03 | Prototype | phase-03-prototype-ait0405 | AIT0405 (lead) | PENDING_REVIEW | Phase 02 complete; Project Owner authorized Phase 03 on 2026-11-10 | Issue #46; PR pending | Automated Godot import, domain tests and headless scene smoke test pass; owner device validation and merge pending |
 | 04 | Combat | phase-04-combat | UNASSIGNED | NOT_STARTED | Prototype and combat architecture | N/A | |
 | 05 | Creatures / Enemies | phase-05-creatures | UNASSIGNED | NOT_STARTED | Combat foundation | N/A | |
 | 06 | World Base | phase-06-world-base | UNASSIGNED | NOT_STARTED | Character, camera and world architecture | N/A | |
