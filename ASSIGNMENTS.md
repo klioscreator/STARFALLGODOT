@@ -9,7 +9,7 @@ This table records who is responsible for each phase. Rules for assignment, hand
 
 | Phase | Name | Branch | Assigned AI | Status | Dependencies | Pull Request | Last Commit SHA | Notes |
 |---|---|---|---|---|---|---|---|---|
-| 01 | Design | `phase-01-design` | UNASSIGNED | NOT_STARTED | TBD – Pending Project Owner approval | N/A | N/A | |
+| 01 | Design | `phase-01-design` | Claude 2 (takeover) | NEEDS_TAKEOVER | None | N/A | 968071610f923ae6e2b599a831a3611602509bcd | Takeover assignment; inspect prior session claims before continuing. |
 | 02 | Architecture | `phase-02-architecture` | UNASSIGNED | NOT_STARTED | TBD – Pending Project Owner approval | N/A | N/A | |
 | 03 | Prototype | `phase-03-prototype` | UNASSIGNED | NOT_STARTED | TBD – Pending Project Owner approval | N/A | N/A | |
 | 04 | Combat | `phase-04-combat` | UNASSIGNED | NOT_STARTED | TBD – Pending Project Owner approval | N/A | N/A | |
