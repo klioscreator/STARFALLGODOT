@@ -43,4 +43,4 @@ Each task is isolated. Neither support AI may edit the lead branch or another su
 
 ## Commit record
 
-No Phase 02 commit existed when this handoff draft was authored. Update only after verifying a commit on GitHub.
+Initial lead documentation commits are visible on GitHub. Refresh the branch SHA after the final PR preparation commit.
