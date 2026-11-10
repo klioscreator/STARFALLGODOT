@@ -2,53 +2,51 @@
 
 ## Current handoff state
 
-- Status: RELEASED FOR EXECUTION — specialist output not yet verified in GitHub.
-- Phase Lead: AITtor (`HistoryandGeegraphyEducation`).
-- Research AI: AIT1404 (`quockhanh-eng`).
-- Coordinator/reviewer: AIT0405 (`klioscreator`).
+- Status: IN_PROGRESS — coordinator fallback package drafted; review and Project Owner decisions pending.
+- Phase Lead assignment: AITtor (`HistoryandGeegraphyEducation`), still open.
+- Research assignment: AIT1404 (`quockhanh-eng`), still open.
+- Coordinator/fallback author: AIT0405 (`klioscreator`).
 - Date (UTC): 2026-11-10.
 - Repository: https://github.com/klioscreator/STARFALLGODOT
 - Lead branch: `phase-01-design-ready`.
 - Research branch: `phase-01-research-claude1`.
-- Management branch: `phase-01-management-ait0405`.
-- Main after PR #26: `2ec3fa4063e3f1257923ba47352ee1d5577719ca`.
-- AITtor head at latest audit: `8fdf925b8d436903646010d893898d245d789943`.
-- AIT1404 head at latest audit: `038c2d28e930fd75a3529579f1d1019c71e916fa`.
+- Coordinator fallback branch: `phase-01-ait0405-completion`.
+- Main at latest audit: `d2255368c1db27ed87ce1bbe29edac34781c5b74`.
 
 ## Latest coordinator actions
 
-- PR #24 refreshed the repository audit and stale management records.
-- PR #25 distinguished assignment/release from verified substantive specialist progress.
-- PR #26 corrected the active AIT1404/AITtor task briefs and removed the old dependency requiring AITtor to wait for AIT1404.
-- Issues #15 and #16 were updated with direct requests for branch-exclusivity confirmation, session-only work recovery, progress reporting, exact commit SHAs and PR links.
+- PR #24 refreshed repository audit and stale management records.
+- PR #25 distinguished assignment/release from verified specialist progress.
+- PR #26/#28 corrected task briefs and removed the dependency requiring AITtor to wait for AIT1404.
+- AIT0405 rechecked current branches, PRs and issues; specialist branches had no new substantive deliverables at the audit time.
+- AIT0405 created a separate fallback branch and drafted the research/design package.
+- Issues #15 and #16 were updated with fallback status and requests to recover session-only work.
 
-## Repository audit completed by AIT0405
+## Current deliverables on fallback branch
 
-- Repository branches and Phase 01-related branches were enumerated.
-- PRs #1–#26 were inspected; PRs #23–#26 are management/task-instruction changes, not specialist game research/design outputs.
-- The legacy `phase-01-design` branch was inspected; no specialist deliverables were found.
-- The current `main` tree, Phase 01 task briefs, readiness/status/handoff and management framework were inspected.
-- Issues #15 and #16 and their comments were inspected.
-- Both specialist identity/write-access commits were verified.
-- No specialist substantive deliverable was present in the inspected branch trees at the latest audit.
-- This audit cannot inspect private/unpushed work inside another ChatGPT session. Each specialist must report that state directly.
+- `docs/phase-01/research/reference-game-analysis.md`
+- `docs/phase-01/game-concept.md`
+- `docs/phase-01/gameplay-loop-and-systems.md`
+- `docs/phase-01/game-design-document.md`
+- `docs/phase-01/mvp-scope.md`
+- `docs/phase-01/management/ait0405-takeover-2026-11-10.md`
 
-## Workstream ownership
+## Workstream and concurrency notes
 
-1. AIT1404 — Task 1.1 reference-game analysis on `phase-01-research-claude1`.
-2. AITtor — takeover audit and Tasks 1.2–1.4 on `phase-01-design-ready`.
-3. AIT0405 — repository audit, evidence review, integration, status and handoff management on `phase-01-management-ait0405`.
+- AIT1404's assigned branch is `phase-01-research-claude1`; latest audited head: `038c2d28e930fd75a3529579f1d1019c71e916fa`.
+- AITtor's assigned branch is `phase-01-design-ready`; latest audited head: `8fdf925b8d436903646010d893898d245d789943`.
+- Neither specialist branch was modified by the fallback work.
+- GitHub cannot verify private session activity or unpushed work. Both specialists have been asked to confirm branch exclusivity and provide any completed session-only artifacts.
+- If specialist work appears later, compare its contents and evidence before deciding what to integrate.
 
-AIT1404 and AITtor are independent assignments. Neither needs to wait for the other's draft. AIT0405 owns review and integration.
+## Review and approval requirements
 
-## Continuation protocol
-
-1. Each specialist checks its current branch head and confirms no other session is writing to that branch.
-2. Each specialist reports any work already completed outside GitHub before starting new work; do not repeat completed material.
-3. Each specialist continues only its assigned task and branch.
-4. Each specialist posts exact deliverable paths and commit SHA in its assigned issue.
-5. AIT0405 inspects the actual commit and diff, records acceptance or requested changes, and merges only compliant PRs within the delegated scope.
+1. Review the research report's sources, facts and limitations.
+2. Obtain Project Owner approval or revision of the proposed genre, player identity, platform, camera/presentation, input/aiming, run objective, progression and multiplayer scope.
+3. Reconcile approved decisions into concept, gameplay, GDD and MVP documents.
+4. Check that the package remains within Phase 01's research/design-only boundary.
+5. Open PR and merge only after the package is accepted.
 
 ## Non-negotiable scope
 
-Phase 01 is research and design only. Do not modify Godot scripts, scenes, assets, project settings or executable prototypes. Later phases remain unassigned.
+Phase 01 is research and design only. Do not modify Godot scripts, scenes, assets, project settings or executable prototypes. Phase 02–07 remain unassigned.
