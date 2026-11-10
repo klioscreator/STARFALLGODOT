@@ -5,8 +5,8 @@ The Project Owner authorised Phase 02. AIT0405 served as Phase 02 lead and coord
 | Phase | Name | Branch | Assigned AI | Status | Dependencies | Pull Request | Notes |
 |---|---|---|---|---|---|---|---|
 | 01 | Research and Design | phase-01-design-ready | AITtor specialist lead / AIT0405 coordinator and fallback author | COMPLETE | Project Owner direction accepted | PR #29–#31, #33 and #35 merged | Fallback deliverables attributed to AIT0405. |
-| 02 | Architecture | phase-02-architecture-ait0405; finalization phase-02-finalization-ait0405 | AIT0405 lead; AIT1404 and AITtor bounded support assignments | FINAL_REVIEW | Phase 01 complete; PC and mobile target approved | PR #39, #40, #41 merged; final PR pending | AIT1404 Issue #37 and AITtor Issue #38 had no verifiable Phase 02 commits; fallback reviews authored by AIT0405. |
-| 03 | Prototype | phase-03-prototype | UNASSIGNED | NOT_STARTED | Phase 02 acceptance and Project Owner authorization | N/A | |
+| 02 | Architecture | phase-02-architecture-ait0405; phase-02-finalization-ait0405 | AIT0405 lead; AIT1404 and AITtor bounded support assignments | COMPLETE | Phase 01 complete; PC and mobile target approved | PR #39, #40, #41 and #42 merged | Specialist support issues #37/#38 superseded by clearly attributed AIT0405 fallback reviews. |
+| 03 | Prototype | phase-03-prototype | UNASSIGNED | NOT_STARTED | Phase 02 accepted; separate Project Owner authorization required | N/A | |
 | 04 | Combat | phase-04-combat | UNASSIGNED | NOT_STARTED | Prototype and combat architecture | N/A | |
 | 05 | Creatures / Enemies | phase-05-creatures | UNASSIGNED | NOT_STARTED | Combat foundation | N/A | |
 | 06 | World Base | phase-06-world-base | UNASSIGNED | NOT_STARTED | Character, camera and world architecture | N/A | |
@@ -41,7 +41,7 @@ The Project Owner authorised Phase 02. AIT0405 served as Phase 02 lead and coord
 | 2.2 Gameplay system contracts | AIT0405 | Combat lifecycle, turn scheduler, action pipeline, mission state | docs/phase-02/gameplay-system-contracts.md |
 | 2.3 Godot technical feasibility | AIT1404 assigned; AIT0405 fallback author | Engine/version/platform/render/input/network feasibility | Issue #37; fallback review in docs/phase-02/research |
 | 2.4 Tactical gameplay architecture review | AITtor assigned; AIT0405 fallback author | Turn/action alternatives, mission and enemy resolution | Issue #38; fallback review in docs/phase-02/research |
-| 2.5 Integration and acceptance | AIT0405 | Reconcile findings, decisions, test plan, PR and handoff | Finalization branch |
+| 2.5 Integration and acceptance | AIT0405 | Reconcile findings, decisions, test plan, PR and handoff | PR #42 |
 
 ## Working rules
 
