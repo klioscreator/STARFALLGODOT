@@ -52,7 +52,7 @@ Ask each Claude to perform only its assigned branch access check, then verify th
 
 ## Verification
 
-- Confirmed the lead branch contains the accepted main baseline through merge commit `c9e09f3c9ad27a67c8cb4697c056e49e1174de8a`.
-- Confirmed the research branch is identical to current main at `2bc62923f6f265ecab314fe412389d18905e0e90`.
+- Confirmed the lead branch contains the current accepted main baseline; its current head is recorded on GitHub.
+- Confirmed the research branch is identical to current main at the time of this verification.
 - Confirmed no substantive Phase 01 deliverables are committed.
 - Claude write access and prior-session recovery have not been verified.
