@@ -45,4 +45,4 @@ Phase 02 remains IN_PROGRESS until support reviews are received or explicitly ta
 
 ## Latest verified commit
 
-No commit created when this status draft was authored.
+Initial architecture documentation is committed on the lead branch. Latest branch SHA must be refreshed after the final PR preparation commit.
