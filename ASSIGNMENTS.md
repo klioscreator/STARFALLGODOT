@@ -21,6 +21,6 @@ This table records who is responsible for each phase. Rules for assignment, hand
 
 | Subtask | Assigned AI | Branch | Status | Deliverable | Notes |
 |---|---|---|---|---|---|
-| 1.1 Reference-game analysis | Claude 1 | `phase-01-research-claude1` | NOT_STARTED — access unverified | `docs/phase-01/research/reference-game-analysis.md` | Independent evidence-based analysis of Soul Knight, Magic Survival, and City of Dragon: Epic Battle. No edits to the lead branch. |
+| 1.1 Reference-game analysis | Claude 1 | `phase-01-research-claude1` | BLOCKED — access unverified | `docs/phase-01/research/reference-game-analysis.md` | Independent evidence-based analysis of Soul Knight, Magic Survival, and City of Dragon: Epic Battle. No edits to the lead branch. |
 | 1.2–1.4 Concept, gameplay loop, GDD/MVP | Claude 2 (lead) | `phase-01-design-ready` | BLOCKED — access unverified | Phase 01 design package | Begins after the coordinator accepts the 1.1 research and confirms branch write access. |
 
