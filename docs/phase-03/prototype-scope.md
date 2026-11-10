@@ -15,9 +15,9 @@ Build a runnable Godot prototype that tests the minimum connected loop: 3D explo
 - Third-person and first-person camera modes.
 - Keyboard/mouse and touch-oriented on-screen movement/action controls.
 - Start encounter, target selection, tactical reposition, weapon attack, skill action and end turn.
-- Local turn manager, combatant state and deterministic enemy turns.
+- Local turn manager, combatant state, shared action validator/resolver and deterministic enemy turns.
 - Victory/defeat state and encounter restart.
-- Headless domain tests for combatant state and turn scheduling.
+- Headless domain tests for combatant state, turn scheduling, action ownership, range checks and damage resolution.
 
 ## Explicit prototype-only parameters
 
