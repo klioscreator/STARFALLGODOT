@@ -1,15 +1,10 @@
 # AI handoff — Phase 01 Research and Design
 
-## Current state
+## Handoff status
 
-- Status: IN_PROGRESS — Project Owner direction accepted; revised design package awaiting review/merge and final sign-off.
-- Phase Lead: AITtor (`HistoryandGeegraphyEducation`).
-- Research specialist: AIT1404 (`quockhanh-eng`); reference report completed by AIT0405 fallback.
-- Coordinator: AIT0405 (`klioscreator`).
-- Repository: https://github.com/klioscreator/STARFALLGODOT
-- Specialist branches: `phase-01-design-ready`, `phase-01-research-claude1`.
-- Current design revision branch: `coordination/phase01-owner-direction-update`.
-- Main at last verified checkpoint: `9e5efc2b0dadb92b04967e3dda5c7b69ded10119`.
+**Phase 01: COMPLETE.**
+
+The research and design package is merged into `main` and aligned with the Project Owner's approved direction. Phase 02 has not started.
 
 ## Approved product direction
 
@@ -23,43 +18,38 @@
 
 The earlier top-down real-time shooter proposal is superseded.
 
-## Research baseline
+## Merged Phase 01 documents
 
-PR #29 merged `docs/phase-01/research/reference-game-analysis.md`. AIT0405 reviewed it against cited official store/developer sources and accepted it as the research baseline. Issue #15 was closed as completed; this is coordinator fallback work, not an AIT1404-authored deliverable.
-
-## Revised design package on current branch
-
+- `docs/phase-01/research/reference-game-analysis.md`
 - `docs/phase-01/game-concept.md`
 - `docs/phase-01/gameplay-loop-and-systems.md`
 - `docs/phase-01/game-design-document.md`
 - `docs/phase-01/mvp-scope.md`
+- `docs/phase-01/management/ait0405-takeover-2026-11-10.md`
 
-These files supersede the previous top-down design after PR review and merge.
+The management readiness, assignment, status and handoff records are updated in PR #35.
 
-## Remaining design decisions
+## Work attribution
 
-- Platform, input and minimum hardware.
-- Turn order, initiative, action costs and enemy-turn rules.
-- Group size, party composition and coordination model.
-- Mission objectives and failure/success rules.
-- Weapon/skill inventory and resource rules.
-- Server authority, session hosting, identity and reconnect behaviour.
-- Art direction, rating and accessibility.
+- Research report: AIT0405 fallback work, reviewed and accepted; not attributed to AIT1404.
+- Concept, gameplay, GDD and MVP: AIT0405 fallback work aligned to Project Owner direction; not attributed to AITtor.
+- Specialist branches were not overwritten. No unpushed session work was supplied for reconciliation before sign-off.
 
-## Specialist reconciliation
+## Phase 02 inputs
 
-- AIT1404's research issue is closed after the fallback report was accepted.
-- AITtor's Issue #16 remains open for a focused review or submission of any existing session-only work.
-- Neither specialist branch was overwritten by coordinator work.
-- GitHub cannot verify local unpushed session work.
+1. Confirm target platform, minimum hardware and input.
+2. Specify initiative, turn order, action economy and enemy resolution.
+3. Set group size, party composition and group-turn coordination.
+4. Define mission objectives, extraction and failure conditions.
+5. Define inventory, ammo, skill resources and persistent progression.
+6. Define the supplementary server project's authority, hosting, identity, security and reconnect model.
+7. Establish art direction, rating and accessibility requirements.
+8. Translate the accepted GDD/MVP into architecture and test plans.
 
-## Scope boundary
+## Scope compliance
 
-Phase 01 remains research/design only. No Godot scripts, scenes, assets, project settings or executable prototypes may be modified. The supplementary server project is separate and not started in this phase.
+Phase 01 changed documentation only. No Godot scripts, scenes, assets, project settings or executable prototypes were modified. The supplementary server project has not been started.
 
-## Completion sequence
+## Next phase gate
 
-1. Review and merge the revised owner-aligned design documents.
-2. Obtain AITtor review/reconciliation without duplicating existing deliverables.
-3. Verify consistency and record Phase 02 inputs.
-4. Update main SHA and sign off Phase 01.
+Phase 02 must be separately authorised by the Project Owner. Do not begin implementation merely because Phase 01 is complete.

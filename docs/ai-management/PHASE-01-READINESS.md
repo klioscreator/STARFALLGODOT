@@ -1,84 +1,74 @@
 # Phase 01 readiness and execution status
 
-## Current state
+## Final status
 
-Phase 01 remains IN_PROGRESS pending final design validation and sign-off. PR #29 merged the coordinator fallback research/design package; PR #30 and #31 merged management/status corrections. The Project Owner has now approved the product direction, and the concept, gameplay systems, GDD and MVP have been revised in branch `coordination/phase01-owner-direction-update`.
+**Phase 01 — COMPLETE.**
 
-## Project Owner decisions now recorded
+The research and design package has been reviewed, aligned with the Project Owner's approved direction and merged into `main`. Phase 01 completion means the product direction, core loop, system boundaries, GDD and MVP scope are documented. It does not mean that numerical balance, platform-specific input, server deployment or implementation architecture have been completed; those are explicit Phase 02 inputs.
 
-- Science-fiction survival-action game.
+## Project Owner-approved direction
+
+- 3D science-fiction survival-action.
 - Tactical turn-based combat.
-- 3D humanoid player character.
-- Switchable first-person and third-person camera; not top-down.
-- Solo mode and tactical group mode.
-- Weapons and skills form the core build-development system.
-- A separate supplementary server project will support online group play.
+- Humanoid player character.
+- Switchable first-person and third-person camera; no top-down view.
+- Solo mode and tactical group play.
+- Weapons and skills as the core build-development systems.
+- Separate supplementary server project for online group play.
 
-These decisions replace the earlier top-down real-time shooter proposal.
+This supersedes the earlier top-down, continuous real-time shooter proposal.
 
-## Remaining design decisions
+## Accepted Phase 01 deliverables on main
 
-- Target platform, minimum hardware and input model.
-- Turn order, initiative, action economy and enemy-turn resolution.
-- Group size, party composition and whether group turns are sequential or phased.
-- Mission objectives, extraction/failure conditions and session duration.
-- Inventory, ammunition, skill resources and persistent progression.
-- Server hosting, authoritative state, security and reconnect policy.
-- Art direction, rating and accessibility requirements.
+- `docs/phase-01/research/reference-game-analysis.md` — reference-game analysis, accepted as baseline.
+- `docs/phase-01/game-concept.md` — approved high-level direction.
+- `docs/phase-01/gameplay-loop-and-systems.md` — gameplay loop and system boundaries.
+- `docs/phase-01/game-design-document.md` — GDD and decision register.
+- `docs/phase-01/mvp-scope.md` — solo MVP definition and exclusions.
+- `docs/phase-01/management/ait0405-takeover-2026-11-10.md` — coordinator takeover audit.
 
-## Main and PR checkpoints
+The concept, gameplay, GDD and MVP were aligned with the Project Owner's direction in PR #33. PR #35 records final sign-off and handoff.
 
-| Checkpoint | SHA | Result |
-|---|---|---|
-| Main after PR #29 | `bde5cad7830e16ec5f020024216de95598991b65` | Fallback research/design package merged |
-| Main after PR #30 | `0e6c220074212c108c0a397e93de2bb6c0037d0d` | Assignment/readiness/status/handoff refreshed |
-| Main after PR #31 | `9e5efc2b0dadb92b04967e3dda5c7b69ded10119` | Research acceptance and pending design gate recorded |
-| Owner-direction update | Branch `coordination/phase01-owner-direction-update` | Revised concept/gameplay/GDD/MVP awaiting PR review |
+## Research and specialist attribution
 
-## Specialist branch findings
+- The reference report was authored as fallback work by AIT0405 and reviewed against the cited official store/developer sources. It is not attributed to AIT1404.
+- The design package was prepared and integrated by AIT0405 as fallback after no specialist deliverables were found in AITtor's assigned branch at the latest audit.
+- Issues #15 and #16 were closed against the accepted fallback deliverables. This does not claim that the specialist accounts authored those documents.
+- Specialist branches were not overwritten. GitHub cannot establish whether an AI session had unpushed local work.
 
-| Branch | Owner | Last audited head | Finding |
-|---|---|---|---|
-| `phase-01-research-claude1` | AIT1404 | `038c2d28e930fd75a3529579f1d1019c71e916fa` | No separate specialist report found at latest audit; fallback report accepted |
-| `phase-01-design-ready` | AITtor | `8fdf925b8d436903646010d893898d245d789943` | No specialist design files found at latest audit; coordinator design package is baseline |
-
-GitHub cannot establish whether either specialist has unpushed local work. Their issues request any session-only work for reconciliation. Specialist branches have not been modified by AIT0405.
-
-## Readiness checks
+## Phase 01 acceptance checks
 
 | Check | State |
 |---|---|
-| Repository and main baseline inspected | PASS |
-| Specialist identities and branch write access verified | PASS |
-| Specialist branches inspected | PASS |
-| Reference-game report source review | PASS |
-| Research report merged and accepted as baseline | PASS |
-| Project Owner product direction | PASS |
-| Concept/gameplay/GDD/MVP revised to approved direction | DRAFTED — PR review pending |
-| Detailed turn/action economy | OPEN |
-| Target platform and input | OPEN |
-| Group-mode/server boundary | DEFINED AT HIGH LEVEL; technical details OPEN |
-| Phase 01 scope boundary | PASS — no code, scenes, assets, settings or prototype changes |
+| Reference games identified and report produced | PASS |
+| Evidence limits and source distinctions documented | PASS |
+| Project Owner direction recorded | PASS |
+| Concept aligned with approved direction | PASS |
+| Gameplay loop and core system boundaries documented | PASS |
+| GDD and decision register completed | PASS |
+| MVP scope, exclusions and acceptance criteria documented | PASS |
+| Solo/group and supplementary server boundary documented | PASS |
+| Phase 01 scope boundary respected | PASS — no Godot code, scenes, assets, settings or prototype changes |
+| Final documents merged to main | PASS |
 
-## Deliverables on main
+## Phase 02 prerequisites (not Phase 01 blockers)
 
-- `docs/phase-01/research/reference-game-analysis.md`
-- `docs/phase-01/game-concept.md`
-- `docs/phase-01/gameplay-loop-and-systems.md`
-- `docs/phase-01/game-design-document.md`
-- `docs/phase-01/mvp-scope.md`
-- `docs/phase-01/management/ait0405-takeover-2026-11-10.md`
+1. Select target platform, minimum hardware and input devices.
+2. Define initiative, turn order, action points/costs and enemy resolution.
+3. Set group size, party roles and group-turn coordination.
+4. Define mission objectives, extraction, failure and session duration.
+5. Define inventory, ammunition, skill resources and persistent progression.
+6. Specify the supplementary server's hosting, authority, identity, security and reconnect model.
+7. Establish art direction, rating and accessibility requirements.
 
-The four design documents on the current update branch supersede the older top-down proposal after review and merge.
-
-## Final Phase 01 gates
-
-1. Review and merge the revised concept/gameplay/GDD/MVP package.
-2. Reconcile any specialist material supplied later; do not recreate or overwrite existing work.
-3. Validate internal consistency of turn-based combat, dual camera, solo mode and group/server boundary.
-4. Record remaining technical questions for Phase 02 without prematurely designing implementation.
-5. Update final main SHA and sign off Phase 01.
+These decisions must be resolved before the corresponding architecture or implementation is committed.
 
 ## Scope boundary
 
-Phase 01 is research and design only. No Godot scripts, scenes, assets, project settings, executable prototype or implementation work may be changed. Phase 02–07 remain unassigned.
+Phase 01 was research and design only. No Godot scripts, scenes, assets, project settings, executable prototype or implementation work was changed. Phase 02–07 are not started by this sign-off.
+
+## Sign-off
+
+- Coordinator: AIT0405.
+- Product direction authority: Project Owner.
+- Final main SHA: recorded in the Phase 01 status and handoff after PR #35 merge.
