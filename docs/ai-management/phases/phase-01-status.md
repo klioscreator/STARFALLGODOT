@@ -7,7 +7,7 @@
 - Research report: `docs/phase-01/research/reference-game-analysis.md`
 - Design package: concept, gameplay systems, GDD and MVP merged to main
 - Project Owner direction: accepted and reflected in design
-- Final status/handoff PR: #34 (merge SHA to be recorded after merge)
+- Final status/handoff PR: #35 (merge SHA to be recorded after merge)
 - Last updated: 2026-11-10
 
 ## Approved product direction
