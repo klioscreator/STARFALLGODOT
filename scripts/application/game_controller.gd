@@ -140,6 +140,7 @@ func _build_player() -> void:
 	camera_rig.name = "CameraRig"
 	camera_rig.position = Vector3(0.0, 1.48, 0.0)
 	player.add_child(camera_rig)
+	camera_rig.first_person_body_visual = visual
 	player.camera_rig = camera_rig
 	player.game_controller = self
 	add_child(player)
