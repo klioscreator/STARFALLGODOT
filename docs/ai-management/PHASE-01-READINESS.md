@@ -27,7 +27,7 @@ This supersedes the earlier top-down, continuous real-time shooter proposal.
 - `docs/phase-01/mvp-scope.md` — solo MVP definition and exclusions.
 - `docs/phase-01/management/ait0405-takeover-2026-11-10.md` — coordinator takeover audit.
 
-The concept, gameplay, GDD and MVP were aligned with the Project Owner's direction in PR #33. PR #34 records final sign-off and handoff.
+The concept, gameplay, GDD and MVP were aligned with the Project Owner's direction in PR #33. PR #35 records final sign-off and handoff.
 
 ## Research and specialist attribution
 
