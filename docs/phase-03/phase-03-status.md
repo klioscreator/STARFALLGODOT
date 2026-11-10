@@ -4,7 +4,8 @@
 **Phase lead:** AIT0405  
 **Branch:** phase-03-prototype-ait0405  
 **Base branch:** main  
-**Base commit:** fda33199a23fe3d9a98bb5aa3ea741091ba43c4c  
+**Initial base commit:** fda33199a23fe3d9a98bb5aa3ea741091ba43c4c  
+**Main synchronization:** db6603b22fef7f09c32e7a4b8091d0e27a202df7  
 **Issue:** #46  
 **Last updated:** 2026-11-10
 
@@ -22,14 +23,15 @@ Build a prototype connecting 3D exploration, humanoid control, dual camera, PC/t
 - Touch-oriented directional pad, touch camera drag and action buttons.
 - Compact HUD layout for narrower screens.
 - Combatant runtime state and centralized turn manager.
+- Shared domain action validator and damage resolver used by player and enemy actions.
 - One offline encounter with target selection, tactical reposition, weapon attack, skill action, enemy turns, victory/defeat and restart.
-- Headless domain tests.
+- Headless tests for combatant state, turn scheduling, action ownership, range validation and damage resolution.
 - Automated Godot import, domain-test and scene-launch workflow.
 - Run instructions, prototype-only parameter register, test report and handoff.
 
 ## Automated verification
 
-GitHub Actions run **42837265937** completed with SUCCESS on commit `ec3135a99f7ac7b78bd2856010f8c811207b1e54`.
+GitHub Actions run **42837839759** completed successfully on commit `29380d3d1703b11b690b21ba23fd4af973e76690`.
 
 Successful steps:
 - Install Godot 4.7.2 standard build.
@@ -48,7 +50,7 @@ Automated headless checks do not replace interactive hardware tests. The followi
 - Verify Android/iOS export only after the intended mobile OS and export toolchain are confirmed.
 - Measure frame time, memory, thermal behavior and input latency on agreed target hardware.
 
-These are not reported as passed. No Godot executable, Android SDK or physical target device was available in the implementation environment.
+These are not reported as passed. No physical target device or Android SDK was available in the implementation environment.
 
 ## Scope guard
 
