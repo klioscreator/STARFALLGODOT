@@ -4,7 +4,7 @@ This table records accountable ownership. The Project Owner has delegated Phase 
 
 | Phase | Name | Branch | Assigned AI | Status | Dependencies | Pull Request | Last Commit SHA | Notes |
 |---|---|---|---|---|---|---|---|---|
-| 01 | Design | `phase-01-design-ready` | AITtor (Phase Lead) | IN_PROGRESS | None between the two Phase 01 workstreams; integration review by AIT0405 | Specialist PR pending | `8fdf925b8d436903646010d893898d245d789943` | AITtor owns concept, gameplay loop/core systems, GDD and MVP. |
+| 01 | Design | `phase-01-design-ready` | AITtor (Phase Lead) | IN_PROGRESS — management active; specialist outputs not yet verified | No dependency between the two Phase 01 workstreams; AIT0405 integration review | Specialist PRs pending | `8fdf925b8d436903646010d893898d245d789943` | AITtor owns concept, gameplay loop/core systems, GDD and MVP. |
 | 02 | Architecture | `phase-02-architecture` | UNASSIGNED | NOT_STARTED | Phase 01 acceptance and Project Owner approval | N/A | N/A | |
 | 03 | Prototype | `phase-03-prototype` | UNASSIGNED | NOT_STARTED | TBD – Pending Project Owner approval | N/A | N/A | |
 | 04 | Combat | `phase-04-combat` | UNASSIGNED | NOT_STARTED | TBD – Pending Project Owner approval | N/A | N/A | |
@@ -14,13 +14,13 @@ This table records accountable ownership. The Project Owner has delegated Phase 
 
 ## Phase 01 workstreams
 
-| Workstream | Owner | Branch | Status | Deliverable |
+| Workstream | Owner | Branch | Status at last GitHub audit | Deliverable |
 |---|---|---|---|---|
-| 1.1 Reference-game research | AIT1404 (`quockhanh-eng`) | `phase-01-research-claude1` | IN_PROGRESS | `docs/phase-01/research/reference-game-analysis.md` |
-| 1.2 Game concept and direction | AITtor (`HistoryandGeegraphyEducation`) | `phase-01-design-ready` | IN_PROGRESS | `docs/phase-01/game-concept.md` |
-| 1.3 Gameplay loop and core systems | AITtor | `phase-01-design-ready` | IN_PROGRESS | `docs/phase-01/gameplay-loop-and-systems.md` |
-| 1.4 GDD and MVP scope | AITtor | `phase-01-design-ready` | IN_PROGRESS | `docs/phase-01/game-design-document.md`; `docs/phase-01/mvp-scope.md` |
-| Repository audit, coordination and acceptance | AIT0405 (`klioscreator`) | `phase-01-management-ait0405` | IN_PROGRESS | Management framework, audit record, status and review log |
+| 1.1 Reference-game research | AIT1404 (`quockhanh-eng`) | `phase-01-research-claude1` | NOT_STARTED — assignment released; no substantive commit verified | `docs/phase-01/research/reference-game-analysis.md` |
+| 1.2 Game concept and direction | AITtor (`HistoryandGeegraphyEducation`) | `phase-01-design-ready` | NOT_STARTED — assignment released; no substantive commit verified | `docs/phase-01/game-concept.md` |
+| 1.3 Gameplay loop and core systems | AITtor | `phase-01-design-ready` | NOT_STARTED — assignment released; no substantive commit verified | `docs/phase-01/gameplay-loop-and-systems.md` |
+| 1.4 GDD and MVP scope | AITtor | `phase-01-design-ready` | NOT_STARTED — assignment released; no substantive commit verified | `docs/phase-01/game-design-document.md`; `docs/phase-01/mvp-scope.md` |
+| Repository audit, coordination and acceptance | AIT0405 (`klioscreator`) | `phase-01-management-ait0405` | COMPLETED for initial audit/framework; ongoing for review/integration | Management framework, audit record, status and review log |
 
 ## Verified GitHub access
 
