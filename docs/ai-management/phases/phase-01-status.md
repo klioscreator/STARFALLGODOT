@@ -1,13 +1,17 @@
 # Phase 01 status — Design
 
-- Status: BLOCKED
-- Phase Lead: Claude 2
-- Supporting research AI: Claude 1 (task 1.1 only)
+- Status: BLOCKED — per-session identity and branch write-access checks pending
+- Phase Lead: AITtor (`HistoryandGeegraphyEducation`)
+- Supporting research AI: AIT1404 (`quockhanh-eng`, task 1.1 only)
+- Coordinator: AIT0405 (`klioscreator`)
 - Working branch: `phase-01-design-ready`
-- Base branch and accepted baseline: `main` at `2bc62923f6f265ecab314fe412389d18905e0e90`
+- Research branch: `phase-01-research-claude1`
+- Accepted main baseline: `eb46626e1b05eba02028936a3a4c0f5258451266`
+- Lead branch sync commit: `48c3b9e0067c38c766851fd368b81066d656a6be`
+- Research branch sync commit: `06429c39d46ea5c024977918a5d5c19ea2cd461e`
 - Last updated (UTC): 2026-11-10
 - Latest substantive Phase 01 commit: None
-- Pull Request: None
+- Pull Request for substantive work: None
 
 ## Objective
 
@@ -15,44 +19,47 @@ Complete Phase 01 research and design for STARFALLGODOT. This phase produces res
 
 ## Completed
 
-- Repository cleanup and collaboration rules are merged into main.
-- The lead branch was synchronized with the latest accepted main baseline. Confirm its current head SHA before beginning work.
-- Claude 1 and Claude 2 have separate, bounded assignments and separate branches.
-- Phase 01 task briefs and readiness gate are merged into main.
+- Repository collaboration rules and Phase 01 task briefs are merged into main.
+- AIT1404 is assigned task 1.1 on the isolated research branch.
+- AITtor is assigned Phase 01 leadership and tasks 1.2–1.4 on the isolated lead branch.
+- GitHub Issues #15 and #16 record and assign the work to the corresponding accounts.
+- Both work branches have been synchronized with the accepted main baseline.
 
 ## In progress
 
-- Repository and task preparation only. No substantive Phase 01 work has started.
+- Assignment, identity confirmation, branch access checks, and AITtor takeover audit only.
+- No substantive Phase 01 research or design work has started.
 
 ## Not started
 
-- 1.1 Reference-game analysis by Claude 1.
-- 1.2 Game concept and direction by Claude 2.
-- 1.3 Gameplay loop and core systems by Claude 2.
-- 1.4 GDD and MVP scope by Claude 2.
+- 1.1 Reference-game analysis by AIT1404.
+- 1.2 Game concept and direction by AITtor.
+- 1.3 Gameplay loop and core systems by AITtor.
+- 1.4 GDD and MVP scope by AITtor.
 
 ## Decisions
 
 - Phase 01 is research and design only.
 - Reference games: Soul Knight, Magic Survival, and City of Dragon: Epic Battle. The exact identity of the third title must be verified before analysis.
-- Claude 1 works only on `phase-01-research-claude1`.
-- Claude 2 is Phase 01 lead and works only on `phase-01-design-ready`.
-- Claude 2 must wait for coordinator acceptance of task 1.1 before finalizing tasks 1.2–1.4.
+- AIT1404 works only on `phase-01-research-claude1`.
+- AITtor leads Phase 01 and works only on `phase-01-design-ready`.
+- AITtor must wait for AIT0405's acceptance of task 1.1 before finalizing tasks 1.2–1.4.
 - No game code, Godot scenes, scripts, assets, or project settings may be changed in Phase 01.
 
 ## Risks and blockers
 
-- Claude MCP write access previously returned HTTP 403 for a write attempt. Neither Claude's current write access is verified.
-- The previous Claude 1 session's local/uncommitted work is not available through GitHub and remains unverified.
-- No evidence yet confirms that either Claude session can commit to its assigned branch.
+- The collaborator permissions are confirmed as Write, but the authenticated GitHub identity in each separate ChatGPT session has not yet been verified.
+- Neither assigned AI has yet demonstrated branch-specific write access through a commit from its own connected session.
+- AITtor's takeover audit is pending.
 
 ## Next action
 
-Ask each Claude to perform only its assigned branch access check, then verify the commits on GitHub. Do not begin substantive Phase 01 work until all required readiness checks pass.
+AIT1404 and AITtor must each confirm the authenticated GitHub login in their own ChatGPT session and complete the one-time write-access check on their assigned branch. AITtor must also complete the takeover audit. AIT0405 verifies both commits before releasing substantive work.
 
 ## Verification
 
-- Confirmed the lead branch contains the current accepted main baseline; its current head is recorded on GitHub.
-- Confirmed the research branch is identical to current main at the time of this verification.
+- Confirmed AIT1404 account permission: Write.
+- Confirmed AITtor account permission: Write.
+- Confirmed both work branches contain the accepted main baseline.
 - Confirmed no substantive Phase 01 deliverables are committed.
-- Claude write access and prior-session recovery have not been verified.
+- Per-session identity and branch write access remain unverified.
