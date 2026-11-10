@@ -4,7 +4,7 @@ The Project Owner delegated Phase 01 coordination, validation and integration to
 
 | Phase | Name | Branch | Assigned AI | Status | Dependencies | Pull Request | Notes |
 |---|---|---|---|---|---|---|---|
-| 01 | Research and Design | `phase-01-design-ready` | AITtor (specialist lead) / AIT0405 (coordinator and fallback author) | COMPLETE | Project Owner direction accepted; package reviewed and merged | PR #29–#34 merged | Fallback deliverables are attributed to AIT0405, not to the specialist accounts. |
+| 01 | Research and Design | `phase-01-design-ready` | AITtor (specialist lead) / AIT0405 (coordinator and fallback author) | COMPLETE | Project Owner direction accepted; package reviewed and merged | PR #29–#31, #33 and #35 merged | Fallback deliverables are attributed to AIT0405, not to the specialist accounts. |
 | 02 | Architecture | `phase-02-architecture` | UNASSIGNED | NOT_STARTED | Phase 01 complete; Project Owner authorisation and architecture-shaping decisions required | N/A | |
 | 03 | Prototype | `phase-03-prototype` | UNASSIGNED | NOT_STARTED | Phase 02 architecture approval | N/A | |
 | 04 | Combat | `phase-04-combat` | UNASSIGNED | NOT_STARTED | Prototype and combat architecture | N/A | |
