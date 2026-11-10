@@ -1,162 +1,230 @@
 # STARFALLGODOT — Gameplay loop and core systems
 
-**Document status:** Coordinator draft / proposal for Project Owner review  
+**Document status:** Aligned with Project Owner direction; detailed rules remain under design  
+**Version:** 0.2  
 **Phase:** 01 — Research and Design  
-**Prepared:** 2026-11-10
+**Updated:** 2026-11-10
 
 ## 1. Design basis
 
-This system outline follows the provisional concept in [game-concept.md](game-concept.md): a single-player, top-down science-fiction survival roguelite. The repository does not yet contain an approved game concept. All systems below are therefore **PROPOSALS**, not accepted requirements.
+The Project Owner has selected a 3D science-fiction survival-action game with a humanoid player character, switchable first-person/third-person camera, tactical turn-based combat, solo play and tactical group play. A separate supplementary server project is planned for online group sessions.
 
-## 2. Core gameplay loop
+This replaces the earlier top-down, continuous real-time survival-shooter proposal.
+
+## 2. High-level gameplay loop
 
 ```text
 Main Menu
-  -> Loadout / Run Preparation
-  -> Enter Combat Zone
-  -> Move, Aim, Attack, Evade
-  -> Defeat Enemies
-  -> Collect Run Experience / Resources
-  -> Level-Up Choice
-  -> Adapt Build
-  -> Escalating Encounter
-  -> Elite / Boss Checkpoint
-  -> Objective Complete OR Player Defeated
-  -> Run Summary and Persistent Reward
-  -> Unlock / Upgrade / Return to Menu
+  -> Select Solo / Group Mode
+  -> Select Mission and Prepare Loadout
+  -> Enter Science-fiction Environment
+  -> Explore / Navigate / Interact
+  -> Tactical Encounter Begins
+  -> Read Threats and Enemy Intent
+  -> Player Turn: Select Movement / Weapon / Skill / Item / Defence
+  -> Resolve Player Actions
+  -> Enemy Turn: Resolve Enemy Actions
+  -> Apply Damage / Status / Environment Effects
+  -> Check Survival and Encounter Objectives
+  -> Continue Next Round OR Complete / Fail Encounter
+  -> Mission Result and Rewards
+  -> Improve Weapon / Skill Build
+  -> Prepare Next Mission
 ```
 
-The loop should preserve a frequent decision point without interrupting combat too often. The exact interval between upgrades and the total run duration require playtesting and are not fixed here.
+The loop is a structural model. The exact exploration model, encounter trigger and number of combat rounds are not yet fixed.
 
-## 3. Input and player control
+## 3. Camera and character control
 
-**PROPOSAL**
-- Movement: continuous directional movement.
-- Aim: independent directional aim, with mouse/controller options determined by the target platform.
-- Primary attack: player-controlled or assisted firing; final choice remains open.
-- Active ability: one clearly signalled action with cooldown or limited charges.
-- Evade: short repositioning action with a cost, cooldown or vulnerability window.
+**Approved direction:** 3D humanoid character; first-person and third-person camera perspectives.
 
-**Design requirement:** movement, aiming and firing must not compete for an unintuitive input. If auto-aim is selected, the target priority and target-switch behaviour must be testable and visible.
+Design requirements:
+- The player can switch between the two perspectives.
+- Camera changes must not change turn order, action costs, weapon statistics or hit resolution.
+- Both views must expose the information needed to make a tactical decision.
+- First-person view must communicate nearby threats, interaction targets and weapon state.
+- Third-person view must communicate player position, nearby geometry and spatial relationships.
+- Camera collision, occlusion and field-of-view rules must not reveal information that the game intends to conceal.
+- Camera switching during a combat turn must not consume a combat action unless a deliberate rule is approved.
 
-## 4. Combat system
+The input scheme and exact camera-switch control depend on the target platform.
 
-### 4.1 Combat entities
-- Player unit: health, movement, primary attack, defensive/evade action, active ability and upgrade slots.
-- Enemies: health, movement pattern, attack pattern, threat range, reward and telegraph.
-- Projectiles/effects: owner, direction, speed, lifetime, collision behaviour and damage category.
-- Elite/boss: distinct attack phases, readable warning cues and a clear vulnerability window.
+## 4. Turn-based combat model
 
-### 4.2 Damage and defence
-**PROPOSAL.** Use a small set of damage categories at first: direct, area and damage-over-time. Defence can be expressed through health, temporary shield, damage reduction or evasion. Avoid stacking several defensive layers before enemy damage is measurable.
+Combat is turn-based. The detailed model remains OPEN, but implementation planning must account for the following components.
 
-Every damage event should communicate source, target and outcome. Invulnerability windows, knockback, status effects and damage-over-time rules must be specified before implementation.
+### 4.1 Turn lifecycle
+A complete encounter requires:
+1. Encounter initialisation and combatant ordering.
+2. A clear indication that the player may issue actions.
+3. Validation of the selected action and its cost.
+4. Resolution of movement, attacks, skills, items and defensive actions.
+5. Enemy action selection and resolution.
+6. Resolution of damage, status effects, hazards and defeat conditions.
+7. End-of-round checks and transition to the next round or encounter result.
 
-### 4.3 Enemy roles
-Initial archetypes proposed for the first test environment:
-- Chaser: closes distance and pressures player movement.
-- Ranged attacker: fires a telegraphed projectile or area attack.
-- Swarm unit: low individual threat, dangerous in groups.
-- Heavy unit: slow, durable, forces sustained damage or repositioning.
-- Support/controller: changes the local encounter through buffs, hazards or area denial.
-- Elite variant: modifies one existing archetype with a visible modifier.
-- Boss: multi-phase encounter using a small number of clearly signalled attack patterns.
+Whether combatants act one by one, in team/enemy phases or through initiative order must be decided before implementation.
 
-These are functional roles, not approved enemy names or art concepts.
+### 4.2 Action economy
+Candidate action types:
+- Move or reposition.
+- Use a weapon.
+- Use an active skill.
+- Use an item/consumable.
+- Defend, guard or take cover.
+- Interact with a tactical object.
 
-## 5. Run progression and build construction
+The design must define action costs, movement limits, action combinations and interruption rules. No action-point values are fixed in this document.
 
-**PROPOSAL**
-- Enemies provide run experience or another clearly identified run resource.
-- Reaching a threshold pauses or slows combat and presents a small set of upgrade choices.
-- Upgrade categories: weapon behaviour, active ability, passive module, defence/mobility and economy/utility.
-- Duplicate upgrades may improve an existing effect or unlock a defined synergy.
-- Synergies should be deterministic and documented; avoid hidden combinations in the MVP.
-- The player should be able to inspect current build effects during a run.
+### 4.3 Tactical information
+The player should be able to assess, where appropriate:
+- Enemy position and visible condition.
+- Enemy intent or threat category.
+- Weapon range and line-of-sight constraints.
+- Skill range, area and resource cost.
+- Cover and environmental hazards.
+- Current turn owner and remaining actions.
 
-**Choice-quality rules**
-1. Each offered choice must be usable by the current build or clearly indicate its prerequisite.
-2. The choice pool must not repeatedly offer unavailable or invalid upgrades.
-3. The UI must communicate whether a choice is new, an enhancement or a synergy.
-4. The player must be able to compare the practical effect of choices without reading a long description.
+Hidden information is allowed only when it is a deliberate mechanic and the game communicates the uncertainty fairly.
 
-## 6. Persistent progression
+### 4.4 Combat entities
+- Player character: health, defensive state, movement, weapon loadout, skills, inventory and build modifiers.
+- Enemies: health, tactical role, movement constraints, attack options, intent/telegraph and rewards.
+- Environment: cover, obstacles, hazards, interactable objects and line-of-sight blockers.
+- Encounter controller: turn order, action validation, combat state and victory/defeat checks.
 
-**PROPOSAL.** Keep persistent progression separate from temporary run upgrades.
+## 5. Enemy roles
 
-Potential persistent rewards:
-- Unlock a starting weapon or ability.
-- Unlock a player archetype after a defined challenge.
-- Unlock a new enemy set or arena after completing a milestone.
-- Cosmetic rewards that do not alter combat balance.
+Initial functional roles for evaluation:
+- **Assault:** advances and pressures the player's position.
+- **Ranged:** attacks from distance and uses line-of-sight.
+- **Flanker:** attempts to change angles or bypass defensive positions.
+- **Heavy:** durable unit that controls space or absorbs resources.
+- **Controller/support:** applies status effects, buffs allies or creates hazards.
+- **Elite:** modifies one base role with a distinct tactical rule.
+- **Boss:** uses a small set of learnable phases, attacks and counterplay windows.
 
-The initial MVP should avoid a deep currency economy, random paid rewards, breeding, equipment rarity layers and multiple upgrade currencies. Persistent upgrades that increase raw power can undermine run balance; prefer unlocks that add options rather than mandatory stat inflation.
+These are functional roles, not final enemy names, models or numerical stats.
 
-## 7. Encounter and difficulty progression
+## 6. Weapons, skills and build system
 
-**PROPOSAL**
-- Begin with a low-density introduction that teaches movement, attack and the first enemy telegraph.
-- Increase pressure by changing enemy composition and attack overlap, not only by inflating health.
-- Introduce a new threat only after the player has had a chance to learn the previous one.
-- Use elite encounters to test whether the player's build has a coherent answer to a threat.
-- Use boss encounters as a test of movement, threat reading and damage windows.
+Weapons and skills are the core build components.
 
-Exact wave timings, spawn budgets, health/damage curves and boss cadence are intentionally unspecified until a playable test exists.
+A build should be described through:
+- Equipped weapon(s) and their tactical role.
+- Active skills and their action/resource costs.
+- Passive effects or support modules, if included.
+- Defensive options and consumables.
+- Synergies and trade-offs.
 
-## 8. Resources and rewards
+Potential weapon functions include precision, burst, suppression, area control and armour penetration. Potential skill functions include protection, healing/support, repositioning, crowd control, scanning and damage. These are candidate categories, not a locked content list.
 
-Keep the resource model small:
-- Run resource: earned and spent during a run; resets at run end.
-- Persistent unlock progress: earned from completion milestones; saved between runs.
+Build rules:
+1. Every weapon and skill must have a clear tactical purpose.
+2. Range, line of sight, action cost, resource cost and effect area must be communicated.
+3. Synergies must be documented and testable.
+4. Upgrade choices must be valid for the current loadout.
+5. Build power must not depend on hidden or unexplained stacking rules.
+6. Solo and group balance must be evaluated separately where party composition changes the encounter economy.
 
-Do not introduce a third currency unless it serves a distinct, explainable purpose. The source, use, reset rule and cap of every resource must be documented in the GDD.
+## 7. Survival, resources and mission progression
 
-## 9. Game states and transitions
+The survival layer governs pressure across an encounter or mission. Candidate pressures include health attrition, limited ammunition, skill energy, consumable supply, environmental hazards and escalating enemy composition.
 
-| State | Entry condition | Exit condition |
+Each resource must have a defined source, use, reset rule and cap. The project should not add several overlapping resource meters without distinct gameplay functions.
+
+Mission progression may include:
+- Preparation and loadout selection.
+- Exploration or approach.
+- One or more tactical encounters.
+- Optional objectives or environmental interactions.
+- Mission completion, extraction or defeat.
+- Reward and build progression.
+
+Exact mission structure and objective conditions remain open.
+
+## 8. Solo and group play
+
+### Solo mode
+- Must be a complete supported mode.
+- Must not require an online connection solely to execute the core solo mission.
+- Encounter difficulty and action economy must be tuned for one player.
+- If AI companions are used, their turn ownership and command model require a separate decision.
+
+### Tactical group mode
+- Group play is part of the approved product direction.
+- Players must be able to coordinate actions, roles, targets and limited resources.
+- The rules must specify whether players act sequentially, simultaneously with a resolution phase, or through another turn-order model.
+- Disconnect, reconnect, player defeat and abandoned-turn behaviour must be defined.
+- Group size and party roles remain OPEN.
+
+### Supplementary server project
+The server is a separate project/workstream. It should provide session and authoritative encounter coordination for online group play. The core game should expose stable game-state and action interfaces without embedding server deployment assumptions into every gameplay system.
+
+## 9. Persistent progression
+
+Separate temporary mission progression from persistent account/save progression.
+
+Potential persistent unlocks:
+- New weapon or skill options.
+- New starting loadouts.
+- Cosmetic character options.
+- Access to missions or enemy groups.
+
+Avoid permanent stat inflation until the encounter balance model is validated. Persistent progression should not make group contribution depend solely on accumulated power.
+
+## 10. Game states
+
+| State | Entry | Exit |
 |---|---|---|
-| Main Menu | Game starts or returns from run | Player selects run |
-| Preparation | Run selected | Loadout confirmed |
-| Active Run | Combat zone loaded | Upgrade, pause, success or defeat |
-| Upgrade Choice | Upgrade threshold reached | Choice confirmed |
-| Pause | Player pauses | Resume or exit confirmation |
-| Victory | Objective condition met | Summary |
-| Defeat | Player health reaches defeat condition | Summary |
-| Run Summary | Run ends | Return to menu |
+| Main Menu | Game starts | Mode selected |
+| Mode Selection | Player chooses Solo/Group | Mission preparation |
+| Preparation | Mission selected | Loadout confirmed |
+| Exploration | Mission environment loaded | Encounter trigger or objective |
+| Combat Setup | Encounter begins | First combatant turn |
+| Player Turn | Player/team action phase | Actions spent or turn ended |
+| Enemy Turn | Enemy action phase | Enemy actions resolved |
+| Round Resolution | End-of-round processing | Next round or encounter end |
+| Mission Success | Objective met | Results |
+| Mission Failure | Defeat/failure condition | Results |
+| Results | Mission ended | Return to menu/preparation |
 
-Pause and upgrade-choice states must not allow enemies to damage the player unless that is an explicit design decision.
+The final state machine must distinguish combat rounds from mission progression.
 
-## 10. UI and feedback requirements
+## 11. UI and feedback requirements
 
-- Persistent display of player health and active ability state.
-- Clear indication of current objective or survival condition.
-- Readable enemy attack telegraphs.
-- Upgrade choices with effect descriptions and prerequisite visibility.
-- Run summary showing result, duration, rewards and build.
-- Options for audio, screen shake and effect intensity.
-- Separate visual language for player-owned and enemy-owned projectiles.
+- Clear current turn and acting combatant.
+- Clear action costs and remaining actions.
+- Weapon/skill range and resource indicators.
+- Enemy intent or threat information where the design exposes it.
+- Distinct player/enemy/neutral targeting cues.
+- Health, status effects and survival resources.
+- Camera switching feedback without changing tactical state.
+- Mission objective and result summary.
+- Group member status and coordination cues in group mode.
 
-## 11. Risks and dependencies
+## 12. Risks and dependencies
 
-| Risk | Consequence | Mitigation / decision needed |
+| Risk | Consequence | Required mitigation |
 |---|---|---|
-| No approved camera/platform/input | Controls and UI may be designed for the wrong target | Project Owner decision before architecture |
-| Too many upgrade combinations | Balance and testing cost rises rapidly | Small explicit upgrade pool for MVP |
-| Visual effects obscure threats | Player cannot read combat | Effect budget and telegraph tests |
-| Persistent stat inflation | Run difficulty becomes hard to balance | Prefer unlocks over raw permanent power |
-| Multiplayer added late | Simulation and networking rework | Exclude from MVP unless approved early |
-| Boss and enemy roles overlap | Encounters feel repetitive | Define each archetype by a distinct player response |
+| Turn rules undefined | Combat implementation becomes inconsistent | Approve turn lifecycle/action economy first |
+| Camera perspective hides tactical information | Player cannot make informed choices | Test both camera modes against identical encounters |
+| Solo/group action economy differs | One mode becomes trivial or frustrating | Separate balance targets and encounter tests |
+| Server owns unclear state | Desynchronisation or exploitable actions | Define authority boundary in supplementary server project |
+| Build pool expands too early | Balance and UI complexity rise | Start with a small, role-distinct weapon/skill set |
+| Survival resources overlap | UI burden without tactical value | Require a distinct purpose for each resource |
 
-## 12. Open decisions
+## 13. Open decisions
 
-- Final player identity and movement model.
-- Manual aim, assisted aim or auto-aim.
-- Keyboard/mouse, controller, touch or multiple input targets.
-- Health/lives and defeat rules.
-- Run objective and expected session duration.
-- Exact level-up trigger and choice count.
-- Whether persistent progression is required for the first MVP.
-- Whether there is one arena or a small sequence of arenas.
-- Whether combat is real-time only or includes tactical pauses.
+- Target platform and supported input devices.
+- Exact turn order, initiative and round structure.
+- Action points/costs and movement model.
+- Whether group turns are sequential or simultaneous.
+- Group size and party composition.
+- Whether AI companions exist in solo mode.
+- Ammunition, energy, consumable and healing rules.
+- Inventory slots, equipment swapping and build respec.
+- Mission objective, extraction and failure rules.
+- Server hosting model, authoritative state and reconnect policy.
 
-No implementation is authorized by this document.
+No implementation is authorised by this document.
