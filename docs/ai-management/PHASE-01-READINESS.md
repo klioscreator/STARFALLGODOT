@@ -2,23 +2,24 @@
 
 ## Current state
 
-Phase 01 coordination is IN_PROGRESS. Both assigned GitHub identities and branch-specific write checks are verified. AIT0405 has completed the initial repository/branch/PR audit and management framework. The specialist tasks have been released, but no substantive specialist deliverable was visible in GitHub at the last audit.
+Phase 01 coordination is IN_PROGRESS. Both specialist GitHub identities and branch-specific write checks are verified. AIT0405 has completed the initial repository/branch/PR audit, management framework, and correction of contradictory task instructions.
 
-- AIT1404: assigned and cleared to begin reference-game analysis on `phase-01-research-claude1`.
-- AITtor: assigned and cleared to begin concept, gameplay loop/core systems, GDD and MVP on `phase-01-design-ready`.
+The specialist tasks are released, but no substantive specialist deliverable was visible in GitHub at the latest audit (2026-11-10 UTC):
+- AIT1404: reference-game analysis on `phase-01-research-claude1`.
+- AITtor: takeover audit, concept, gameplay loop/core systems, GDD and MVP on `phase-01-design-ready`.
 
-The two workstreams are independent. Access-check commits prove identity/write access only; they are not substantive deliverables.
+The two workstreams are independent. AITtor does not need to wait for AIT1404's draft. If research-dependent decisions are not yet verified, AITtor must label proposals and assumptions for later reconciliation.
 
-## Verified branch heads at audit time
+## Verified branch heads at latest audit
 
 | Branch | Owner | Head SHA | Evidence |
 |---|---|---|---|
-| `main` | Accepted baseline | `5a71eb3ea411cac89ea98914e04ff58efbfec3f2` | PR #24 merged |
+| `main` | Accepted baseline | `2ec3fa4063e3f1257923ba47352ee1d5577719ca` | PR #26 merged |
 | `phase-01-research-claude1` | AIT1404 | `038c2d28e930fd75a3529579f1d1019c71e916fa` | Access-check commit by `quockhanh-eng` |
 | `phase-01-design-ready` | AITtor | `8fdf925b8d436903646010d893898d245d789943` | Access-check commit by `HistoryandGeegraphyEducation` |
 | `phase-01-management-ait0405` | AIT0405 | `68649049aa5426bd45e9df82be5f7629b60fa6e4` | Audit/status PR #24 head, merged |
 
-Branch heads must be refreshed before any subsequent write or review.
+Branch heads must be refreshed before any subsequent write or review. The two specialist branches have not yet been synchronized with the latest main task-brief corrections.
 
 ## Readiness checks
 
@@ -32,16 +33,17 @@ Branch heads must be refreshed before any subsequent write or review.
 | Separate assigned work branches | PASS |
 | Phase 01 scope restriction documented | PASS |
 | AIT0405 repository/branch/PR audit | PASS |
+| Contradictory task briefs corrected and merged (PR #26) | PASS |
 | No concurrent writer on either specialist branch | CONFIRMATION REQUIRED FROM EACH AIT SESSION |
 | Substantive specialist research/design deliverables | NOT YET VERIFIED |
 
 ## Execution plan
 
-1. AIT1404 completes the evidence-based analysis of Soul Knight, Magic Survival and City of Dragon: Epic Battle. The third title is identified through the official game site and Google Play listing as `City of Dragon: Epic Battle`, published by Moonlight Game Studio JSC. The report must still document the source identity and any title/localization variants.
-2. AITtor independently completes the concept, gameplay loop/core systems, GDD and MVP scope. It may proceed with clearly marked assumptions and unresolved questions; it does not need to wait for AIT1404's draft.
-3. AIT0405 reviews both workstreams for evidence quality, internal consistency, scope, feasibility and traceability. Conflicts are recorded and resolved before integration.
+1. AIT1404 completes the evidence-based analysis of Soul Knight, Magic Survival and City of Dragon: Epic Battle. The third title has been identified through the official game site and Google Play listing as `City of Dragon: Epic Battle`. The report must still document title identity, source, platform and observed version/date for each mechanic.
+2. AITtor completes the takeover audit and independently prepares concept, gameplay loop/core systems, GDD and MVP scope. It must mark proposals, assumptions and unresolved research-dependent decisions.
+3. AIT0405 reviews both workstreams for evidence quality, internal consistency, scope, feasibility and traceability.
 4. Each specialist opens a PR to `main`; AIT0405 reviews and merges only compliant work within the delegated Phase 01 scope.
-5. AIT0405 updates the deliverable register, phase status and handoff record. Phase 01 remains IN_PROGRESS until every required deliverable is accepted and merged.
+5. Phase 01 remains IN_PROGRESS until every required deliverable is accepted and merged.
 
 ## Scope boundary
 
