@@ -11,8 +11,8 @@ Responsibilities:
 
 - Owns the project and makes the final decisions.
 - Approves the objective, scope, and assignment of each phase.
-- Reviews and approves Pull Requests.
-- Is the only person permitted to merge into `main`.
+- Reviews and approves project scope and final product decisions.
+- May explicitly delegate PR merge authority to the AI Coordinator for a defined scope or period.
 
 Limits: decisions that affect scope, dependencies, or assignments must be recorded in this repository (status files or `ASSIGNMENTS.md`) so that other AIs can rely on them.
 
@@ -22,16 +22,18 @@ Responsibilities:
 
 - Role held by ChatGPT in the current workflow.
 - Tracks the progress of the 7 phases.
-- Defines the inputs, outputs, and working branch of each phase for the Project Owner's approval.
-- Checks outputs and consistency between phases.
+- Defines task inputs, outputs, acceptance criteria, and working branches within the Project Owner-approved scope.
+- Checks outputs, evidence, and consistency between phases.
+- May merge PRs only within the scope of an explicit delegation recorded by the Project Owner.
 - Assigns and coordinates work, and receives reports from the AIs.
 - Supports handoff when an AI reaches a usage limit or cannot continue.
 
 Limits:
 
 - Does not change decisions already approved by the Project Owner.
-- Does not merge into `main`.
-- Does not declare a phase `COMPLETED`; that follows the Project Owner's merge or explicit acceptance.
+- Does not expand or redefine the Project Owner-approved scope.
+- Does not merge PRs outside an explicit delegation.
+- Does not declare a phase `COMPLETED` until its acceptance criteria and merge/acceptance requirements are met.
 
 ### Phase AI (AI Developer)
 
@@ -51,13 +53,14 @@ Limits:
 
 ## Workflow overview
 
-Project Owner assigns a task → AI Coordinator defines scope, inputs, outputs, and branch → Phase AI works on the assigned branch → Phase AI updates status and handoff → commit → Pull Request → AI Coordinator reviews → Project Owner approves and merges.
+Project Owner approves scope and may delegate execution/merge authority → AI Coordinator assigns isolated tasks and branches → Phase AIs work only on their assigned branches → status and handoff are updated → Pull Requests are reviewed by the AI Coordinator → merge is performed by the Project Owner or by the Coordinator within the recorded delegation.
 
 ## Task assignment
 
 - The Project Owner approves each task.
 - The AI Coordinator defines the inputs, outputs, and working branch for the phase.
-- Each phase has exactly one AI with primary responsibility at any time. Current assignments are recorded in [ASSIGNMENTS.md](ASSIGNMENTS.md).
+- Each phase has exactly one lead AI. Supporting AIs may receive bounded subtasks only when they use separate branches and do not edit the lead's branch.
+- Current lead and supporting assignments are recorded in [ASSIGNMENTS.md](ASSIGNMENTS.md).
 - Assignments, dependencies, and `Assigned AI` values are changed only by the Project Owner or the AI Coordinator. Phase AIs do not edit `ASSIGNMENTS.md`.
 - A different AI may take over only after a handoff record exists and it is confirmed that no other AI is still writing to the branch.
 - Do not assign work that depends on outputs that have not been approved.
@@ -69,7 +72,7 @@ Project Owner assigns a task → AI Coordinator defines scope, inputs, outputs, 
 - Each active phase has one assigned AI, one working branch, and one task owner.
 - A phase branch must be based on the latest accepted `main` unless the coordinator specifies another base.
 - Do not let two AI agents write to the same phase branch at the same time.
-- All changes are submitted through a Pull Request. The project owner approves and merges.
+- All changes are submitted through a Pull Request. The Project Owner merges, or the AI Coordinator merges only under an explicit recorded delegation.
 - Do not start a dependent phase until its required inputs and interface contracts are available.
 - Never claim work is saved unless the commit is visible on GitHub.
 
@@ -153,8 +156,8 @@ A phase is not `COMPLETED` merely because documents were written or commits were
 ## Review and approval
 
 1. The Phase AI sets the status to `PENDING_REVIEW` and reports the PR to the AI Coordinator.
-2. The AI Coordinator checks scope, output, dependencies, and consistency with other phases, and reports findings.
-3. The Project Owner approves and merges, or requests changes.
+2. The AI Coordinator checks scope, output, dependencies, evidence, and consistency with other phases.
+3. The Project Owner merges, or the AI Coordinator merges if an explicit delegation covers that PR; otherwise the Project Owner decides.
 4. After merge, the Project Owner or AI Coordinator updates [ASSIGNMENTS.md](ASSIGNMENTS.md).
 
 ## Phase completion criteria
@@ -166,7 +169,7 @@ A phase may be marked `COMPLETED` only when all of the following hold:
 - A verified commit SHA exists on GitHub.
 - The status file is up to date.
 - Defects and open issues have been checked and recorded.
-- The PR has been merged by the Project Owner, or the Project Owner has explicitly accepted the work.
+- The PR has been merged by the Project Owner or by the AI Coordinator under explicit delegation, or the Project Owner has explicitly accepted the work.
 - Nothing outside the assigned scope was changed.
 
 ## Required handoff
@@ -186,6 +189,10 @@ A replacement AI must first inspect the assigned branch, latest commit, status, 
 5. **No write access:** stop writing, record the exact error, do not retry with other tools, do not look for other credentials, and tell the AI Coordinator and Project Owner. Provide the full file content in the chat for manual saving and do not claim it was saved.
 6. **PR conflict or failed CI:** fix only within the assigned scope on the phase branch, without force-pushing. If the conflict touches another phase's work or the cause is outside the scope, stop and report to the AI Coordinator.
 7. **Two AIs assigned to the same phase:** the AI that detects this stops writing and notifies the AI Coordinator and Project Owner. Neither deletes or overwrites the other's commits. The Project Owner decides which AI continues, and the other AI hands over its findings.
+
+## Current delegation
+
+The Project Owner has delegated operational coordination to ChatGPT as AI Coordinator for repository preparation and Phase 01 execution: assigning Claude 1 and Claude 2 to bounded tasks, maintaining task records, reviewing their deliverables, and merging compliant PRs within the approved Phase 01 scope. The Project Owner retains authority over changes to the game's core direction, material scope changes, and decisions outside this delegation. This delegation must not be interpreted as permission to change unrelated phases or implement game code during Phase 01.
 
 ## Security and access
 
