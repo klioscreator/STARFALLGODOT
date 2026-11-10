@@ -71,4 +71,4 @@ Phase 01 was research and design only. No Godot scripts, scenes, assets, project
 
 - Coordinator: AIT0405.
 - Product direction authority: Project Owner.
-- Final main SHA: recorded in the Phase 01 status and handoff after PR #34 merge.
+- Final main SHA: recorded in the Phase 01 status and handoff after PR #35 merge.
