@@ -1,14 +1,17 @@
 # Phase 03 — Prototype Status
 
-**Status:** PENDING_REVIEW  
+**Status:** PENDING_OWNER_VALIDATION  
 **Phase lead:** AIT0405  
-**Branch:** phase-03-prototype-ait0405  
+**Implementation branch:** phase-03-prototype-ait0405  
+**Closeout documentation branch:** phase-03-closeout-ait0405  
 **Base branch:** main  
-**Initial base commit:** fda33199a23fe3d9a98bb5aa3ea741091ba43c4c  
-**Main synchronization:** db6603b22fef7f09c32e7a4b8091d0e27a202df7  
+**Current main commit:** 8d0e681d4453763f9925f7034cc016d79e6773d7  
 **Issue:** #46  
-**Pull Request:** #47 (open)  
-**Last updated:** 2026-11-10
+**Implementation PRs:** #45, #47 and #48 (merged); PR #50 (integration checks and typed-array correction, CI passed; awaiting merge)  
+**Latest fix PR:** [#48](https://github.com/klioscreator/STARFALLGODOT/pull/48), merged 2026-11-11  
+**Latest baseline CI:** [#42845612067](https://github.com/klioscreator/STARFALLGODOT/actions/runs/42845612067) — SUCCESS  
+**Integration CI:** [#43004438956](https://github.com/klioscreator/STARFALLGODOT/actions/runs/43004438956) — SUCCESS on PR #50 head  
+**Last updated:** 2026-11-11
 
 ## Objective
 
@@ -29,10 +32,12 @@ Build a prototype connecting 3D exploration, humanoid control, dual camera, PC/t
 - Headless tests for combatant state, turn scheduling, action ownership, range validation and damage resolution.
 - Automated Godot import, domain-test and scene-launch workflow.
 - Run instructions, prototype-only parameter register, test report and handoff.
+- Follow-up viewport/type corrections merged through PR #48.
+- Integration checks exposed an untyped actor-order array at encounter start; the targeted correction and new lifecycle test are proposed in PR #50. Its Godot CI run passed.
 
 ## Automated verification
 
-GitHub Actions run **42838024897** completed successfully on commit `9307ce656765f62385d040cf33f2b9a767511cba`.
+The merged implementation's Godot Prototype Checks run, [#42845612067](https://github.com/klioscreator/STARFALLGODOT/actions/runs/42845612067), completed successfully on commit `4a0158d1aac60720a252f29b740a8af03829e027`. The added integration suite in PR #50 also passed in [run #43004438956](https://github.com/klioscreator/STARFALLGODOT/actions/runs/43004438956) on proposed commit `b09baa1ab720d31296746a120995e2a558a3d51a`.
 
 Successful steps:
 - Install Godot 4.7.2 standard build.
@@ -41,7 +46,9 @@ Successful steps:
 - Run `tests/run_tests.gd`.
 - Launch the main scene headlessly for five frames.
 
-Detailed evidence: docs/phase-03/test-report.md.
+The tested commit was merged to main through PR #48. The merge commit is `8d0e681d4453763f9925f7034cc016d79e6773d7`. The merge-triggered Pages deployment also completed successfully; that deployment is not a substitute for the Godot test workflow.
+
+Detailed evidence: [docs/phase-03/test-report.md](test-report.md). Owner-side execution sheet: [Project Owner Validation Checklist](owner-validation-checklist.md).
 
 ## Remaining owner-side validation
 
@@ -50,8 +57,9 @@ Automated headless checks do not replace interactive hardware tests. The followi
 - Test touch controls and screen layout on an actual mobile device.
 - Verify Android/iOS export only after the intended mobile OS and export toolchain are confirmed.
 - Measure frame time, memory, thermal behavior and input latency on agreed target hardware.
+- Confirm whether the prototype behavior meets the acceptance criteria.
 
-These are not reported as passed. No physical target device or Android SDK was available in the implementation environment.
+These are not reported as passed. No physical target device or Android SDK was available in the implementation environment. Use the [Project Owner Validation Checklist](owner-validation-checklist.md) to record actual desktop/mobile results.
 
 ## Scope guard
 
@@ -59,4 +67,4 @@ No online server, multiplayer transport, production assets, campaign, progressio
 
 ## Review state
 
-Implementation and automated checks are ready for Project Owner review. Phase 03 remains PENDING_REVIEW, not COMPLETED, until interactive owner-device validation and the repository's PR merge/acceptance requirement are satisfied.
+Implementation PRs #45, #47 and #48 are merged. PR #50 adds the integration checks and the typed-array correction; its automated Godot checks pass, pending merge. Phase 03 remains **PENDING_OWNER_VALIDATION**, not COMPLETED, until interactive owner-device validation and explicit acceptance are recorded.
