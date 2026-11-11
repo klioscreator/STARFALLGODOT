@@ -30,5 +30,8 @@ jobs:
       - name: Run domain tests
         run: godot --headless --path . -s res://tests/run_tests.gd
 
+      - name: Run prototype integration tests
+        run: godot --headless --path . -s res://tests/prototype_integration_test.gd
+
       - name: Launch main scene headlessly
         run: godot --headless --path . --quit-after 5

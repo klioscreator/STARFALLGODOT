@@ -326,7 +326,8 @@ func _start_encounter() -> void:
 	player.position = Vector3.ZERO
 	selected_target_id = "enemy_scout"
 	turn_manager = TurnManager.new()
-	turn_manager.start([PLAYER_ID, "enemy_scout", "enemy_guard"], {
+	var actor_order: Array[String] = [PLAYER_ID, "enemy_scout", "enemy_guard"]
+	turn_manager.start(actor_order, {
 		PLAYER_ID: 2,
 		"enemy_scout": 1,
 		"enemy_guard": 1
