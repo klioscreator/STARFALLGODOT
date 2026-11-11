@@ -46,7 +46,7 @@ Successful steps:
 
 The tested commit was merged to main through PR #48. The merge commit is `8d0e681d4453763f9925f7034cc016d79e6773d7`. The merge-triggered Pages deployment also completed successfully; that deployment is not a substitute for the Godot test workflow.
 
-Detailed evidence: [docs/phase-03/test-report.md](test-report.md).
+Detailed evidence: [docs/phase-03/test-report.md](test-report.md). Owner-side execution sheet: [Project Owner Validation Checklist](owner-validation-checklist.md).
 
 ## Remaining owner-side validation
 
@@ -57,7 +57,7 @@ Automated headless checks do not replace interactive hardware tests. The followi
 - Measure frame time, memory, thermal behavior and input latency on agreed target hardware.
 - Confirm whether the prototype behavior meets the acceptance criteria.
 
-These are not reported as passed. No physical target device or Android SDK was available in the implementation environment.
+These are not reported as passed. No physical target device or Android SDK was available in the implementation environment. Use the [Project Owner Validation Checklist](owner-validation-checklist.md) to record actual desktop/mobile results.
 
 ## Scope guard
 
