@@ -8,7 +8,7 @@ func _initialize() -> void:
 	call_deferred("_run_integration_checks")
 
 func _on_watchdog_timeout() -> void:
-	push_error("Prototype integration test timed out.")
+	push_error("Combat integration test timed out.")
 	quit(1)
 
 func _check(condition: bool, message: String) -> bool:
@@ -40,11 +40,43 @@ func _run_integration_checks() -> void:
 	controller.call("_start_encounter")
 	if not _check(controller.get("combat_active"), "Starting an encounter should enter tactical mode."):
 		return
+	if not _check(controller.get("encounter_state").is_active(), "Encounter state should enter ACTIVE."):
+		return
 	var turn_manager = controller.get("turn_manager")
 	if not _check(turn_manager.current_actor() == "player", "Player should own the first turn."):
 		return
 
 	var enemies: Dictionary = controller.get("enemies")
+	var scout_data: Dictionary = enemies["enemy_scout"]
+	var scout_node: Node3D = scout_data["node"]
+	var scout_state = scout_data["state"]
+	scout_node.position = Vector3(2.0, 0.05, 0.0)
+
+	controller.call("_player_attack")
+	if not _check(scout_state.health == scout_state.max_health - 24, "Player weapon action should resolve through the combat pipeline."):
+		return
+	if not _check(turn_manager.points_for("player") == 1, "Accepted player action should consume its configured fixture cost."):
+		return
+
+	controller.call("_player_skill")
+	if not _check(scout_state.health == scout_state.max_health - 24, "Skill must be rejected when the actor lacks its action-point cost."):
+		return
+	if not _check(turn_manager.points_for("player") == 1, "Rejected skill must not consume action points."):
+		return
+
+	var player_node: Node3D = controller.get("player")
+	player_node.position = Vector3(2.0, 0.05, -1.5)
+	controller.call("_tactical_step", Vector2.RIGHT)
+	if not _check(turn_manager.points_for("player") == 1, "Blocked tactical movement must not consume action points."):
+		return
+
+	controller.call("_end_player_turn")
+	await create_timer(1.6).timeout
+	if not _check(controller.get("player_state").health < 100, "Enemy action should resolve through the shared combat pipeline."):
+		return
+	if not _check(turn_manager.current_actor() == "player", "Enemy phase should return turn ownership to the player."):
+		return
+
 	for actor_id in ["enemy_scout", "enemy_guard"]:
 		var actor_data: Dictionary = enemies[actor_id]
 		var actor_state = actor_data["state"]
@@ -57,9 +89,13 @@ func _run_integration_checks() -> void:
 		return
 	if not _check(str(controller.get("combat_log")).contains("VICTORY"), "Victory state should be reported."):
 		return
+	if not _check(controller.get("encounter_state").result_name() == "VICTORY", "Encounter lifecycle should record victory."):
+		return
 
 	controller.call("_restart_test")
 	if not _check(controller.get("combat_active"), "Restart should begin a fresh encounter."):
+		return
+	if not _check(controller.get("encounter_state").is_active(), "Restart should return encounter lifecycle to ACTIVE."):
 		return
 	if not _check(controller.get("player_state").is_alive, "Restart should restore player health."):
 		return
@@ -79,6 +115,8 @@ func _run_integration_checks() -> void:
 		return
 	if not _check(str(controller.get("combat_log")).contains("DEFEAT"), "Defeat state should be reported."):
 		return
+	if not _check(controller.get("encounter_state").result_name() == "DEFEAT", "Encounter lifecycle should record defeat."):
+		return
 
 	controller.call("_restart_test")
 	if not _check(controller.get("combat_active"), "A defeated encounter should also be restartable."):
@@ -88,5 +126,5 @@ func _run_integration_checks() -> void:
 
 	controller.queue_free()
 	await process_frame
-	print("STARFALLGODOT Phase 03 integration tests: PASS")
+	print("STARFALLGODOT Phase 04 combat integration tests: PASS")
 	quit(0)

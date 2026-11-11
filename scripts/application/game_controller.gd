@@ -4,23 +4,25 @@ const CombatantState = preload("res://scripts/domain/combatant_state.gd")
 const TurnManager = preload("res://scripts/domain/turn_manager.gd")
 const PlayerController = preload("res://scripts/presentation/player_controller.gd")
 const CameraRig = preload("res://scripts/presentation/camera_rig.gd")
-const ActionValidator = preload("res://scripts/domain/action_validator.gd")
-const ActionResolver = preload("res://scripts/domain/action_resolver.gd")
+const CombatEncounterState = preload("res://scripts/domain/combat_encounter_state.gd")
+const CombatActionCatalog = preload("res://scripts/domain/combat_action_catalog.gd")
+const CombatActionPipeline = preload("res://scripts/domain/combat_action_pipeline.gd")
+const EnemyTacticalAI = preload("res://scripts/domain/enemy_tactical_ai.gd")
 
 const PLAYER_ID := "player"
 const ENEMY_IDS: Array[String] = ["enemy_scout", "enemy_guard"]
 const TACTICAL_STEP := 1.35
-const PLAYER_ATTACK_DAMAGE := 24
-const PLAYER_SKILL_DAMAGE := 34
-const ENEMY_ATTACK_DAMAGE := 8
 
 var player: PlayerController
 var camera_rig: CameraRig
 var player_state
 var enemies: Dictionary = {}
 var turn_manager
-var action_validator
-var action_resolver
+var encounter_state
+var action_pipeline
+var enemy_tactical_ai
+var combat_actions: Dictionary = {}
+var combatants: Dictionary = {}
 var combat_active: bool = false
 var enemy_turn_running: bool = false
 var selected_target_id: String = "enemy_scout"
@@ -41,8 +43,10 @@ var camera_button: Button
 var compact_ui: bool = false
 
 func _ready() -> void:
-	action_validator = ActionValidator.new()
-	action_resolver = ActionResolver.new()
+	encounter_state = CombatEncounterState.new()
+	action_pipeline = CombatActionPipeline.new()
+	enemy_tactical_ai = EnemyTacticalAI.new()
+	combat_actions = CombatActionCatalog.create_prototype_actions()
 	_build_environment()
 	_build_player()
 	_build_enemies()
@@ -210,7 +214,7 @@ func _build_interface() -> void:
 	info_panel.add_child(info_box)
 
 	var title := Label.new()
-	title.text = "STARFALLGODOT | PROTOTYPE 03"
+	title.text = "STARFALLGODOT | COMBAT PROTOTYPE 04"
 	title.add_theme_font_size_override("font_size", 17)
 	info_box.add_child(title)
 
@@ -314,7 +318,7 @@ func _toggle_camera() -> void:
 	camera_button.text = "Camera: First person" if camera_rig.first_person else "Camera: Third person"
 
 func _start_encounter() -> void:
-	if combat_active:
+	if combat_active or not encounter_state.begin():
 		return
 	player_state.reset()
 	for actor_id in ENEMY_IDS:
@@ -325,6 +329,9 @@ func _start_encounter() -> void:
 	enemies["enemy_guard"]["node"].position = Vector3(7.0, 0.05, 3.0)
 	player.position = Vector3.ZERO
 	selected_target_id = "enemy_scout"
+	combatants = {PLAYER_ID: player_state}
+	for actor_id in ENEMY_IDS:
+		combatants[actor_id] = enemies[actor_id]["state"]
 	turn_manager = TurnManager.new()
 	var actor_order: Array[String] = [PLAYER_ID, "enemy_scout", "enemy_guard"]
 	turn_manager.start(actor_order, {
@@ -332,8 +339,9 @@ func _start_encounter() -> void:
 		"enemy_scout": 1,
 		"enemy_guard": 1
 	})
-	combat_active = true
-	combat_log = "Encounter started. Turn/action values are temporary test parameters."
+	enemy_turn_running = false
+	combat_active = encounter_state.is_active() and turn_manager.running
+	combat_log = "Encounter started. Combat values are temporary test fixtures."
 	_update_hud()
 
 func _alive_enemy_ids() -> Array[String]:
@@ -369,79 +377,71 @@ func _select_next_target() -> void:
 	_update_hud()
 
 func _player_attack() -> void:
+	if not _player_can_act():
+		return
 	var target := _selected_enemy_data()
 	if target.is_empty():
 		_finish_combat(true)
 		return
 	var target_node: CharacterBody3D = target["node"]
-	var target_state = target["state"]
-	var actor_check: Dictionary = action_validator.validate_actor_action(
-		PLAYER_ID, turn_manager.current_actor(), player_state.is_alive,
-		turn_manager.points_for(PLAYER_ID), 1
+	var target_state: CombatantState = target["state"]
+	var distance: float = player.global_position.distance_to(target_node.global_position)
+	var result: Dictionary = action_pipeline.execute(
+		PLAYER_ID,
+		selected_target_id,
+		"weapon_attack",
+		combat_actions,
+		combatants,
+		turn_manager,
+		distance,
+		_has_line_of_sight(player.global_position, target_node.global_position)
 	)
-	if not actor_check["accepted"]:
-		combat_log = "Action rejected: " + str(actor_check["reason"])
-		_update_hud()
-		return
-	var range_check: Dictionary = action_validator.validate_range(
-		player.global_position.distance_to(target_node.global_position), 4.4
-	)
-	if not range_check["accepted"]:
-		combat_log = "Target is out of weapon range. Move closer."
-		_update_hud()
-		return
-	if not turn_manager.consume(PLAYER_ID, 1):
-		return
-	var result: Dictionary = action_resolver.apply_damage(target_state, PLAYER_ATTACK_DAMAGE)
 	if not result["accepted"]:
-		combat_log = "Action rejected: " + str(result["reason"])
+		combat_log = "Weapon attack rejected: " + str(result["reason"])
 		_update_hud()
 		return
+	var effect: Dictionary = result["effect"]
 	_update_enemy_visibility(selected_target_id)
-	combat_log = "Weapon attack dealt %d damage to %s." % [int(result["damage"]), target_state.display_name]
+	combat_log = "Weapon attack dealt %d damage to %s." % [
+		int(effect.get("damage", 0)),
+		target_state.display_name
+	]
 	_after_player_action()
 
 func _player_skill() -> void:
+	if not _player_can_act():
+		return
 	var target := _selected_enemy_data()
 	if target.is_empty():
 		_finish_combat(true)
 		return
 	var target_node: CharacterBody3D = target["node"]
-	var target_state = target["state"]
-	var actor_check: Dictionary = action_validator.validate_actor_action(
-		PLAYER_ID, turn_manager.current_actor(), player_state.is_alive,
-		turn_manager.points_for(PLAYER_ID), 2
+	var target_state: CombatantState = target["state"]
+	var distance: float = player.global_position.distance_to(target_node.global_position)
+	var result: Dictionary = action_pipeline.execute(
+		PLAYER_ID,
+		selected_target_id,
+		"player_skill",
+		combat_actions,
+		combatants,
+		turn_manager,
+		distance,
+		_has_line_of_sight(player.global_position, target_node.global_position)
 	)
-	if not actor_check["accepted"]:
-		combat_log = "Action rejected: " + str(actor_check["reason"])
-		_update_hud()
-		return
-	var range_check: Dictionary = action_validator.validate_range(
-		player.global_position.distance_to(target_node.global_position), 6.0
-	)
-	if not range_check["accepted"]:
-		combat_log = "Target is out of skill range."
-		_update_hud()
-		return
-	if not turn_manager.consume(PLAYER_ID, 2):
-		return
-	var result: Dictionary = action_resolver.apply_damage(target_state, PLAYER_SKILL_DAMAGE)
 	if not result["accepted"]:
-		combat_log = "Action rejected: " + str(result["reason"])
+		combat_log = "Skill rejected: " + str(result["reason"])
 		_update_hud()
 		return
+	var effect: Dictionary = result["effect"]
 	_update_enemy_visibility(selected_target_id)
-	combat_log = "Prototype skill dealt %d damage to %s." % [int(result["damage"]), target_state.display_name]
+	combat_log = "Prototype skill dealt %d damage to %s." % [
+		int(effect.get("damage", 0)),
+		target_state.display_name
+	]
 	_after_player_action()
 
 func _tactical_step(direction_2d: Vector2) -> void:
-	var actor_check: Dictionary = action_validator.validate_actor_action(
-		PLAYER_ID, turn_manager.current_actor(), player_state.is_alive,
-		turn_manager.points_for(PLAYER_ID), 1
-	)
-	if not actor_check["accepted"]:
-		combat_log = "Action rejected: " + str(actor_check["reason"])
-		_update_hud()
+	if not _player_can_act():
 		return
 	var direction := camera_rig.get_flat_right() * direction_2d.x
 	direction += camera_rig.get_flat_forward() * -direction_2d.y
@@ -454,7 +454,13 @@ func _tactical_step(direction_2d: Vector2) -> void:
 		combat_log = "Movement blocked; no action point consumed."
 		_update_hud()
 		return
-	if not turn_manager.consume(PLAYER_ID, 1):
+	var result: Dictionary = action_pipeline.execute(
+		PLAYER_ID, "", "move_step", combat_actions,
+		combatants, turn_manager
+	)
+	if not result["accepted"]:
+		combat_log = "Movement rejected: " + str(result["reason"])
+		_update_hud()
 		return
 	player.global_position += motion
 	player.rotation.y = atan2(-direction.x, -direction.z)
@@ -462,6 +468,15 @@ func _tactical_step(direction_2d: Vector2) -> void:
 	_update_hud()
 	if turn_manager.points_for(PLAYER_ID) <= 0:
 		_advance_turn()
+
+func _has_line_of_sight(origin: Vector3, target: Vector3) -> bool:
+	var ray_start: Vector3 = origin + Vector3.UP * 0.9
+	var ray_end: Vector3 = target + Vector3.UP * 0.9
+	var query := PhysicsRayQueryParameters3D.create(ray_start, ray_end)
+	query.collision_mask = 1
+	query.collide_with_areas = false
+	var hit: Dictionary = get_world_3d().direct_space_state.intersect_ray(query)
+	return hit.is_empty()
 
 func _player_can_act() -> bool:
 	return combat_active and turn_manager != null and turn_manager.current_actor() == PLAYER_ID and player_state.is_alive
@@ -500,37 +515,80 @@ func _run_enemy_turn() -> void:
 		await get_tree().create_timer(0.45).timeout
 		if not combat_active or actor_id == PLAYER_ID:
 			break
+		if not enemies.has(actor_id):
+			turn_manager.end_turn(actor_id)
+			_advance_turn()
+			continue
 		var data: Dictionary = enemies[actor_id]
-		var enemy_state = data["state"]
+		var enemy_state: CombatantState = data["state"]
 		var enemy_node: CharacterBody3D = data["node"]
 		if not enemy_state.is_alive:
 			_advance_turn()
 			continue
-		var actor_check: Dictionary = action_validator.validate_actor_action(
-			actor_id, turn_manager.current_actor(), enemy_state.is_alive,
-			turn_manager.points_for(actor_id), 1
-		)
-		if not actor_check["accepted"]:
+
+		var distance: float = enemy_node.global_position.distance_to(player.global_position)
+		var snapshot := {
+			"actor_id": actor_id,
+			"target_id": PLAYER_ID,
+			"distance": distance
+		}
+		var proposal: Dictionary = enemy_tactical_ai.propose_action(snapshot, combat_actions)
+		if not proposal.get("accepted", false):
+			turn_manager.end_turn(actor_id)
 			_advance_turn()
 			continue
-		var distance := enemy_node.global_position.distance_to(player.global_position)
-		if distance <= 3.6:
-			var range_check: Dictionary = action_validator.validate_range(distance, 3.6)
-			if range_check["accepted"]:
-				var result: Dictionary = action_resolver.apply_damage(player_state, ENEMY_ATTACK_DAMAGE)
-				combat_log = "%s attacked for %d damage." % [enemy_state.display_name, int(result["damage"])]
+
+		if proposal["action_id"] == "enemy_strike":
+			var strike_result: Dictionary = action_pipeline.execute(
+				actor_id,
+				PLAYER_ID,
+				"enemy_strike",
+				combat_actions,
+				combatants,
+				turn_manager,
+				distance,
+				_has_line_of_sight(enemy_node.global_position, player.global_position)
+			)
+			if strike_result["accepted"]:
+				var strike_effect: Dictionary = strike_result["effect"]
+				combat_log = "%s attacked for %d damage." % [
+					enemy_state.display_name,
+					int(strike_effect.get("damage", 0))
+				]
+			else:
+				combat_log = "%s action rejected: %s." % [
+					enemy_state.display_name,
+					str(strike_result["reason"])
+				]
 		else:
 			var direction := player.global_position - enemy_node.global_position
 			direction.y = 0.0
 			direction = direction.normalized()
 			var motion := direction * 1.0
-			if not enemy_node.test_move(enemy_node.global_transform, motion):
-				enemy_node.global_position += motion
-			combat_log = "%s advanced toward the operative." % enemy_state.display_name
-		turn_manager.consume(actor_id, 1)
+			if enemy_node.test_move(enemy_node.global_transform, motion):
+				combat_log = "%s movement blocked." % enemy_state.display_name
+				turn_manager.end_turn(actor_id)
+			else:
+				var move_result: Dictionary = action_pipeline.execute(
+					actor_id, "", "move_step", combat_actions,
+					combatants, turn_manager
+				)
+				if move_result["accepted"]:
+					enemy_node.global_position += motion
+					combat_log = "%s advanced toward the operative." % enemy_state.display_name
+				else:
+					combat_log = "%s movement rejected: %s." % [
+						enemy_state.display_name,
+						str(move_result["reason"])
+					]
+					turn_manager.end_turn(actor_id)
+
 		if _check_combat_end():
 			break
+		if turn_manager.current_actor() == actor_id and turn_manager.points_for(actor_id) > 0:
+			turn_manager.end_turn(actor_id)
 		_advance_turn()
+
 	enemy_turn_running = false
 	_update_hud()
 
@@ -544,15 +602,17 @@ func _check_combat_end() -> bool:
 	return false
 
 func _finish_combat(victory: bool) -> void:
+	encounter_state.complete(victory)
 	combat_active = false
 	if turn_manager != null:
-		turn_manager.running = false
-	combat_log = "Encounter complete: VICTORY." if victory else "Encounter complete: DEFEAT."
+		turn_manager.stop()
+	combat_log = "Encounter complete: " + encounter_state.result_name() + "."
 	_update_hud()
 
 func _restart_test() -> void:
 	combat_active = false
 	enemy_turn_running = false
+	encounter_state.reset()
 	player_state.reset()
 	for actor_id in ENEMY_IDS:
 		var data: Dictionary = enemies[actor_id]

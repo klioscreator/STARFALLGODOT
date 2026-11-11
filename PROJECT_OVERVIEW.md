@@ -8,11 +8,12 @@ The Project Owner directs the product and approves phase scope. AI assistants ca
 
 - Phase 01 — Research and Design: COMPLETE.
 - Phase 02 — Architecture: COMPLETE.
-- Phase 03 — Prototype: PENDING_OWNER_VALIDATION. Implementation PRs #45, #47, #48 and #50 and closeout documentation PR #49 are merged; merge-record PR #51 is also merged. Integration and post-merge CI pass. Interactive owner-device validation and explicit acceptance remain. See [Phase 03 status](docs/phase-03/phase-03-status.md).
-- Phase 04–07: NOT_STARTED; each requires separate Project Owner authorization.
-- ART-01 — Independent visual-design workstream: ASSIGNED to AIT1404 (`quockhanh-eng`) through [Issue #52](https://github.com/klioscreator/STARFALLGODOT/issues/52). Status: awaiting AIT1404 execution. This workstream does not renumber or replace Phases 01–07 and does not authorize Phase 04–07.
+- Phase 03 — Prototype: COMPLETE by explicit Project Owner acceptance on 2026-11-11. Implementation and closeout PRs #45, #47, #48, #49, #50 and #51 are merged. This acceptance record does not claim physical-device validation. See [Phase 03 status](docs/phase-03/phase-03-status.md).
+- Phase 04 — Combat: PENDING_REVIEW. Implementation and automated verification are complete; PR #55 awaits Project Owner merge or explicit acceptance. See [Phase 04 status](docs/phase-04/phase-04-status.md) and [Issue #54](https://github.com/klioscreator/STARFALLGODOT/issues/54).
+- Phase 05–07: NOT_STARTED.
+- ART-01 — Independent visual-design workstream: assigned to AIT1404 through [Issue #52](https://github.com/klioscreator/STARFALLGODOT/issues/52), but DEFERRED by the Project Owner until Phase 04 is complete. No design work is to begin during Phase 04.
 
-The merged `main` branch contains the Phase 03 Godot project and procedural 3D prototype. Current main commit at the ART-01 coordination baseline: `a68108e4e15130e084787f4ab6c19092a193b5df`. Phase 03 main workflow #43036866188 completed successfully.
+The current accepted `main` baseline at Phase 04 synchronization is `5faf3d154f761c92d049d04e3b03a1755aba1463`. Phase 03 main workflow #43036866188 completed successfully. Phase 04 implementation is isolated on `phase-04-combat-ait0405`.
 
 ## Approved product direction
 
@@ -24,12 +25,9 @@ The merged `main` branch contains the Phase 03 Godot project and procedural 3D p
 - Target platforms: desktop PC and mobile.
 - Online group play belongs to a separate supplementary server project.
 
-## ART-01 documentation
+## Current production boundary
 
-- [ART-01 workstream brief](docs/art/README.md)
-- [Visual direction and deliverables](docs/art/visual-direction-brief.md)
-- [Asset pipeline and Gemini usage](docs/art/asset-pipeline.md)
-- [ART-01 status](docs/art/art-status.md)
+Phase 04 develops the tactical combat foundation using the existing prototype and placeholder geometry. Production character/enemy art, concept art, textures, animation, VFX, audio and final UI styling are deferred until Phase 04 is complete.
 
 ## Documentation
 
@@ -41,3 +39,4 @@ The merged `main` branch contains the Phase 03 Godot project and procedural 3D p
 - [Phase 02 gameplay contracts](docs/phase-02/gameplay-system-contracts.md)
 - [Phase 03 prototype scope](docs/phase-03/prototype-scope.md)
 - [Phase 03 run and test](docs/phase-03/run-and-test.md)
+- [Phase 04 combat scope](docs/phase-04/combat-scope.md)

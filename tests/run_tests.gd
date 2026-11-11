@@ -1,15 +1,22 @@
 extends SceneTree
 
 const CombatantState = preload("res://scripts/domain/combatant_state.gd")
+const CombatEncounterState = preload("res://scripts/domain/combat_encounter_state.gd")
 const TurnManager = preload("res://scripts/domain/turn_manager.gd")
 const ActionValidator = preload("res://scripts/domain/action_validator.gd")
 const ActionResolver = preload("res://scripts/domain/action_resolver.gd")
+const CombatActionDefinition = preload("res://scripts/domain/combat_action_definition.gd")
+const CombatActionCatalog = preload("res://scripts/domain/combat_action_catalog.gd")
+const CombatActionPipeline = preload("res://scripts/domain/combat_action_pipeline.gd")
+const EnemyTacticalAI = preload("res://scripts/domain/enemy_tactical_ai.gd")
 
 func _initialize() -> void:
 	_test_combatant_state()
+	_test_encounter_lifecycle()
 	_test_turn_manager()
-	_test_action_pipeline()
-	print("STARFALLGODOT Phase 03 domain tests: PASS")
+	_test_action_validation_and_resolution()
+	_test_enemy_decision_boundary()
+	print("STARFALLGODOT Phase 04 combat domain tests: PASS")
 	quit(0)
 
 func _test_combatant_state() -> void:
@@ -24,9 +31,31 @@ func _test_combatant_state() -> void:
 	actor.reset()
 	assert(actor.is_alive and actor.health == 100)
 
+func _test_encounter_lifecycle() -> void:
+	var encounter = CombatEncounterState.new()
+	assert(not encounter.is_active())
+	assert(not encounter.is_terminal())
+	assert(encounter.begin())
+	assert(encounter.is_active())
+	assert(not encounter.begin())
+	assert(encounter.complete(true))
+	assert(encounter.is_terminal())
+	assert(encounter.result_name() == "VICTORY")
+	assert(not encounter.complete(false))
+	encounter.reset()
+	assert(not encounter.is_active())
+	assert(encounter.result_name() == "NONE")
+	assert(encounter.begin())
+	assert(encounter.complete(false))
+	assert(encounter.result_name() == "DEFEAT")
+
 func _test_turn_manager() -> void:
 	var turns = TurnManager.new()
-	turns.start(["player", "enemy_a", "enemy_b"], {"player": 2, "enemy_a": 1, "enemy_b": 1})
+	turns.start(["player", "enemy_a", "enemy_b"], {
+		"player": 2,
+		"enemy_a": 1,
+		"enemy_b": 1
+	})
 	assert(turns.current_actor() == "player")
 	assert(turns.points_for("player") == 2)
 	assert(not turns.consume("enemy_a", 1))
@@ -40,22 +69,140 @@ func _test_turn_manager() -> void:
 	assert(turns.round_number == 2)
 	assert(turns.points_for("player") == 2)
 
-func _test_action_pipeline() -> void:
-	var validator = ActionValidator.new()
-	var resolver = ActionResolver.new()
-	var target = CombatantState.new("target", "Target", 50, "enemy")
-	var wrong_actor = validator.validate_actor_action("enemy", "player", true, 2, 1)
-	assert(not wrong_actor["accepted"])
-	var no_points = validator.validate_actor_action("player", "player", true, 0, 1)
-	assert(not no_points["accepted"])
-	var valid_actor = validator.validate_actor_action("player", "player", true, 2, 1)
-	assert(valid_actor["accepted"])
-	assert(not validator.validate_range(7.0, 5.0)["accepted"])
-	assert(validator.validate_range(4.0, 5.0)["accepted"])
-	var hit = resolver.apply_damage(target, 30)
-	assert(hit["accepted"] and hit["damage"] == 30)
-	assert(target.health == 20)
-	var defeat = resolver.apply_damage(target, 40)
-	assert(defeat["accepted"] and defeat["target_defeated"])
-	var invalid = resolver.apply_damage(target, 10)
-	assert(not invalid["accepted"] and invalid["reason"] == "target_not_alive")
+	var skip_turns = TurnManager.new()
+	skip_turns.start(["player", "defeated_actor", "enemy"], {
+		"player": 1,
+		"defeated_actor": 1,
+		"enemy": 1
+	})
+	assert(skip_turns.end_turn("player"))
+	assert(skip_turns.advance(["player", "enemy"]) == "enemy")
+	assert(skip_turns.end_turn("enemy"))
+	assert(skip_turns.advance(["player", "enemy"]) == "player")
+	assert(skip_turns.round_number == 2)
+
+	var exhausted_turns = TurnManager.new()
+	exhausted_turns.start(["player", "enemy"], {"player": 1, "enemy": 1})
+	assert(exhausted_turns.end_turn("player"))
+	assert(exhausted_turns.advance([]) == "")
+	assert(not exhausted_turns.running)
+
+func _test_action_validation_and_resolution() -> void:
+	var player = CombatantState.new("player", "Operative", 100, "player")
+	var enemy = CombatantState.new("enemy", "Raider", 50, "enemy")
+	var actors: Dictionary = {"player": player, "enemy": enemy}
+	var turns = TurnManager.new()
+	turns.start(["player", "enemy"], {"player": 2, "enemy": 1})
+	var actions: Dictionary = CombatActionCatalog.create_prototype_actions()
+	var pipeline = CombatActionPipeline.new()
+
+	var out_of_range: Dictionary = pipeline.execute(
+		"player", "enemy", "weapon_attack", actions, actors, turns, 8.0, true
+	)
+	assert(not out_of_range["accepted"])
+	assert(out_of_range["reason"] == "target_out_of_range")
+	assert(turns.points_for("player") == 2)
+	assert(enemy.health == 50)
+
+	var blocked: Dictionary = pipeline.execute(
+		"player", "enemy", "weapon_attack", actions, actors, turns, 2.0, false
+	)
+	assert(not blocked["accepted"])
+	assert(blocked["reason"] == "line_of_sight_blocked")
+	assert(turns.points_for("player") == 2)
+	assert(enemy.health == 50)
+
+	var wrong_target: CombatantState = CombatantState.new("friend", "Friendly", 50, "player")
+	actors["friend"] = wrong_target
+	var friendly_fire: Dictionary = pipeline.execute(
+		"player", "friend", "weapon_attack", actions, actors, turns, 2.0, true
+	)
+	assert(not friendly_fire["accepted"])
+	assert(friendly_fire["reason"] == "target_must_be_enemy")
+	assert(turns.points_for("player") == 2)
+	assert(wrong_target.health == 50)
+
+	var attack: Dictionary = pipeline.execute(
+		"player", "enemy", "weapon_attack", actions, actors, turns, 2.0, true
+	)
+	assert(attack["accepted"])
+	assert(attack["action_points_spent"] == 1)
+	assert(turns.points_for("player") == 1)
+	assert(enemy.health == 26)
+
+	var insufficient_ap: Dictionary = pipeline.execute(
+		"player", "enemy", "player_skill", actions, actors, turns, 2.0, true
+	)
+	assert(not insufficient_ap["accepted"])
+	assert(insufficient_ap["reason"] == "insufficient_action_points")
+	assert(turns.points_for("player") == 1)
+	assert(enemy.health == 26)
+
+	var invalid_definition: CombatActionDefinition = CombatActionDefinition.new(
+		&"invalid", "Invalid", "weapon", 1, 4.0, true, true,
+		"unsupported", 10, "enemy"
+	)
+	actions["invalid"] = invalid_definition
+	var invalid_action: Dictionary = pipeline.execute(
+		"player", "enemy", "invalid", actions, actors, turns, 2.0, true
+	)
+	assert(not invalid_action["accepted"])
+	assert(turns.points_for("player") == 1)
+	assert(enemy.health == 26)
+
+	var movement: Dictionary = pipeline.execute(
+		"player", "", "move_step", actions, actors, turns
+	)
+	assert(movement["accepted"])
+	assert(movement["effect"]["effect_type"] == "none")
+	assert(turns.points_for("player") == 0)
+
+	assert(turns.end_turn("player"))
+	assert(turns.advance(["player", "enemy"]) == "enemy")
+	var enemy_attack: Dictionary = pipeline.execute(
+		"enemy", "player", "enemy_strike", actions, actors, turns, 2.0, true
+	)
+	assert(enemy_attack["accepted"])
+	assert(player.health == 92)
+
+	player.apply_damage(20)
+	var ally = CombatantState.new("ally", "Ally", 100, "player")
+	ally.apply_damage(30)
+	actors["ally"] = ally
+	var heal_action: CombatActionDefinition = CombatActionDefinition.new(
+		&"heal_test", "Test heal", "skill", 1, 3.0, true, false,
+		"heal", 10, "ally"
+	)
+	actions["heal_test"] = heal_action
+	var heal_turns = TurnManager.new()
+	heal_turns.start(["player", "enemy"], {"player": 1, "enemy": 1})
+	var heal_result: Dictionary = pipeline.execute(
+		"player", "ally", "heal_test", actions, actors, heal_turns, 1.0, true
+	)
+	assert(heal_result["accepted"])
+	assert(heal_result["effect"]["effect_type"] == "heal")
+	assert(ally.health == 80)
+	assert(heal_turns.points_for("player") == 0)
+
+func _test_enemy_decision_boundary() -> void:
+	var ai = EnemyTacticalAI.new()
+	var actions: Dictionary = CombatActionCatalog.create_prototype_actions()
+	var close_proposal: Dictionary = ai.propose_action({
+		"actor_id": "enemy",
+		"target_id": "player",
+		"distance": 2.5
+	}, actions)
+	assert(close_proposal["accepted"])
+	assert(close_proposal["action_id"] == "enemy_strike")
+
+	var distant_proposal: Dictionary = ai.propose_action({
+		"actor_id": "enemy",
+		"target_id": "player",
+		"distance": 8.0
+	}, actions)
+	assert(distant_proposal["accepted"])
+	assert(distant_proposal["action_id"] == "move_step")
+	assert(distant_proposal["approach_target_id"] == "player")
+
+	var invalid_proposal: Dictionary = ai.propose_action({}, actions)
+	assert(not invalid_proposal["accepted"])
