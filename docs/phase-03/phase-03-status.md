@@ -7,9 +7,10 @@
 **Base branch:** main  
 **Current main commit:** 8d0e681d4453763f9925f7034cc016d79e6773d7  
 **Issue:** #46  
-**Implementation PRs:** #45, #47 and #48 (all merged)  
+**Implementation PRs:** #45, #47 and #48 (merged); PR #50 (integration checks and typed-array correction, CI passed; awaiting merge)  
 **Latest fix PR:** [#48](https://github.com/klioscreator/STARFALLGODOT/pull/48), merged 2026-11-11  
-**Latest fix CI:** [Godot Prototype Checks #42845612067](https://github.com/klioscreator/STARFALLGODOT/actions/runs/42845612067) — SUCCESS  
+**Latest baseline CI:** [#42845612067](https://github.com/klioscreator/STARFALLGODOT/actions/runs/42845612067) — SUCCESS  
+**Integration CI:** [#43004438956](https://github.com/klioscreator/STARFALLGODOT/actions/runs/43004438956) — SUCCESS on PR #50 head  
 **Last updated:** 2026-11-11
 
 ## Objective
@@ -31,11 +32,12 @@ Build a prototype connecting 3D exploration, humanoid control, dual camera, PC/t
 - Headless tests for combatant state, turn scheduling, action ownership, range validation and damage resolution.
 - Automated Godot import, domain-test and scene-launch workflow.
 - Run instructions, prototype-only parameter register, test report and handoff.
-- Follow-up type and viewport corrections merged through PR #48.
+- Follow-up viewport/type corrections merged through PR #48.
+- Integration checks exposed an untyped actor-order array at encounter start; the targeted correction and new lifecycle test are proposed in PR #50. Its Godot CI run passed.
 
 ## Automated verification
 
-The implementation branch's latest Godot Prototype Checks run, [#42845612067](https://github.com/klioscreator/STARFALLGODOT/actions/runs/42845612067), completed successfully on commit `4a0158d1aac60720a252f29b740a8af03829e027`.
+The merged implementation's Godot Prototype Checks run, [#42845612067](https://github.com/klioscreator/STARFALLGODOT/actions/runs/42845612067), completed successfully on commit `4a0158d1aac60720a252f29b740a8af03829e027`. The added integration suite in PR #50 also passed in [run #43004438956](https://github.com/klioscreator/STARFALLGODOT/actions/runs/43004438956) on proposed commit `b09baa1ab720d31296746a120995e2a558a3d51a`.
 
 Successful steps:
 - Install Godot 4.7.2 standard build.
@@ -65,4 +67,4 @@ No online server, multiplayer transport, production assets, campaign, progressio
 
 ## Review state
 
-Implementation PRs #45, #47 and #48 are merged. Automated Godot checks pass. Phase 03 remains **PENDING_OWNER_VALIDATION**, not COMPLETED, until interactive owner-device validation and explicit acceptance are recorded.
+Implementation PRs #45, #47 and #48 are merged. PR #50 adds the integration checks and the typed-array correction; its automated Godot checks pass, pending merge. Phase 03 remains **PENDING_OWNER_VALIDATION**, not COMPLETED, until interactive owner-device validation and explicit acceptance are recorded.
