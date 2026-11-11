@@ -6,7 +6,7 @@ The Project Owner authorised Phase 02 and subsequently authorised Phase 03. AIT0
 |---|---|---|---|---|---|---|---|
 | 01 | Research and Design | phase-01-design-ready | AITtor specialist lead / AIT0405 coordinator and fallback author | COMPLETE | Project Owner direction accepted | PR #29–#31, #33 and #35 merged | Fallback deliverables attributed to AIT0405. |
 | 02 | Architecture | phase-02-architecture-ait0405; phase-02-finalization-ait0405 | AIT0405 lead; AIT1404 and AITtor bounded support assignments | COMPLETE | Phase 01 complete; PC and mobile target approved | PR #39, #40, #41 and #42 merged | Specialist support issues #37/#38 superseded by clearly attributed AIT0405 fallback reviews. |
-| 03 | Prototype | phase-03-prototype-ait0405; phase-03-closeout-ait0405 | AIT0405 (lead) | PENDING_OWNER_VALIDATION | Phase 02 complete; Project Owner authorized Phase 03 on 2026-11-10 | Issue #46; PR #45, #47 and #48 merged; closeout documentation PR pending | Godot headless checks pass; Project Owner desktop/mobile validation and explicit acceptance remain. |
+| 03 | Prototype | phase-03-prototype-ait0405; phase-03-closeout-ait0405 | AIT0405 (lead) | PENDING_OWNER_VALIDATION | Phase 02 complete; Project Owner authorized Phase 03 on 2026-11-10 | Issue #46; PR #45, #47 and #48 merged; PR #50 open (integration test + encounter type fix); PR #49 closeout docs | Baseline and integration Godot CI pass; Project Owner desktop/mobile validation and explicit acceptance remain. |
 | 04 | Combat | phase-04-combat | UNASSIGNED | NOT_STARTED | Phase 03 accepted; combat design and prototype baseline | N/A | Requires separate Project Owner authorization. |
 | 05 | Creatures / Enemies | phase-05-creatures | UNASSIGNED | NOT_STARTED | Combat foundation | N/A | Requires separate Project Owner authorization. |
 | 06 | World Base | phase-06-world-base | UNASSIGNED | NOT_STARTED | Character, camera and world architecture | N/A | Requires separate Project Owner authorization. |
@@ -50,8 +50,8 @@ The Project Owner authorised Phase 02 and subsequently authorised Phase 03. AIT0
 | 3.1 Godot project and procedural arena | AIT0405 | Project config, scene, test environment | Issue #46; PR #45 |
 | 3.2 Humanoid movement and dual camera | AIT0405 | PC movement, camera rig, first-/third-person switch | Issue #46; PR #47 |
 | 3.3 Offline tactical encounter | AIT0405 | Combatant state, turn scheduler, player/enemy action loop | Issue #46; PR #47 |
-| 3.4 PC/touch input and test harness | AIT0405 | On-screen controls, headless tests, CI validation | Issue #46; PR #47 and #48 |
-| 3.5 Review and handoff | AIT0405 | Scope audit, test evidence, status and PR | Issue #46; closeout documentation PR pending |
+| 3.4 PC/touch input and test harness | AIT0405 | On-screen controls, domain/integration tests, CI validation | Issue #46; PR #47, #48 and #50 |
+| 3.5 Review and handoff | AIT0405 | Scope audit, test evidence, status and PR | Issue #46; PR #49 |
 
 ## Working rules
 
