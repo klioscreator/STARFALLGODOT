@@ -1,12 +1,12 @@
 # STARFALLGODOT — Phase assignments
 
-The Project Owner authorised Phase 02 and subsequently authorised Phase 03. AIT0405 served as lead/coordinator for both phases. Phase 04–07 have not been authorised and remain not started.
+The Project Owner authorised Phases 02 and 03. AIT0405 served as lead/coordinator for both phases. Phase 04–07 have not been authorised and remain not started. The independent ART-01 workstream was authorised on 2026-11-11 and does not renumber or replace Phases 01–07.
 
 | Phase | Name | Branch | Assigned AI | Status | Dependencies | Pull Request | Notes |
 |---|---|---|---|---|---|---|---|
 | 01 | Research and Design | phase-01-design-ready | AITtor specialist lead / AIT0405 coordinator and fallback author | COMPLETE | Project Owner direction accepted | PR #29–#31, #33 and #35 merged | Fallback deliverables attributed to AIT0405. |
 | 02 | Architecture | phase-02-architecture-ait0405; phase-02-finalization-ait0405 | AIT0405 lead; AIT1404 and AITtor bounded support assignments | COMPLETE | Phase 01 complete; PC and mobile target approved | PR #39, #40, #41 and #42 merged | Specialist support issues #37/#38 superseded by clearly attributed AIT0405 fallback reviews. |
-| 03 | Prototype | phase-03-prototype-ait0405; phase-03-closeout-ait0405 | AIT0405 (lead) | PENDING_OWNER_VALIDATION | Phase 02 complete; Project Owner authorized Phase 03 on 2026-11-10 | Issue #46; PR #45, #47, #48 and #50 implementation merged; PR #49 closeout docs merged | Integration and post-merge main CI pass; Project Owner desktop/mobile validation and explicit acceptance remain. |
+| 03 | Prototype | phase-03-prototype-ait0405; phase-03-closeout-ait0405 | AIT0405 (lead) | PENDING_OWNER_VALIDATION | Phase 02 complete; Project Owner authorized Phase 03 on 2026-11-10 | Issue #46; PR #45, #47, #48, #50 and #49 merged; PR #51 merge record merged | Integration and post-merge main CI pass; Project Owner desktop/mobile validation and explicit acceptance remain. |
 | 04 | Combat | phase-04-combat | UNASSIGNED | NOT_STARTED | Phase 03 accepted; combat design and prototype baseline | N/A | Requires separate Project Owner authorization. |
 | 05 | Creatures / Enemies | phase-05-creatures | UNASSIGNED | NOT_STARTED | Combat foundation | N/A | Requires separate Project Owner authorization. |
 | 06 | World Base | phase-06-world-base | UNASSIGNED | NOT_STARTED | Character, camera and world architecture | N/A | Requires separate Project Owner authorization. |
@@ -22,6 +22,19 @@ The Project Owner authorised Phase 02 and subsequently authorised Phase 03. AIT0
 - Weapons and skills as core build components.
 - Separate supplementary server project for online group play.
 - Target platforms: desktop PC and mobile.
+
+## ART-01 — Independent visual-design workstream
+
+| Work package | Owner | Scope | Tracking |
+|---|---|---|---|
+| ART-01A Visual direction | AIT1404 (lead); AIT0405 coordinator | Three distinct art-direction proposals, moodboards, palette, material/lighting language and silhouette rules; Project Owner selects the final direction | Issue #52 |
+| ART-01B Character concept | AIT1404 | Player-character front/side/back concept, proportions, material zones and one equipment variant | Issue #52 |
+| ART-01C Enemy concept | AIT1404 | One representative enemy, scale comparison and readable threat silhouette | Issue #52 |
+| ART-01D Weapon/equipment concept | AIT1404 | One primary weapon and one secondary equipment concept | Issue #52 |
+| ART-01E UI concept | AIT1404 | HUD concept covering player status, tactical action/turn information, target information and mobile-safe layout | Issue #52 |
+| ART-01F Asset pipeline | AIT1404; AIT0405 reviews | Source/export conventions, manifest, provenance/licensing, provisional technical budgets and Godot import test | Issue #52 |
+
+ART-01 is an independent discipline workstream; it is not Phase 08 and does not authorize Phase 04–07. The Project Owner's final art-direction choice is a required gate before production assets are treated as approved. AIT1404 uses branch `art/visual-direction-ait1404`; AIT0405's coordination/documentation branch is `art/visual-foundation-ait0405`. The two branches must remain separate.
 
 ## Phase 01 workstreams
 
@@ -57,9 +70,11 @@ The Project Owner authorised Phase 02 and subsequently authorised Phase 03. AIT0
 
 - Specialist branch access does not prove that specialist work has been completed.
 - AIT0405 must not claim authorship of AIT1404 or AITtor deliverables.
-- Each support AI works only on its own branch and assigned files.
-- Phase 02 is architecture documentation and decision work only. No Godot scripts, scenes, assets, project settings, executable prototype or server implementation may be changed.
+- Each AI works only on its own branch and assigned files.
+- Phase 02 was architecture documentation and decision work only; it did not authorize Godot implementation.
 - The supplementary server project remains a separate future workstream.
 - Phase 03 implementation is merged; owner-side validation and explicit acceptance remain outstanding.
+- ART-01 must not modify prototype gameplay scripts/scenes or start Phase 04–07.
+- Gemini image outputs are concept/reference images unless separately converted and validated as production assets. Never store API keys or credentials in the repository.
 - Phase 04–07 require separate Project Owner authorization.
 - Project Owner retains authority over core product decisions and PR merge approval unless merge authority is explicitly delegated.
