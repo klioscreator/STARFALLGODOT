@@ -4,6 +4,7 @@ const CombatantState = preload("res://scripts/domain/combatant_state.gd")
 const TurnManager = preload("res://scripts/domain/turn_manager.gd")
 const PlayerController = preload("res://scripts/presentation/player_controller.gd")
 const CameraRig = preload("res://scripts/presentation/camera_rig.gd")
+const CombatEncounterState = preload("res://scripts/domain/combat_encounter_state.gd")
 const CombatActionCatalog = preload("res://scripts/domain/combat_action_catalog.gd")
 const CombatActionPipeline = preload("res://scripts/domain/combat_action_pipeline.gd")
 const EnemyTacticalAI = preload("res://scripts/domain/enemy_tactical_ai.gd")
@@ -17,6 +18,7 @@ var camera_rig: CameraRig
 var player_state
 var enemies: Dictionary = {}
 var turn_manager
+var encounter_state
 var action_pipeline
 var enemy_tactical_ai
 var combat_actions: Dictionary = {}
@@ -41,6 +43,7 @@ var camera_button: Button
 var compact_ui: bool = false
 
 func _ready() -> void:
+	encounter_state = CombatEncounterState.new()
 	action_pipeline = CombatActionPipeline.new()
 	enemy_tactical_ai = EnemyTacticalAI.new()
 	combat_actions = CombatActionCatalog.create_prototype_actions()
@@ -315,7 +318,7 @@ func _toggle_camera() -> void:
 	camera_button.text = "Camera: First person" if camera_rig.first_person else "Camera: Third person"
 
 func _start_encounter() -> void:
-	if combat_active:
+	if combat_active or not encounter_state.begin():
 		return
 	player_state.reset()
 	for actor_id in ENEMY_IDS:
@@ -337,7 +340,7 @@ func _start_encounter() -> void:
 		"enemy_guard": 1
 	})
 	enemy_turn_running = false
-	combat_active = turn_manager.running
+	combat_active = encounter_state.is_active() and turn_manager.running
 	combat_log = "Encounter started. Combat values are temporary test fixtures."
 	_update_hud()
 
@@ -599,15 +602,17 @@ func _check_combat_end() -> bool:
 	return false
 
 func _finish_combat(victory: bool) -> void:
+	encounter_state.complete(victory)
 	combat_active = false
 	if turn_manager != null:
 		turn_manager.stop()
-	combat_log = "Encounter complete: VICTORY." if victory else "Encounter complete: DEFEAT."
+	combat_log = "Encounter complete: " + encounter_state.result_name() + "."
 	_update_hud()
 
 func _restart_test() -> void:
 	combat_active = false
 	enemy_turn_running = false
+	encounter_state.reset()
 	player_state.reset()
 	for actor_id in ENEMY_IDS:
 		var data: Dictionary = enemies[actor_id]
