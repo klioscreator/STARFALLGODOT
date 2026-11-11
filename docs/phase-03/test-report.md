@@ -2,10 +2,12 @@
 
 **Latest run:** [Godot Prototype Checks #42845612067](https://github.com/klioscreator/STARFALLGODOT/actions/runs/42845612067)  
 **Tested commit:** `4a0158d1aac60720a252f29b740a8af03829e027`  
-**Merge commit:** `8d0e681d4453763f9925f7034cc016d79e6773d7`  
+**PR #48 merge commit:** `8d0e681d4453763f9925f7034cc016d79e6773d7`  
+**PR #50 merge commit:** `6c2a9ce6dba772fd4b1fb45b915fa25bf705e3c1`  
+**Current main:** `ac2b57632040e22bfe436d41d04874de55951669`  
 **Result:** SUCCESS  
 **Engine:** Godot 4.7.2 stable, standard build  
-**Merged through:** [PR #48](https://github.com/klioscreator/STARFALLGODOT/pull/48)
+**Merged through:** [PR #48](https://github.com/klioscreator/STARFALLGODOT/pull/48) and [PR #50](https://github.com/klioscreator/STARFALLGODOT/pull/50)
 
 ## Automated checks
 
@@ -42,7 +44,7 @@ These tests require devices/toolchains not available in the implementation envir
 
 ## Scene-lifecycle integration checks
 
-**Pull request:** [#50](https://github.com/klioscreator/STARFALLGODOT/pull/50)  
+**Pull request:** [#50](https://github.com/klioscreator/STARFALLGODOT/pull/50) — MERGED  
 **Run:** [Godot Prototype Checks #43004438956](https://github.com/klioscreator/STARFALLGODOT/actions/runs/43004438956)  
 **Proposed commit tested:** `b09baa1ab720d31296746a120995e2a558a3d51a`  
 **Result:** SUCCESS
@@ -57,3 +59,12 @@ The added headless integration test instantiates the main scene and verifies:
 The test exposed a real runtime type mismatch: encounter initialization passed an untyped array to `TurnManager.start(Array[String], ...)`. PR #50 adds an explicitly typed actor-order array. The corrected integration suite and all previous workflow steps passed on the tested PR head.
 
 This is controller/scene lifecycle coverage, not a complete interactive playthrough. It does not verify physical keyboard/touch input, real-time camera feel, tactical movement collision behavior, full player attack sequences or device performance. Those remain on the Project Owner checklist.
+
+
+## Post-merge verification
+
+**Main workflow:** [#43036866188](https://github.com/klioscreator/STARFALLGODOT/actions/runs/43036866188)  
+**Commit:** `ac2b57632040e22bfe436d41d04874de55951669`  
+**Result:** SUCCESS (build, deploy and build-status reporting jobs completed successfully).
+
+This confirms the merged repository workflow completed. It does not establish interactive desktop/mobile acceptance.
