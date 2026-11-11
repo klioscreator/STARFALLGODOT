@@ -8,11 +8,12 @@ The Project Owner directs the product and approves phase scope. AI assistants ca
 
 - Phase 01 — Research and Design: COMPLETE.
 - Phase 02 — Architecture: COMPLETE.
-- Phase 03 — Prototype: COMPLETE by explicit Project Owner acceptance on 2026-11-11. Implementation and closeout PRs #45, #47, #48, #49, #50 and #51 are merged. This acceptance record does not claim physical-device validation.
+- Phase 03 — Prototype: COMPLETE by explicit Project Owner acceptance on 2026-11-11. Implementation and closeout PRs #45, #47, #48, #49, #50 and #51 are merged. This acceptance record does not claim physical-device validation. See [Phase 03 status](docs/phase-03/phase-03-status.md).
 - Phase 04 — Combat: IN_PROGRESS under AIT0405. See [Phase 04 status](docs/phase-04/phase-04-status.md) and [Issue #54](https://github.com/klioscreator/STARFALLGODOT/issues/54).
 - Phase 05–07: NOT_STARTED.
+- ART-01 — Independent visual-design workstream: assigned to AIT1404 through [Issue #52](https://github.com/klioscreator/STARFALLGODOT/issues/52), but DEFERRED by the Project Owner until Phase 04 is complete. No design work is to begin during Phase 04.
 
-The accepted `main` branch contains the Phase 03 Godot project and procedural 3D prototype. Main baseline at Phase 04 start: `a68108e4e15130e084787f4ab6c19092a193b5df`. Phase 03 main workflow #43036866188 completed successfully. Phase 04 work is isolated on `phase-04-combat-ait0405`.
+The current accepted `main` baseline at Phase 04 synchronization is `5faf3d154f761c92d049d04e3b03a1755aba1463`. Phase 03 main workflow #43036866188 completed successfully. Phase 04 implementation is isolated on `phase-04-combat-ait0405`.
 
 ## Approved product direction
 
