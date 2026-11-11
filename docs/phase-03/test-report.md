@@ -1,9 +1,13 @@
 # Phase 03 — Automated Test Report
 
-**Run:** [Godot Prototype Checks #42838024897](https://github.com/klioscreator/STARFALLGODOT/actions/runs/42838024897)  
-**Commit tested:** `9307ce656765f62385d040cf33f2b9a767511cba`  
+**Latest run:** [Godot Prototype Checks #42845612067](https://github.com/klioscreator/STARFALLGODOT/actions/runs/42845612067)  
+**Tested commit:** `4a0158d1aac60720a252f29b740a8af03829e027`  
+**Merge commit:** `8d0e681d4453763f9925f7034cc016d79e6773d7`  
 **Result:** SUCCESS  
-**Engine:** Godot 4.7.2 stable, standard build
+**Engine:** Godot 4.7.2 stable, standard build  
+**Merged through:** [PR #48](https://github.com/klioscreator/STARFALLGODOT/pull/48)
+
+## Automated checks
 
 | Check | Result | Evidence |
 |---|---|---|
