@@ -3,14 +3,17 @@
 **Status:** PENDING_OWNER_VALIDATION  
 **Phase lead:** AIT0405  
 **Implementation branch:** phase-03-prototype-ait0405  
-**Closeout documentation branch:** phase-03-closeout-ait0405  
+**Closeout documentation branch:** phase-03-closeout-ait0405
+**Merge-record branch:** phase-03-merge-record-ait0405  
 **Issue:** #46  
-**Merged implementation PRs:** [#45](https://github.com/klioscreator/STARFALLGODOT/pull/45), [#47](https://github.com/klioscreator/STARFALLGODOT/pull/47), [#48](https://github.com/klioscreator/STARFALLGODOT/pull/48)  
-**Pending implementation PR:** [#50](https://github.com/klioscreator/STARFALLGODOT/pull/50) — typed actor-order fix and integration tests; CI passed, awaiting Project Owner merge  
+**Merged implementation PRs:** [#45](https://github.com/klioscreator/STARFALLGODOT/pull/45), [#47](https://github.com/klioscreator/STARFALLGODOT/pull/47), [#48](https://github.com/klioscreator/STARFALLGODOT/pull/48), [#50](https://github.com/klioscreator/STARFALLGODOT/pull/50)  
+**Merged closeout documentation PR:** [#49](https://github.com/klioscreator/STARFALLGODOT/pull/49)  
 **Latest tested implementation commit:** `4a0158d1aac60720a252f29b740a8af03829e027`  
 **Baseline Godot CI:** [#42845612067](https://github.com/klioscreator/STARFALLGODOT/actions/runs/42845612067) — SUCCESS  
 **Integration Godot CI:** [#43004438956](https://github.com/klioscreator/STARFALLGODOT/actions/runs/43004438956) — SUCCESS on PR #50 head  
-**Main merge commit:** `8d0e681d4453763f9925f7034cc016d79e6773d7`
+**Post-merge main CI:** [#43036866188](https://github.com/klioscreator/STARFALLGODOT/actions/runs/43036866188) — SUCCESS  
+**PR #50 merge commit:** `6c2a9ce6dba772fd4b1fb45b915fa25bf705e3c1`  
+**PR #49 merge commit / current main:** `ac2b57632040e22bfe436d41d04874de55951669`
 
 ## Deliverables
 
@@ -46,7 +49,7 @@ Godot Prototype Checks run [#42845612067](https://github.com/klioscreator/STARFA
 - Combatant-state, turn-manager and action-pipeline tests passed.
 - Main scene launched headlessly for five frames.
 
-See [docs/phase-03/test-report.md](test-report.md). PR #50 adds scene-lifecycle integration coverage and corrects the typed actor-order argument used when starting an encounter. The [Project Owner Validation Checklist](owner-validation-checklist.md) provides the device playtest steps and acceptance record.
+See [docs/phase-03/test-report.md](test-report.md). PR #50 merged scene-lifecycle integration coverage and corrected the typed actor-order argument used when starting an encounter. The merged main workflow also completed successfully. The [Project Owner Validation Checklist](owner-validation-checklist.md) provides the device playtest steps and acceptance record.
 
 ## Prototype-only rules
 
@@ -63,4 +66,4 @@ Action-point budget, actor order, damage, health, movement distance and ranges a
 
 ## Governance
 
-The core implementation PRs #45, #47 and #48 are merged. PR #50 has passing CI but is not yet merged. This handoff does not claim physical-device validation or production readiness. The Project Owner retains authority over acceptance and core product decisions. Phase 03 remains PENDING_OWNER_VALIDATION until owner-side checks and explicit acceptance are recorded. Phase 04–07 remain NOT_STARTED.
+Implementation PRs #45, #47, #48 and #50 and documentation PR #49 are merged. This handoff does not claim physical-device validation or production readiness. The Project Owner retains authority over acceptance and core product decisions. Phase 03 remains PENDING_OWNER_VALIDATION until owner-side checks and explicit acceptance are recorded. Phase 04–07 remain NOT_STARTED.
