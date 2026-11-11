@@ -8,7 +8,7 @@ func _initialize() -> void:
 	call_deferred("_run_integration_checks")
 
 func _on_watchdog_timeout() -> void:
-	push_error("Prototype integration test timed out.")
+	push_error("Combat integration test timed out.")
 	quit(1)
 
 func _check(condition: bool, message: String) -> bool:
@@ -45,6 +45,30 @@ func _run_integration_checks() -> void:
 		return
 
 	var enemies: Dictionary = controller.get("enemies")
+	var scout_data: Dictionary = enemies["enemy_scout"]
+	var scout_node: Node3D = scout_data["node"]
+	var scout_state = scout_data["state"]
+	scout_node.position = Vector3(2.0, 0.05, 0.0)
+
+	controller.call("_player_attack")
+	if not _check(scout_state.health == scout_state.max_health - 24, "Player weapon action should resolve through the combat pipeline."):
+		return
+	if not _check(turn_manager.points_for("player") == 1, "Accepted player action should consume its configured fixture cost."):
+		return
+
+	controller.call("_player_skill")
+	if not _check(scout_state.health == scout_state.max_health - 24, "Skill must be rejected when the actor lacks its action-point cost."):
+		return
+	if not _check(turn_manager.points_for("player") == 1, "Rejected skill must not consume action points."):
+		return
+
+	controller.call("_end_player_turn")
+	await create_timer(1.6).timeout
+	if not _check(controller.get("player_state").health < 100, "Enemy action should resolve through the shared combat pipeline."):
+		return
+	if not _check(turn_manager.current_actor() == "player", "Enemy phase should return turn ownership to the player."):
+		return
+
 	for actor_id in ["enemy_scout", "enemy_guard"]:
 		var actor_data: Dictionary = enemies[actor_id]
 		var actor_state = actor_data["state"]
@@ -88,5 +112,5 @@ func _run_integration_checks() -> void:
 
 	controller.queue_free()
 	await process_frame
-	print("STARFALLGODOT Phase 03 integration tests: PASS")
+	print("STARFALLGODOT Phase 04 combat integration tests: PASS")
 	quit(0)
