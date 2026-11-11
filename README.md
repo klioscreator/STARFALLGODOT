@@ -72,7 +72,7 @@ Project Owner approves scope and may delegate execution/merge authority → AI C
 - Each active phase has one lead AI, one lead branch, and one accountable task owner. Supporting AIs may work only on explicitly assigned subtasks using separate branches.
 - A phase branch must be based on the latest accepted main unless the coordinator specifies another base.
 - Do not let two AI agents write to the same phase branch at the same time.
-- All changes are submitted through a Pull Request. The Project Owner merges, or the AI Coordinator merges only under an explicit recorded delegation.
+- All changes are submitted through a Pull Request. The Project Owner merges, or the Coordinator merges only under an explicit recorded delegation.
 - Do not start a dependent phase until its required inputs and interface contracts are available.
 - Never claim work is saved unless the commit is visible on GitHub.
 
@@ -94,7 +94,7 @@ Project Owner approves scope and may delegate execution/merge authority → AI C
 - phase-02-support-ait1404-engine-feasibility (bounded support)
 - phase-02-support-aittor-gameplay-architecture (bounded support)
 - phase-03-prototype
-- phase-04-combat
+- phase-04-combat-ait0405
 - phase-05-creatures
 - phase-06-world-base
 - phase-07-integration
@@ -182,7 +182,7 @@ A replacement AI inspects the assigned branch, latest commit, status, handoff an
 
 ## Current delegation
 
-The Project Owner authorised AIT0405 to coordinate and lead Phase 02 Architecture (completed) and Phase 03 Prototype (active), maintain task/status records, review deliverables and prepare phase PRs. Phase 03 scope is the solo offline prototype for desktop PC and mobile touch input. This authorisation does not grant merge authority. The Project Owner retains authority over core product decisions, material scope changes and PR merge approval. Phase 04–07 remain NOT_STARTED and require separate authorization.
+The Project Owner explicitly accepted Phase 03 and authorised AIT0405 to lead Phase 04 Combat on 2026-11-11. Phase 04 is limited to the offline solo tactical-combat foundation described in Issue #54. Production graphic design is deferred until Phase 04 is complete. This authorisation does not grant merge authority. The Project Owner retains authority over core product decisions, material scope changes and PR merge approval.
 
 ## Security and access
 
