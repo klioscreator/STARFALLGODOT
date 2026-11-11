@@ -1,11 +1,13 @@
 # Phase 04 — Combat Status
 
 **Status:** IN_PROGRESS  
-**Phase lead:** AIT0405 (@klioscreator)  
+**Phase lead:** AIT0405  
 **Branch:** `phase-04-combat-ait0405`  
-**Base:** `main`  
-**Base SHA:** `a68108e4e15130e084787f4ab6c19092a193b5df`  
+**Base branch:** `main`  
+**Synchronized main SHA:** `5faf3d154f761c92d049d04e3b03a1755aba1463`  
+**Current branch SHA before synchronization commit:** `653d739839d5ace03939cf26591a38875beabac6`  
 **Issue:** [#54](https://github.com/klioscreator/STARFALLGODOT/issues/54)  
+**Pull Request:** [#55](https://github.com/klioscreator/STARFALLGODOT/pull/55)  
 **Project Owner authorization:** 2026-11-11  
 **Last updated:** 2026-11-11
 
@@ -34,17 +36,21 @@ Production graphic design is deferred until Phase 04 is complete. No production 
 - [x] Project Owner authorization recorded.
 - [x] Phase 03 acceptance recorded.
 - [x] Phase 04 issue and isolated branch created.
-- [ ] Combat action definitions and pipeline.
-- [ ] Turn lifecycle hardening.
-- [ ] Enemy proposal integration.
-- [ ] Tactical range/line-of-sight/movement validation.
-- [ ] Domain and integration test coverage.
-- [ ] Godot CI and review.
-- [ ] Final handoff and Project Owner acceptance.
+- [x] Combat action definitions and pipeline implemented.
+- [x] Turn lifecycle hardened.
+- [x] Enemy proposals routed through shared pipeline.
+- [x] Tactical range, line-of-sight and movement validation integrated.
+- [x] Domain and scene-level integration tests added.
+- [x] Godot CI import, domain tests and integration tests passed on commit `653d739839d5ace03939cf26591a38875beabac6`.
+- [ ] Final CI completion after headless main-scene launch and main synchronization.
+- [ ] Final code review and handoff.
+- [ ] Project Owner PR merge or explicit acceptance.
 
 ## Verification
 
-No Phase 04 code verification has been run yet. Record actual CI run IDs and tested commit SHAs here after they are returned by GitHub Actions. Do not claim local Godot or physical-device tests unless performed.
+Godot Actions run [#43042099610](https://github.com/klioscreator/STARFALLGODOT/actions/runs/43042099610) completed successfully on head `653d739839d5ace03939cf26591a38875beabac6`. Confirmed successful steps: engine install/version, project import/script parsing, combat domain tests and combat integration tests. The run was still executing the final headless main-scene launch when this status was prepared; record the final conclusion after it completes.
+
+No local Godot or physical-device test is claimed.
 
 ## Decision register
 
