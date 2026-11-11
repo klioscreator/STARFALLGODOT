@@ -44,7 +44,7 @@ Godot Prototype Checks run [#42845612067](https://github.com/klioscreator/STARFA
 - Combatant-state, turn-manager and action-pipeline tests passed.
 - Main scene launched headlessly for five frames.
 
-See [docs/phase-03/test-report.md](test-report.md).
+See [docs/phase-03/test-report.md](test-report.md). The [Project Owner Validation Checklist](owner-validation-checklist.md) provides the device playtest steps and acceptance record.
 
 ## Prototype-only rules
 
