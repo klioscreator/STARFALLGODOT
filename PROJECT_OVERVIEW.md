@@ -8,10 +8,10 @@ The Project Owner directs the product and approves phase scope. AI assistants ca
 
 - Phase 01 — Research and Design: COMPLETE.
 - Phase 02 — Architecture: COMPLETE.
-- Phase 03 — Prototype: PENDING_OWNER_VALIDATION. Implementation PRs #45, #47 and #48 are merged; automated Godot checks pass. Interactive owner-device validation and explicit acceptance remain. See [Phase 03 status](docs/phase-03/phase-03-status.md).
+- Phase 03 — Prototype: PENDING_OWNER_VALIDATION. Implementation PRs #45, #47, #48 and #50 and closeout documentation PR #49 are merged; integration and post-merge CI pass. Interactive owner-device validation and explicit acceptance remain. See [Phase 03 status](docs/phase-03/phase-03-status.md).
 - Phase 04–07: NOT_STARTED.
 
-The merged `main` branch contains the Phase 03 Godot project and procedural 3D prototype. Current main commit: `8d0e681d4453763f9925f7034cc016d79e6773d7`.
+The merged `main` branch contains the Phase 03 Godot project and procedural 3D prototype. Current main commit: `ac2b57632040e22bfe436d41d04874de55951669`. Main workflow #43036866188 completed successfully. PRs #49 and #50 are merged.
 
 ## Approved product direction
 
