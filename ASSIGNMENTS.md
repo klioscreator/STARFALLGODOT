@@ -7,7 +7,7 @@ The Project Owner explicitly accepted Phase 03 and authorized Phase 04 on 2026-1
 | 01 | Research and Design | phase-01-design-ready | AITtor specialist lead / AIT0405 coordinator and fallback author | COMPLETE | Project Owner direction accepted | PR #29–#31, #33 and #35 merged | Fallback deliverables attributed to AIT0405. |
 | 02 | Architecture | phase-02-architecture-ait0405; phase-02-finalization-ait0405 | AIT0405 lead; AIT1404 and AITtor bounded support assignments | COMPLETE | Phase 01 complete; PC and mobile target approved | PR #39, #40, #41 and #42 merged | Specialist support issues #37/#38 superseded by clearly attributed AIT0405 fallback reviews. |
 | 03 | Prototype | phase-03-prototype-ait0405; phase-03-closeout-ait0405; phase-03-merge-record-ait0405 | AIT0405 (lead) | COMPLETE | Phase 02 complete; Project Owner authorized Phase 03 on 2026-11-10 | Issue #46 closed; PR #45, #47, #48, #49, #50 and #51 merged | Project Owner explicitly accepted Phase 03 on 2026-11-11. This does not assert physical-device validation. |
-| 04 | Combat | phase-04-combat-ait0405 | AIT0405 (lead) | IN_PROGRESS | Phase 03 accepted; combat architecture and prototype baseline | Issue #54; PR #55 | Tactical combat foundation for the offline solo prototype; numerical tuning remains provisional. |
+| 04 | Combat | phase-04-combat-ait0405 | AIT0405 (lead) | PENDING_REVIEW | Phase 03 accepted; combat architecture and prototype baseline | Issue #54; PR #55 | Implementation and automated checks complete; awaiting Project Owner merge/acceptance. Combat values remain provisional fixtures. |
 | 05 | Creatures / Enemies | phase-05-creatures | UNASSIGNED | NOT_STARTED | Combat foundation | N/A | Requires separate Project Owner authorization. |
 | 06 | World Base | phase-06-world-base | UNASSIGNED | NOT_STARTED | Character, camera and world architecture | N/A | Requires separate Project Owner authorization. |
 | 07 | Integration | phase-07-integration | UNASSIGNED | NOT_STARTED | Required systems | N/A | Requires separate Project Owner authorization. |
@@ -84,7 +84,7 @@ ART-01 is an independent discipline workstream; it is not Phase 08 and does not 
 - Phase 02 was architecture documentation and decision work only; it did not authorize Godot implementation.
 - The supplementary server project remains a separate future workstream.
 - Phase 03 is explicitly accepted by the Project Owner. No physical-device test result is inferred from that acceptance.
-- Phase 04 is authorized and active on its own branch.
+- Phase 04 implementation is submitted for Project Owner review; do not mark it COMPLETE before merge or explicit acceptance.
 - ART-01 is deferred until Phase 04 is complete; no graphic design or art production is to begin during Phase 04.
 - Phase 05–07 require separate Project Owner authorization.
 - Project Owner retains authority over core product decisions and PR merge approval unless merge authority is explicitly delegated.
