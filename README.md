@@ -182,7 +182,7 @@ A replacement AI inspects the assigned branch, latest commit, status, handoff an
 
 ## Current delegation
 
-The Project Owner explicitly accepted Phase 03 and authorised AIT0405 to lead Phase 04 Combat on 2026-11-11. Phase 04 is limited to the offline solo tactical-combat foundation described in Issue #54. Production graphic design is deferred until Phase 04 is complete. This authorisation does not grant merge authority. The Project Owner retains authority over core product decisions, material scope changes and PR merge approval.
+The Project Owner explicitly accepted Phase 03 and authorized AIT0405 to lead Phase 04 Combat on 2026-11-11. Phase 04 is limited to the offline solo tactical-combat foundation described in Issue #54. Production graphic design is deferred until Phase 04 is complete. This authorization does not grant merge authority. The Project Owner retains authority over core product decisions, material scope changes and PR merge approval.
 
 ## Security and access
 
