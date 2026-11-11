@@ -1,6 +1,7 @@
 extends SceneTree
 
 const CombatantState = preload("res://scripts/domain/combatant_state.gd")
+const CombatEncounterState = preload("res://scripts/domain/combat_encounter_state.gd")
 const TurnManager = preload("res://scripts/domain/turn_manager.gd")
 const ActionValidator = preload("res://scripts/domain/action_validator.gd")
 const ActionResolver = preload("res://scripts/domain/action_resolver.gd")
@@ -11,6 +12,7 @@ const EnemyTacticalAI = preload("res://scripts/domain/enemy_tactical_ai.gd")
 
 func _initialize() -> void:
 	_test_combatant_state()
+	_test_encounter_lifecycle()
 	_test_turn_manager()
 	_test_action_validation_and_resolution()
 	_test_enemy_decision_boundary()
@@ -28,6 +30,24 @@ func _test_combatant_state() -> void:
 	assert(not actor.is_alive)
 	actor.reset()
 	assert(actor.is_alive and actor.health == 100)
+
+func _test_encounter_lifecycle() -> void:
+	var encounter = CombatEncounterState.new()
+	assert(not encounter.is_active())
+	assert(not encounter.is_terminal())
+	assert(encounter.begin())
+	assert(encounter.is_active())
+	assert(not encounter.begin())
+	assert(encounter.complete(true))
+	assert(encounter.is_terminal())
+	assert(encounter.result_name() == "VICTORY")
+	assert(not encounter.complete(false))
+	encounter.reset()
+	assert(not encounter.is_active())
+	assert(encounter.result_name() == "NONE")
+	assert(encounter.begin())
+	assert(encounter.complete(false))
+	assert(encounter.result_name() == "DEFEAT")
 
 func _test_turn_manager() -> void:
 	var turns = TurnManager.new()
@@ -60,6 +80,12 @@ func _test_turn_manager() -> void:
 	assert(skip_turns.end_turn("enemy"))
 	assert(skip_turns.advance(["player", "enemy"]) == "player")
 	assert(skip_turns.round_number == 2)
+
+	var exhausted_turns = TurnManager.new()
+	exhausted_turns.start(["player", "enemy"], {"player": 1, "enemy": 1})
+	assert(exhausted_turns.end_turn("player"))
+	assert(exhausted_turns.advance([]) == "")
+	assert(not exhausted_turns.running)
 
 func _test_action_validation_and_resolution() -> void:
 	var player = CombatantState.new("player", "Operative", 100, "player")
@@ -124,6 +150,13 @@ func _test_action_validation_and_resolution() -> void:
 	assert(turns.points_for("player") == 1)
 	assert(enemy.health == 26)
 
+	var movement: Dictionary = pipeline.execute(
+		"player", "", "move_step", actions, actors, turns
+	)
+	assert(movement["accepted"])
+	assert(movement["effect"]["effect_type"] == "none")
+	assert(turns.points_for("player") == 0)
+
 	assert(turns.end_turn("player"))
 	assert(turns.advance(["player", "enemy"]) == "enemy")
 	var enemy_attack: Dictionary = pipeline.execute(
@@ -131,6 +164,25 @@ func _test_action_validation_and_resolution() -> void:
 	)
 	assert(enemy_attack["accepted"])
 	assert(player.health == 92)
+
+	player.apply_damage(20)
+	var ally = CombatantState.new("ally", "Ally", 100, "player")
+	ally.apply_damage(30)
+	actors["ally"] = ally
+	var heal_action: CombatActionDefinition = CombatActionDefinition.new(
+		&"heal_test", "Test heal", "skill", 1, 3.0, true, false,
+		"heal", 10, "ally"
+	)
+	actions["heal_test"] = heal_action
+	var heal_turns = TurnManager.new()
+	heal_turns.start(["player", "enemy"], {"player": 1, "enemy": 1})
+	var heal_result: Dictionary = pipeline.execute(
+		"player", "ally", "heal_test", actions, actors, heal_turns, 1.0, true
+	)
+	assert(heal_result["accepted"])
+	assert(heal_result["effect"]["effect_type"] == "heal")
+	assert(ally.health == 80)
+	assert(heal_turns.points_for("player") == 0)
 
 func _test_enemy_decision_boundary() -> void:
 	var ai = EnemyTacticalAI.new()
