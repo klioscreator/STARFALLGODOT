@@ -4,7 +4,7 @@
 **Project Owner authorization:** 2026-11-11  
 **Tracking issue:** [#54](https://github.com/klioscreator/STARFALLGODOT/issues/54)  
 **Implementation branch:** `phase-04-combat-ait0405`  
-**Baseline:** `a68108e4e15130e084787f4ab6c19092a193b5df`
+**Baseline after main synchronization:** `5faf3d154f761c92d049d04e3b03a1755aba1463`
 
 ## Objective
 
@@ -31,7 +31,7 @@ Replace the Phase 03 encounter's prototype-only direct action handling with a re
 
 ## Excluded
 
-- Production character/enemy art, concept art, textures, animation, VFX, audio and final UI styling. The Project Owner directed that graphic design take place only after Phase 04 completion; ART-01 Issue #52 is deferred.
+- Production character/enemy art, concept art, textures, animation, VFX, audio and final UI styling. The Project Owner directed that graphic design take place only after Phase 04 is complete; ART-01 Issue #52 is deferred.
 - New enemy types, creature roster, elite/boss content (Phase 05).
 - World/map production and level dressing (Phase 06).
 - Online multiplayer transport, matchmaking or server implementation.
@@ -60,7 +60,7 @@ The solo combat loop remains offline. No server, matchmaking or network dependen
 - Turn manager skips defeated actors, handles wraparound and stops when no eligible actors remain.
 - Integration tests cover player action, enemy action, victory, defeat and restart.
 - Existing camera toggle and input paths remain intact.
-- No production art assets or unrelated systems are introduced.
+- No production art assets are added.
 - Test report, status and handoff record include verified commit and CI evidence.
 - The Project Owner merges or explicitly accepts the Phase 04 PR before the phase is marked COMPLETE.
 
