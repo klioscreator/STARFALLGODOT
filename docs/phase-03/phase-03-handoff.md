@@ -1,11 +1,14 @@
 # Phase 03 — Prototype Handoff
 
-**Status:** PENDING_REVIEW  
+**Status:** PENDING_OWNER_VALIDATION  
 **Phase lead:** AIT0405  
-**Branch:** phase-03-prototype-ait0405  
+**Implementation branch:** phase-03-prototype-ait0405  
+**Closeout documentation branch:** phase-03-closeout-ait0405  
 **Issue:** #46  
-**Pull Request:** [#47](https://github.com/klioscreator/STARFALLGODOT/pull/47)  
-**Automated validation run:** [GitHub Actions #42838024897](https://github.com/klioscreator/STARFALLGODOT/actions/runs/42838024897)
+**Implementation PRs:** [#45](https://github.com/klioscreator/STARFALLGODOT/pull/45), [#47](https://github.com/klioscreator/STARFALLGODOT/pull/47), [#48](https://github.com/klioscreator/STARFALLGODOT/pull/48) — merged  
+**Latest tested implementation commit:** `4a0158d1aac60720a252f29b740a8af03829e027`  
+**Latest Godot CI:** [#42845612067](https://github.com/klioscreator/STARFALLGODOT/actions/runs/42845612067) — SUCCESS  
+**Main merge commit:** `8d0e681d4453763f9925f7034cc016d79e6773d7`
 
 ## Deliverables
 
@@ -35,13 +38,13 @@
 
 ## Automated validation
 
-GitHub Actions run 42838024897 completed successfully:
+Godot Prototype Checks run [#42845612067](https://github.com/klioscreator/STARFALLGODOT/actions/runs/42845612067) completed successfully on the final implementation commit before merge:
 - Godot 4.7.2 installed and version verified.
 - Project import and script parsing passed.
 - Combatant-state, turn-manager and action-pipeline tests passed.
 - Main scene launched headlessly for five frames.
 
-See docs/phase-03/test-report.md.
+See [docs/phase-03/test-report.md](test-report.md).
 
 ## Prototype-only rules
 
@@ -49,12 +52,13 @@ Action-point budget, actor order, damage, health, movement distance and ranges a
 
 ## Owner-side checks required
 
-1. Open the branch project in Godot 4.7.2 and play it interactively on desktop.
+1. Open the merged `main` project in Godot and play it interactively on desktop.
 2. Check first-/third-person visibility, camera obstruction and movement.
 3. Test touch controls and narrow-screen layout on a real mobile device.
 4. Confirm intended mobile OS/export requirements before preparing a device build.
 5. Review prototype-only combat parameters before Phase 04.
+6. Record acceptance or defects against Issue #46.
 
 ## Governance
 
-The Phase 03 implementation is ready for review, but this handoff does not claim physical-device validation or production readiness. The Project Owner retains PR merge authority. Phase 03 remains PENDING_REVIEW until owner-side checks and merge/acceptance requirements are met. Phase 04–07 remain NOT_STARTED.
+The implementation PRs are merged, but this handoff does not claim physical-device validation or production readiness. The Project Owner retains authority over acceptance and core product decisions. Phase 03 remains PENDING_OWNER_VALIDATION until owner-side checks and explicit acceptance are recorded. Phase 04–07 remain NOT_STARTED.
