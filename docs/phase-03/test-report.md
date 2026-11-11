@@ -39,3 +39,21 @@ The main-scene smoke test confirms that Godot can load and run the main scene fo
 - Full encounter balance and player-experience acceptance.
 
 These tests require devices/toolchains not available in the implementation environment. No claim of mobile certification or full gameplay acceptance is made.
+
+## Scene-lifecycle integration checks
+
+**Pull request:** [#50](https://github.com/klioscreator/STARFALLGODOT/pull/50)  
+**Run:** [Godot Prototype Checks #43004438956](https://github.com/klioscreator/STARFALLGODOT/actions/runs/43004438956)  
+**Proposed commit tested:** `b09baa1ab720d31296746a120995e2a558a3d51a`  
+**Result:** SUCCESS
+
+The added headless integration test instantiates the main scene and verifies:
+- Initial exploration state and camera perspective toggle.
+- Encounter start and player turn ownership.
+- Victory state when all enemy combatant states are defeated.
+- Defeat state when player health reaches zero.
+- Restart after victory/defeat, including restoration of player/enemy health and enemy visibility.
+
+The test exposed a real runtime type mismatch: encounter initialization passed an untyped array to `TurnManager.start(Array[String], ...)`. PR #50 adds an explicitly typed actor-order array. The corrected integration suite and all previous workflow steps passed on the tested PR head.
+
+This is controller/scene lifecycle coverage, not a complete interactive playthrough. It does not verify physical keyboard/touch input, real-time camera feel, tactical movement collision behavior, full player attack sequences or device performance. Those remain on the Project Owner checklist.
