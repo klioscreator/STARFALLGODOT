@@ -8,10 +8,11 @@ The Project Owner directs the product and approves phase scope. AI assistants ca
 
 - Phase 01 — Research and Design: COMPLETE.
 - Phase 02 — Architecture: COMPLETE.
-- Phase 03 — Prototype: PENDING_OWNER_VALIDATION. Implementation PRs #45, #47, #48 and #50 and closeout documentation PR #49 are merged; integration and post-merge CI pass. Interactive owner-device validation and explicit acceptance remain. See [Phase 03 status](docs/phase-03/phase-03-status.md).
-- Phase 04–07: NOT_STARTED.
+- Phase 03 — Prototype: COMPLETE by explicit Project Owner acceptance on 2026-11-11. Implementation and closeout PRs #45, #47, #48, #49, #50 and #51 are merged. This acceptance record does not claim physical-device validation.
+- Phase 04 — Combat: IN_PROGRESS under AIT0405. See [Phase 04 status](docs/phase-04/phase-04-status.md) and [Issue #54](https://github.com/klioscreator/STARFALLGODOT/issues/54).
+- Phase 05–07: NOT_STARTED.
 
-The merged `main` branch contains the Phase 03 Godot project and procedural 3D prototype. Current main commit: `ac2b57632040e22bfe436d41d04874de55951669`. Main workflow #43036866188 completed successfully. PRs #49 and #50 are merged.
+The accepted `main` branch contains the Phase 03 Godot project and procedural 3D prototype. Main baseline at Phase 04 start: `a68108e4e15130e084787f4ab6c19092a193b5df`. Phase 03 main workflow #43036866188 completed successfully. Phase 04 work is isolated on `phase-04-combat-ait0405`.
 
 ## Approved product direction
 
@@ -23,6 +24,10 @@ The merged `main` branch contains the Phase 03 Godot project and procedural 3D p
 - Target platforms: desktop PC and mobile.
 - Online group play belongs to a separate supplementary server project.
 
+## Current production boundary
+
+Phase 04 develops the tactical combat foundation using the existing prototype and placeholder geometry. Production character/enemy art, concept art, textures, animation, VFX, audio and final UI styling are deferred until Phase 04 is complete.
+
 ## Documentation
 
 - [AI collaboration rules](README.md)
@@ -33,3 +38,4 @@ The merged `main` branch contains the Phase 03 Godot project and procedural 3D p
 - [Phase 02 gameplay contracts](docs/phase-02/gameplay-system-contracts.md)
 - [Phase 03 prototype scope](docs/phase-03/prototype-scope.md)
 - [Phase 03 run and test](docs/phase-03/run-and-test.md)
+- [Phase 04 combat scope](docs/phase-04/combat-scope.md)
