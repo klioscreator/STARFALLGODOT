@@ -1,9 +1,10 @@
 # Phase 04 status — Tactical Combat Foundation
 
-- Overall status: **IN_PROGRESS**
+- Overall status: **PENDING_REVIEW**
 - Phase lead / coordinator: AIT0405 (@klioscreator)
 - Branch: `phase-04-combat-ait0405`
-- Main baseline after synchronization: `5faf3d154f761c92d049d04e3b03a1755aba1463`
+- Synchronized main baseline: `5faf3d154f761c92d049d04e3b03a1755aba1463`
+- Verified implementation/test head: `9bacc2c9dee65abdcafe19c177b58319f7be610e`
 - Tracking issue: #54
 - Pull Request: #55
 - Project Owner authorization: 2026-11-11
@@ -24,27 +25,30 @@ Production art, new enemy/creature content, world production, online server, pro
 | 4.2 | Turn and encounter lifecycle | AIT0405 | COMPLETE |
 | 4.3 | Shared action pipeline | AIT0405 | COMPLETE |
 | 4.4 | Tactical constraints and enemy decision boundary | AIT0405 | COMPLETE |
-| 4.5 | Integration, tests, CI and closeout | AIT0405 | IN_PROGRESS |
+| 4.5 | Integration, tests, CI and closeout | AIT0405 | COMPLETE — PR #55 awaiting owner review |
 
 ## Implemented
 
 - Reusable combat action resource definition and prototype action catalog.
 - Central action pipeline with actor, AP, target, team, range and line-of-sight validation.
 - Resolver supports damage, healing and no-effect movement actions; rejected actions do not consume AP.
-- Deterministic turn manager with duplicate actor filtering, dead-actor skipping, round wraparound and explicit stop.
+- Explicit encounter lifecycle with inactive, active, victory and defeat states.
+- Deterministic turn manager with duplicate actor filtering, defeated-actor skipping, round wraparound and explicit stop.
 - Enemy AI proposes actions from a read-only snapshot; accepted proposals pass through the same pipeline as player actions.
 - Godot scene controller routes player movement, attacks, skills and enemy turns through the combat pipeline.
-- Domain and scene integration tests cover rejection invariants, turn order, player/enemy actions, victory, defeat and restart.
+- Domain and scene integration tests cover rejection invariants, turn order, player/enemy actions, blocked movement, healing, victory, defeat and restart.
 - CI workflow runs on the Phase 04 branch and PRs targeting main.
 
 ## Verification
 
-GitHub Actions run #43042099610 on commit `653d739839d5ace03939cf26591a38875beabac6` passed engine setup, import/parse, domain tests and integration tests. The final headless main-scene launch was still running when this record was updated; do not report the workflow as fully successful until its final conclusion is confirmed.
+GitHub Actions run #43042807937 passed all steps on commit `9bacc2c9dee65abdcafe19c177b58319f7be610e`: Godot 4.7.2 setup/version, import and parse, domain tests, integration tests and headless main-scene launch.
+
+No local Godot desktop playtest or physical-device validation is claimed.
 
 ## Governance and exclusions
 
-- Work only on the assigned Phase 04 branch.
-- Keep Project Owner's open design decisions open; numerical values are fixtures only.
-- No production graphic design during Phase 04.
+- Project Owner accepted Phase 03 and authorized Phase 04.
+- All numerical combat parameters remain fixtures; unresolved game-design decisions remain OPEN.
+- No production graphic design or art asset production during Phase 04.
 - No server or online transport implementation.
-- Do not merge or close a PR; Project Owner retains merge authority.
+- PR #55 is open and awaits Project Owner review/merge. Do not merge or close it as AIT0405; Project Owner retains merge authority.
